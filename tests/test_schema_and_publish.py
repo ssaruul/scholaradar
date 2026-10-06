@@ -2,9 +2,9 @@ import json
 from datetime import date
 from pathlib import Path
 
-from scholarship_radar.llm.schema import Opportunity, opportunity_json_schema
-from scholarship_radar.publish.csv_export import write_csv
-from scholarship_radar.publish.site import write_site
+from scholaradar.llm.schema import Opportunity, opportunity_json_schema
+from scholaradar.publish.csv_export import write_csv
+from scholaradar.publish.site import write_site
 
 ROOT = Path(__file__).resolve().parents[1]
 

@@ -13,7 +13,22 @@ fi
 
 MODE="${LLAMA_MODE:-docker}"
 PORT="${LLAMA_PORT:-8089}"
-MODEL_FILE="${MODELS_DIR:-$HOME/models/gguf}/${LLAMA_MODEL:?LLAMA_MODEL not set}"
+
+resolve_models_dir() {
+  local pattern="${MODELS_DIR:-$HOME/models/gguf}"
+  local match
+  for match in $pattern; do
+    if [ -d "$match" ]; then
+      echo "$match"
+      return 0
+    fi
+  done
+  echo "no directory matches MODELS_DIR=$pattern (is the drive mounted?)" >&2
+  return 1
+}
+
+MODELS_PATH="$(resolve_models_dir)"
+MODEL_FILE="$MODELS_PATH/${LLAMA_MODEL:?LLAMA_MODEL not set}"
 PID_FILE="data/llama-server.pid"
 mkdir -p data/logs
 
@@ -34,6 +49,7 @@ start() {
     if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
       echo "llama-server already running (pid $(cat "$PID_FILE"))"
     else
+      echo "starting llama-server with $MODEL_FILE"
       nohup "$BIN/llama-server" -m "$MODEL_FILE" --alias local \
         -c "${LLAMA_CTX:-65536}" --parallel "${LLAMA_PARALLEL:-4}" -ngl 99 \
         --flash-attn on -ctk "${LLAMA_KV_TYPE:-q8_0}" -ctv "${LLAMA_KV_TYPE:-q8_0}" \
@@ -42,7 +58,7 @@ start() {
       echo $! > "$PID_FILE"
     fi
   else
-    docker compose --profile llm up -d llama
+    MODELS_DIR="$MODELS_PATH" docker compose --profile llm up -d llama
   fi
   wait_healthy
 }

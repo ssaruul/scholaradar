@@ -15,6 +15,6 @@ for entry in "${MODELS[@]}"; do
   echo "=== $file (ctx $ctx, parallel $parallel)"
   scripts/llama_server.sh stop >/dev/null 2>&1 || true
   LLAMA_MODEL="$file" LLAMA_CTX="$ctx" LLAMA_PARALLEL="$parallel" scripts/llama_server.sh start
-  uv run scholarship-radar benchmark --model "${file%.gguf}" "$@"
+  uv run scholaradar benchmark --model "${file%.gguf}" "$@"
 done
 scripts/llama_server.sh stop

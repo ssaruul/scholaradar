@@ -1,5 +1,5 @@
-from scholarship_radar.llm.schema import Opportunity
-from scholarship_radar.llm.verify import deterministic_override, evidence_in_text, verify
+from scholaradar.llm.schema import Opportunity
+from scholaradar.llm.verify import deterministic_override, evidence_in_text, verify
 
 NAMES = ["Mongolia", "Mongolian", "Монголия", "Монголии", "モンゴル", "몽골", "蒙古"]
 

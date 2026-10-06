@@ -1,4 +1,4 @@
-from scholarship_radar.textract import extract_pdf, guess_language
+from scholaradar.textract import extract_pdf, guess_language
 
 
 def test_truncated_pdf_returns_none() -> None:

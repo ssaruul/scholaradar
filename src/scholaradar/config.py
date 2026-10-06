@@ -37,7 +37,7 @@ class FetchConfig(BaseModel):
     per_host_delay_seconds: float = 2.0
     timeout_seconds: float = 20.0
     max_bytes: int = 3_000_000
-    user_agent: str = "scholarship-radar/0.1"
+    user_agent: str = "scholaradar/0.1"
     max_pages_per_run: int = 400
     source_recheck_hours: int = 20
     max_links_per_source: int = 40
@@ -73,7 +73,7 @@ class CsvOutput(BaseModel):
 class EmailOutput(BaseModel):
     enabled: bool = False
     only_new: bool = True
-    subject_prefix: str = "[scholarship-radar]"
+    subject_prefix: str = "[scholaradar]"
 
 
 class SheetsOutput(BaseModel):

@@ -8,7 +8,7 @@ docker compose up -d searxng || echo "searxng not started, search discovery will
 scripts/llama_server.sh start
 
 status=0
-uv run scholarship-radar run "$@" || status=$?
+uv run scholaradar run "$@" || status=$?
 
 scripts/llama_server.sh stop
 exit "$status"

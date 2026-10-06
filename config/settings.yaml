@@ -27,7 +27,7 @@ fetch:
   per_host_delay_seconds: 2.0
   timeout_seconds: 20
   max_bytes: 8000000
-  user_agent: "Mozilla/5.0 (compatible; scholarship-radar/0.1; +https://github.com/ssaruul/scholarship-radar)"
+  user_agent: "Mozilla/5.0 (compatible; scholaradar/0.1; +https://github.com/ssaruul/scholaradar)"
   max_pages_per_run: 400
   source_recheck_hours: 20
   max_links_per_source: 40
@@ -84,7 +84,7 @@ outputs:
   email:
     enabled: false
     only_new: true
-    subject_prefix: "[scholarship-radar]"
+    subject_prefix: "[scholaradar]"
   sheets:
     enabled: false
     spreadsheet_id: ""

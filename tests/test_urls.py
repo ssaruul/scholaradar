@@ -1,4 +1,4 @@
-from scholarship_radar.urls import canonicalize, host_of
+from scholaradar.urls import canonicalize, host_of
 
 
 def test_strips_tracking_and_fragment() -> None:

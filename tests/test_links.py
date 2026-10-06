@@ -1,5 +1,5 @@
-from scholarship_radar.discover.links import extract_candidate_links
-from scholarship_radar.discover.rss import parse_feed
+from scholaradar.discover.links import extract_candidate_links
+from scholaradar.discover.rss import parse_feed
 
 KEYWORDS = ["scholarship", "тэтгэлэг", "burs"]
 

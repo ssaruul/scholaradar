@@ -15,7 +15,7 @@ from .llm.extract import extract_pages
 from .pipeline import discover, fetch_pages
 from .publish.run import publish_all
 
-log = logging.getLogger("scholarship_radar")
+log = logging.getLogger("scholaradar")
 
 
 def _root(args: argparse.Namespace) -> Path:
@@ -124,7 +124,7 @@ def cmd_benchmark(settings: Settings, args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="scholarship-radar")
+    parser = argparse.ArgumentParser(prog="scholaradar")
     parser.add_argument("--root", default=".", help="project root containing config/ and data/")
     parser.add_argument("-v", "--verbose", action="store_true")
     sub = parser.add_subparsers(dest="command", required=True)

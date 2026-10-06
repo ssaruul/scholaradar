@@ -1,4 +1,4 @@
-from scholarship_radar.prefilter import keyword_hit, nationality_hits, sentences_mentioning
+from scholaradar.prefilter import keyword_hit, nationality_hits, sentences_mentioning
 
 KEYWORDS = ["scholarship", "тэтгэлэг", "стипенди", "奨学金", "장학금", "奖学金", "stipendium", "burs"]
 NAMES = ["Mongolia", "Mongolian", "Монгол Улс", "Монголия", "モンゴル", "몽골", "蒙古", "Mongolei", "Moğolistan"]

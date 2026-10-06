@@ -1,4 +1,4 @@
-# scholarship-radar
+# scholaradar
 
 Daily, self-hosted discovery of scholarships and funded study opportunities, with a local LLM deciding whether citizens of your country are eligible. Built for Mongolian students; change one config block for any other nationality.
 
@@ -21,8 +21,8 @@ No paid APIs. Search runs through a self-hosted SearXNG instance, extraction run
 ## Setup
 
 ```bash
-git clone https://github.com/ssaruul/scholarship-radar
-cd scholarship-radar
+git clone https://github.com/ssaruul/scholaradar
+cd scholaradar
 uv sync
 cp .env.example .env            # SMTP settings for the email digest, optional
 
@@ -33,8 +33,8 @@ uvx --from huggingface_hub hf download unsloth/gemma-4-26B-A4B-it-GGUF \
 
 docker compose up -d searxng
 scripts/llama_server.sh start
-uv run scholarship-radar init-db
-uv run scholarship-radar run --limit 50
+uv run scholaradar init-db
+uv run scholaradar run --limit 50
 xdg-open data/site/index.html
 ```
 
@@ -45,14 +45,14 @@ xdg-open data/site/index.html
 - `docker` (default): `ghcr.io/ggml-org/llama.cpp:server-cuda` through Docker Compose. Needs the NVIDIA Container Toolkit and a driver that supports CUDA 12.8 or newer (driver 570+).
 - `native`: a prebuilt llama.cpp release binary on the host. `scripts/install_llama.sh vulkan` downloads the latest release into `~/.local/opt` and prints the two lines to add to `.env`. Vulkan works on NVIDIA drivers that are too old for the CUDA image (anything that ships a Vulkan ICD) and on AMD cards; `cuda-12.8`, `cuda-13.4`, `rocm` and `cpu` builds are also available.
 
-`LLAMA_MODEL`, `LLAMA_CTX`, `LLAMA_PARALLEL`, `LLAMA_KV_TYPE`, `LLAMA_PORT` and `MODELS_DIR` in `.env` apply to both modes. The pipeline only needs an OpenAI-compatible endpoint, so `LLM_BASE_URL` / `LLM_MODEL` / `LLM_API_KEY` can point at Ollama, vLLM, or a hosted API instead.
+`LLAMA_MODEL`, `LLAMA_CTX`, `LLAMA_PARALLEL`, `LLAMA_KV_TYPE`, `LLAMA_PORT` and `MODELS_DIR` in `.env` apply to both modes. `MODELS_DIR` may be a glob such as `/media/you/HDD*/models/gguf` for external drives whose mount point changes between boots; the first matching directory is used. The pipeline only needs an OpenAI-compatible endpoint, so `LLM_BASE_URL` / `LLM_MODEL` / `LLM_API_KEY` can point at Ollama, vLLM, or a hosted API instead.
 
 ## Daily run
 
 `scripts/run_nightly.sh` starts llama-server, runs the pipeline, then stops it so the GPU is free for other work. Example crontab entry:
 
 ```
-30 3 * * * /home/you/scholarship-radar/scripts/run_nightly.sh >> /home/you/scholarship-radar/data/logs/nightly.log 2>&1
+30 3 * * * /home/you/scholaradar/scripts/run_nightly.sh >> /home/you/scholaradar/data/logs/nightly.log 2>&1
 ```
 
 ## Commands
@@ -79,7 +79,7 @@ To adapt the project to another nationality, edit `target` in `settings.yaml` an
 
 ## Choosing a model
 
-`benchmark/labels.yaml` holds 51 hand-labelled pages in English, Mongolian, Russian, Japanese, Korean and Chinese. `scripts/bench_all.sh` restarts llama-server with each model listed in it and runs `scholarship-radar benchmark`, printing eligibility accuracy, false positives, deadline accuracy, JSON validity and throughput. Results on an RTX 3090 (Vulkan build b11433, Q4_K_M, 4 parallel slots):
+`benchmark/labels.yaml` holds 51 hand-labelled pages in English, Mongolian, Russian, Japanese, Korean and Chinese. `scripts/bench_all.sh` restarts llama-server with each model listed in it and runs `scholaradar benchmark`, printing eligibility accuracy, false positives, deadline accuracy, JSON validity and throughput. Results on an RTX 3090 (Vulkan build b11433, Q4_K_M, 4 parallel slots):
 
 | Model | Strict accuracy | Safe accuracy (no yes/no swaps) | Deadline accuracy | Set wall time | Gen tok/s |
 |---|---|---|---|---|---|
