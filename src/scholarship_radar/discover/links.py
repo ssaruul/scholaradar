@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from urllib.parse import urljoin, urlsplit
 
+from lxml import etree
 from lxml import html as lxml_html
 
 from ..urls import host_of, is_http
@@ -11,7 +12,10 @@ SKIP_PATH_FRAGMENTS = ("privacy", "cookie", "login", "signin", "register", "cont
 
 
 def extract_candidate_links(page_html: bytes, base_url: str, keywords: list[str], limit: int) -> list[str]:
-    tree = lxml_html.fromstring(page_html)
+    try:
+        tree = lxml_html.fromstring(page_html)
+    except (etree.ParserError, ValueError):
+        return []
     tree.make_links_absolute(base_url)
     folded_keywords = [keyword.casefold() for keyword in keywords]
     base_host = host_of(base_url)

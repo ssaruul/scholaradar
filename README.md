@@ -86,6 +86,7 @@ To adapt the project to another nationality, edit `target` in `settings.yaml` an
 | gemma-4-12b-it | 0.80 | 1.00 | 1.00 | 243 s | 68 |
 | gemma-4-26B-A4B-it (default) | 0.80 | 1.00 | 1.00 | 161 s | 101 |
 | Qwen3.5-27B | 0.80 | 1.00 | 0.95 | 337 s | 46 |
+| gemma-4-31B-it (2 slots) | 0.78 | 1.00 | 1.00 | 495 s | 32 |
 
 Strict accuracy demands the exact label (`yes` / `no` / `unclear`); the misses are almost all pages that say "international students from 150 countries" without listing them, where the models answer `yes` and the strict label is `unclear`. Safe accuracy counts only `yes`/`no` swaps, and none of the models produced one. On a 16 GB card use the 12B.
 

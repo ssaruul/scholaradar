@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 import trafilatura
 from pypdf import PdfReader
+from pypdf.errors import PdfReadError
 
 MONGOLIAN_LETTERS = re.compile(r"[өүӨҮ]")
 CYRILLIC = re.compile(r"[Ѐ-ӿ]")
@@ -62,10 +63,14 @@ def extract_html(html: bytes, url: str) -> Extracted | None:
 
 
 def extract_pdf(data: bytes) -> Extracted | None:
-    reader = PdfReader(io.BytesIO(data))
-    pages = [page.extract_text() or "" for page in reader.pages[:40]]
+    try:
+        reader = PdfReader(io.BytesIO(data))
+        pages = [page.extract_text() or "" for page in reader.pages[:40]]
+        metadata_title = reader.metadata.title if reader.metadata and reader.metadata.title else ""
+    except (PdfReadError, ValueError, KeyError, TypeError):
+        return None
     text = re.sub(r"[ \t]+", " ", "\n".join(pages)).strip()
     if len(text) < 80:
         return None
-    title = (reader.metadata.title if reader.metadata and reader.metadata.title else "") or text.splitlines()[0][:200]
+    title = metadata_title or text.splitlines()[0][:200]
     return Extracted(text=text, title=title.strip(), date=None, lang=guess_language(text))

@@ -41,3 +41,7 @@ def test_parse_feed() -> None:
     entries = parse_feed(feed)
     assert [entry.url for entry in entries] == ["https://example.org/mext-2027"]
     assert entries[0].title == "MEXT 2027"
+
+
+def test_links_from_empty_document() -> None:
+    assert extract_candidate_links(b"", "https://example.org/", KEYWORDS, 10) == []
