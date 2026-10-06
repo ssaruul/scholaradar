@@ -29,6 +29,10 @@ def sync_outputs(root: Path, paths: list[Path], message: str, remote: str, branc
     log.info("git: committed %s", message)
     if not push:
         return True
+    pulled = _git(root, "pull", "--rebase", "--autostash", remote, branch)
+    if pulled.returncode != 0:
+        log.warning("git pull --rebase failed, not pushing: %s", pulled.stderr.strip()[-300:])
+        return True
     pushed = _git(root, "push", remote, branch)
     if pushed.returncode != 0:
         log.warning("git push failed: %s", pushed.stderr.strip())
