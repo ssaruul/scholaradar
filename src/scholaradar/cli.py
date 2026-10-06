@@ -2,9 +2,13 @@ from __future__ import annotations
 
 import argparse
 import logging
+import subprocess
 import sys
+import webbrowser
 from dataclasses import asdict
 from datetime import date
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from . import db
@@ -12,6 +16,7 @@ from .config import Settings, load_secrets, load_settings
 from .fetch import Fetcher
 from .llm.client import LlmClient
 from .llm.extract import extract_pages
+from .llm.server import LlamaServer, LlamaSettings, default_install_dir, install_llama
 from .pipeline import discover, fetch_pages
 from .publish.run import publish_all
 
@@ -65,6 +70,15 @@ def cmd_extract(settings: Settings, args: argparse.Namespace) -> int:
     return 0
 
 
+def open_dashboard(settings: Settings) -> None:
+    index = settings.outputs.site.dir / "index.html"
+    if index.exists():
+        webbrowser.open(index.resolve().as_uri())
+        print(f"opened {index}")
+    else:
+        print(f"no dashboard yet at {index}; run `scholaradar run` first")
+
+
 def cmd_publish(settings: Settings, args: argparse.Namespace) -> int:
     conn = db.connect(settings.db_path)
     run_id = db.start_run(conn)
@@ -72,6 +86,8 @@ def cmd_publish(settings: Settings, args: argparse.Namespace) -> int:
     db.finish_run(conn, run_id, asdict(stats))
     conn.commit()
     print(asdict(stats))
+    if args.open:
+        open_dashboard(settings)
     return 0
 
 
@@ -103,6 +119,64 @@ def cmd_run(settings: Settings, args: argparse.Namespace) -> int:
     db.finish_run(conn, run_id, counts)
     conn.commit()
     print(counts)
+    if args.open:
+        open_dashboard(settings)
+    return 0
+
+
+def _llama(settings: Settings) -> LlamaServer:
+    return LlamaServer(settings.root_dir, LlamaSettings(_env_file=str(settings.root_dir / ".env")))
+
+
+def cmd_llm(settings: Settings, args: argparse.Namespace) -> int:
+    if args.action == "install":
+        install_llama(args.backend, Path(args.dest) if args.dest else default_install_dir())
+        return 0
+    server = _llama(settings)
+    if args.action == "start":
+        server.start()
+    elif args.action == "stop":
+        server.stop()
+    else:
+        print("healthy" if server.healthy() else "not running")
+    return 0
+
+
+def cmd_nightly(settings: Settings, args: argparse.Namespace) -> int:
+    (settings.data_dir / "logs").mkdir(parents=True, exist_ok=True)
+    searx = subprocess.run(["docker", "compose", "up", "-d", "searxng"], cwd=settings.root_dir, capture_output=True, text=True)
+    if searx.returncode != 0:
+        log.warning("searxng not started, search discovery will be skipped: %s", searx.stderr.strip()[-200:])
+    server = _llama(settings)
+    try:
+        server.start()
+    except (FileNotFoundError, RuntimeError, subprocess.CalledProcessError) as exc:
+        log.warning("LLM not started (%s); running without extraction", exc)
+    status = 0
+    try:
+        status = cmd_run(settings, args)
+    finally:
+        server.stop()
+    return status
+
+
+def cmd_open(settings: Settings, args: argparse.Namespace) -> int:
+    open_dashboard(settings)
+    return 0
+
+
+def cmd_serve(settings: Settings, args: argparse.Namespace) -> int:
+    directory = settings.outputs.site.dir
+    handler = partial(SimpleHTTPRequestHandler, directory=str(directory))
+    httpd = ThreadingHTTPServer(("127.0.0.1", args.port), handler)
+    url = f"http://127.0.0.1:{args.port}/"
+    print(f"serving {directory} at {url} (Ctrl+C to stop)")
+    if not args.no_open:
+        webbrowser.open(url)
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
     return 0
 
 
@@ -142,13 +216,26 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_extract)
     p = sub.add_parser("publish")
     p.add_argument("--send-test", action="store_true", help="email the full digest regardless of settings")
+    p.add_argument("--open", action="store_true", help="open the dashboard in your browser afterwards")
     p.set_defaults(func=cmd_publish)
-    p = sub.add_parser("run")
-    p.add_argument("--limit", type=int, default=0)
-    p.add_argument("--skip-search", action="store_true")
-    p.add_argument("--skip-llm", action="store_true")
-    p.add_argument("--model", default=None)
-    p.set_defaults(func=cmd_run)
+    for name, func in (("run", cmd_run), ("nightly", cmd_nightly)):
+        p = sub.add_parser(name)
+        p.add_argument("--limit", type=int, default=0)
+        p.add_argument("--skip-search", action="store_true")
+        p.add_argument("--skip-llm", action="store_true")
+        p.add_argument("--model", default=None)
+        p.add_argument("--open", action="store_true", help="open the dashboard in your browser afterwards")
+        p.set_defaults(func=func)
+    p = sub.add_parser("llm")
+    p.add_argument("action", choices=["start", "stop", "status", "install"])
+    p.add_argument("--backend", default="vulkan", help="install: vulkan | cuda-12.8 | cuda-13.4 | rocm | cpu")
+    p.add_argument("--dest", default=None, help="install: directory to unpack llama.cpp into")
+    p.set_defaults(func=cmd_llm)
+    sub.add_parser("open").set_defaults(func=cmd_open)
+    p = sub.add_parser("serve")
+    p.add_argument("--port", type=int, default=8787)
+    p.add_argument("--no-open", action="store_true")
+    p.set_defaults(func=cmd_serve)
     sub.add_parser("status").set_defaults(func=cmd_status)
     p = sub.add_parser("benchmark")
     p.add_argument("--model", required=True)

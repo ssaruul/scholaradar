@@ -26,7 +26,7 @@ COUNTRY_ALIASES = {
     "people's republic of china": "China", "prc": "China", "mainland china": "China",
     "russian federation": "Russia", "the netherlands": "Netherlands", "holland": "Netherlands",
     "czechia": "Czech Republic", "uae": "United Arab Emirates", "taiwan (roc)": "Taiwan", "republic of china (taiwan)": "Taiwan",
-    "unknown": "", "n/a": "", "not specified": "", "multiple": "Multiple", "various": "Multiple", "online": "Remote",
+    "unknown": "", "n/a": "", "not specified": "", "unclear": "", "none": "", "not stated": "", "multiple": "Multiple", "various": "Multiple", "online": "Remote",
 }
 
 

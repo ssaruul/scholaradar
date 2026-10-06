@@ -52,7 +52,7 @@ SAMPLE_ROWS = [
 def test_site_and_csv_render(tmp_path: Path) -> None:
     index = write_site(tmp_path / "site", ROOT / "templates", SAMPLE_ROWS, "Mongolia", date(2026, 10, 6))
     html = index.read_text(encoding="utf-8")
-    assert "Scholarship Radar" in html
+    assert "Scholaradar" in html
     assert "Test <Scholarship>" in html
     assert "</script>" not in json.dumps(SAMPLE_ROWS[0]["title"])
     data = json.loads((tmp_path / "site" / "data.json").read_text(encoding="utf-8"))

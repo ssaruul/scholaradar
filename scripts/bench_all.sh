@@ -13,8 +13,8 @@ MODELS=(
 for entry in "${MODELS[@]}"; do
   IFS='|' read -r file ctx parallel <<<"$entry"
   echo "=== $file (ctx $ctx, parallel $parallel)"
-  scripts/llama_server.sh stop >/dev/null 2>&1 || true
-  LLAMA_MODEL="$file" LLAMA_CTX="$ctx" LLAMA_PARALLEL="$parallel" scripts/llama_server.sh start
+  uv run scholaradar llm stop >/dev/null 2>&1 || true
+  LLAMA_MODEL="$file" LLAMA_CTX="$ctx" LLAMA_PARALLEL="$parallel" uv run scholaradar llm start
   uv run scholaradar benchmark --model "${file%.gguf}" "$@"
 done
-scripts/llama_server.sh stop
+uv run scholaradar llm stop

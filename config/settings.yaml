@@ -77,10 +77,20 @@ prefilter:
 outputs:
   site:
     enabled: true
-    dir: data/site
+    dir: docs
+    pages_url: https://ssaruul.github.io/scholaradar/
   csv:
     enabled: true
-    path: data/exports/opportunities.csv
+    path: docs/opportunities.csv
+  report:
+    enabled: true
+    dir: reports
+    window_days: 30
+  git:
+    enabled: false
+    push: true
+    remote: origin
+    branch: main
   email:
     enabled: false
     only_new: true

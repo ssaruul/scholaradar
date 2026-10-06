@@ -62,12 +62,26 @@ class PrefilterConfig(BaseModel):
 
 class SiteOutput(BaseModel):
     enabled: bool = True
-    dir: Path = Path("data/site")
+    dir: Path = Path("docs")
+    pages_url: str = ""
 
 
 class CsvOutput(BaseModel):
     enabled: bool = True
-    path: Path = Path("data/exports/opportunities.csv")
+    path: Path = Path("docs/opportunities.csv")
+
+
+class ReportOutput(BaseModel):
+    enabled: bool = True
+    dir: Path = Path("reports")
+    window_days: int = 30
+
+
+class GitOutput(BaseModel):
+    enabled: bool = False
+    push: bool = True
+    remote: str = "origin"
+    branch: str = "main"
 
 
 class EmailOutput(BaseModel):
@@ -86,6 +100,8 @@ class SheetsOutput(BaseModel):
 class OutputsConfig(BaseModel):
     site: SiteOutput = Field(default_factory=SiteOutput)
     csv: CsvOutput = Field(default_factory=CsvOutput)
+    report: ReportOutput = Field(default_factory=ReportOutput)
+    git: GitOutput = Field(default_factory=GitOutput)
     email: EmailOutput = Field(default_factory=EmailOutput)
     sheets: SheetsOutput = Field(default_factory=SheetsOutput)
 
@@ -144,6 +160,7 @@ class Secrets(BaseSettings):
     llm_model: str = ""
     llm_api_key: str = ""
     searx_base_url: str = ""
+    git_push: str = ""
 
 
 def _resolve(root: Path, path: Path) -> Path:
@@ -166,6 +183,7 @@ def load_settings(root_dir: Path) -> Settings:
     settings.data_dir = _resolve(settings.root_dir, settings.data_dir)
     settings.outputs.site.dir = _resolve(settings.root_dir, settings.outputs.site.dir)
     settings.outputs.csv.path = _resolve(settings.root_dir, settings.outputs.csv.path)
+    settings.outputs.report.dir = _resolve(settings.root_dir, settings.outputs.report.dir)
     settings.outputs.sheets.credentials_file = _resolve(settings.root_dir, settings.outputs.sheets.credentials_file)
     secrets = Secrets(_env_file=str(root_dir / ".env"))
     if secrets.llm_base_url:
@@ -176,6 +194,8 @@ def load_settings(root_dir: Path) -> Settings:
         settings.llm.api_key = secrets.llm_api_key
     if secrets.searx_base_url:
         settings.search.base_url = secrets.searx_base_url
+    if secrets.git_push:
+        settings.outputs.git.enabled = secrets.git_push.lower() in {"1", "true", "yes"}
     return settings
 
 
