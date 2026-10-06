@@ -74,3 +74,22 @@ def test_override_multilingual_inclusion() -> None:
     assert deterministic_override("対象国：モンゴル、ベトナム、ラオス", NAMES).verdict == "yes"
     assert deterministic_override("지원 자격: 몽골 국적 소지자", NAMES).verdict == "yes"
     assert deterministic_override("Граждане Монголии могут подать заявку.", NAMES).verdict == "yes"
+
+
+def test_destination_mention_is_not_inclusion() -> None:
+    text = "До 29 мая 2026 года российские студенты могут подать документы на стипендию Правительства Монголии. Обучение пройдет в монгольских университетах."
+    assert deterministic_override(text, NAMES + ["Монголии"]) is None
+    text_zh = "升学地点包括葡萄牙、巴西、马来西亚、匈牙利或蒙古，申请人须为澳门永久性居民。"
+    assert deterministic_override(text_zh, NAMES) is None
+
+
+def test_one_country_per_line_list() -> None:
+    text = "Eligible countries\nKazakhstan\nKyrgyzstan\nLao PDR\nMongolia\nNepal\nPakistan\nDeadline: 1 March 2027."
+    override = deterministic_override(text, NAMES)
+    assert override is not None and override.verdict == "yes"
+
+
+def test_one_country_per_line_exclusion_header() -> None:
+    text = "The following countries are not eligible:\nChina\nIndia\nMongolia\nRussia\nTurkey\nVietnam\nDeadline: 1 March 2027."
+    override = deterministic_override(text, NAMES)
+    assert override is not None and override.verdict == "no"

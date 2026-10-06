@@ -27,11 +27,13 @@ services:
     container_name: radar-llama
     profiles: ["llm"]
     ports:
-      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:${LLAMA_PORT:-8089}:8080"
+    environment:
+      - NVIDIA_DISABLE_REQUIRE=${NVIDIA_DISABLE_REQUIRE:-0}
     volumes:
       - ${MODELS_DIR:-${HOME}/models/gguf}:/models:ro
     command: >
-      -m /models/${LLAMA_MODEL:-Qwen3-30B-A3B-Instruct-2507-Q4_K_M.gguf}
+      -m /models/${LLAMA_MODEL:-gemma-4-26B-A4B-it-UD-Q4_K_M.gguf}
       --alias local
       -c ${LLAMA_CTX:-32768}
       --parallel ${LLAMA_PARALLEL:-4}

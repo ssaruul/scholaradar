@@ -119,3 +119,62 @@ cases:
     target_eligible: "unclear"
     is_opportunity: false
     note: 'roundup list of 10+ scholarships'
+  - url: https://moe.gov.mn/post/176952
+    target_eligible: "yes"
+    note: 'Bulgarian government scholarships via Mongolian ministry, Mongolian text, "Монгол Улсын иргэн байх"'
+  - url: https://moe.gov.mn/post/169697
+    target_eligible: "yes"
+    note: 'Chinese Government Scholarship 2026-2027 via Mongolian ministry, Mongolian text, 220 Mongolian citizens'
+  - url: https://time.mn/n/126465
+    target_eligible: "yes"
+    deadline: 2026-01-15
+    note: 'Stipendium Hungaricum announced for Mongolian citizens in Mongolian news; apply until 15 Jan 2026'
+  - url: https://www.yolo.mn/news/12375
+    target_eligible: "yes"
+    note: 'Romanian government scholarships for 10 Mongolian citizens, Mongolian text'
+  - url: https://ikon.mn/n/3n53
+    target_eligible: "yes"
+    deadline: 2026-06-01
+    note: 'Vietnam government scholarships for Mongolian citizens; registration until 1 June 2026 17:00'
+  - url: https://www.must.edu.mn/mn/news/12264
+    target_eligible: "yes"
+    deadline: 2026-05-29
+    note: 'Taiwan MOE scholarship, 14 students from Mongolia; materials accepted until 29 May 2026'
+  - url: http://ece.snu.ac.kr/community/schoarships?md=v&bbsidx=57861
+    target_eligible: "no"
+    note: 'Samsung Dream Global Hope scholarship at SNU, Korean text: 몽골 국적 선발 불가 (Mongolian nationals excluded this round)'
+  - url: https://www.uakoreaedu.org/kr/notification/2026-SeoulTechScholarshipForeignMastersDegreeStudentsInScienceAndEngineering
+    target_eligible: "yes"
+    note: 'Seoul Tech Scholarship, Korean text: applicant and both parents must be non-Korean'
+  - url: https://www.uakoreaedu.org/kr/notification/2026-GKS-U-Selection
+    target_eligible: "no"
+    note: 'GKS-U 2026 run by the Korean embassy in Ukraine for Ukrainian students; 초청국 국적 means the inviting country'
+  - url: https://www.iwate-u.ac.jp/iuic/dfea6778544b0452631a334880018b91.pdf
+    target_eligible: "yes"
+    deadline: 2026-04-22
+    note: 'Sakata Agri Foundation, Japanese PDF: 対象国 list includes モンゴル; campus deadline 22 April 2026'
+  - url: https://www.hisf.or.jp/scholarship/foreigner/
+    target_eligible: "yes"
+    deadline: 2026-10-31
+    note: 'Honjo International Scholarship Foundation, Japanese: 外国人留学生 (international students), applications 1 Sep to 31 Oct 2026'
+  - url: https://mininuniver.ru/about/news/stipendiya-mongolii-2026-mininskij-universitet-pomogaet-podat-zayavku
+    target_eligible: "no"
+    deadline: 2026-05-29
+    note: 'Mongolian government scholarship for Russian students to study in Mongolia, Russian text: российские студенты могут подать'
+  - url: https://iec.imu.edu.cn/content.jsp?urltype=news.NewsContentUrl&wbtreeid=1002&wbnewsid=1846
+    target_eligible: "unclear"
+    note: 'Inner Mongolia University CSC high-level postgraduate programme, trilingual title page, no eligibility text'
+  - url: https://www.gov.mo/zh-hans/news/891882/
+    target_eligible: "no"
+    deadline: 2026-03-27
+    note: 'Macau Foundation outbound scholarship for Macau permanent residents, Chinese text; 9 to 27 March 2026'
+  - url: https://www.isd.pku.edu.cn/cn/scholarship/detail.php?id=819
+    target_eligible: "yes"
+    note: 'Peking University scholarships for new international graduate students, Chinese: 外国留学生'
+  - url: https://www.unesco.org/zh/node/766
+    target_eligible: "yes"
+    note: 'UNESCO Great Wall fellowship, Chinese: invited member states list includes 蒙古; 2024-2025 round closed'
+  - url: https://m.joongdo.co.kr/view.php?key=20261001010000323
+    target_eligible: "unclear"
+    is_opportunity: false
+    note: 'Korean news article about a company donating scholarship funds for Mongolian students, not an open call'

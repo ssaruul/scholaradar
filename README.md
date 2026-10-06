@@ -14,8 +14,8 @@ No paid APIs. Search runs through a self-hosted SearXNG instance, extraction run
 
 ## Requirements
 
-- Linux with Docker and Docker Compose v2
-- NVIDIA GPU with 16 GB+ VRAM and the NVIDIA Container Toolkit (AMD notes below)
+- Linux with Docker and Docker Compose v2 (for SearXNG; the LLM can run in Docker or natively)
+- A GPU with 16 GB+ VRAM: NVIDIA (CUDA or Vulkan) or AMD (Vulkan/ROCm)
 - [uv](https://docs.astral.sh/uv/) (installs Python 3.12 for you)
 
 ## Setup
@@ -28,21 +28,28 @@ cp .env.example .env            # SMTP settings for the email digest, optional
 
 mkdir -p ~/models/gguf          # or set MODELS_DIR in .env
 # download a GGUF, for example:
-uv run huggingface-cli download unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF \
-    Qwen3-30B-A3B-Instruct-2507-Q4_K_M.gguf --local-dir ~/models/gguf
+uvx --from huggingface_hub hf download unsloth/gemma-4-26B-A4B-it-GGUF \
+    gemma-4-26B-A4B-it-UD-Q4_K_M.gguf --local-dir ~/models/gguf
 
 docker compose up -d searxng
-docker compose --profile llm up -d llama
+scripts/llama_server.sh start
 uv run scholarship-radar init-db
 uv run scholarship-radar run --limit 50
 xdg-open data/site/index.html
 ```
 
-`LLAMA_MODEL`, `LLAMA_CTX`, `LLAMA_PARALLEL` and `MODELS_DIR` in `.env` control the llama-server container. The pipeline only needs an OpenAI-compatible endpoint, so `LLM_BASE_URL` / `LLM_MODEL` / `LLM_API_KEY` can point at Ollama, vLLM, or a hosted API instead.
+### Running the LLM
+
+`scripts/llama_server.sh start|stop` manages llama-server in one of two modes, chosen by `LLAMA_MODE` in `.env`:
+
+- `docker` (default): `ghcr.io/ggml-org/llama.cpp:server-cuda` through Docker Compose. Needs the NVIDIA Container Toolkit and a driver that supports CUDA 12.8 or newer (driver 570+).
+- `native`: a prebuilt llama.cpp release binary on the host. `scripts/install_llama.sh vulkan` downloads the latest release into `~/.local/opt` and prints the two lines to add to `.env`. Vulkan works on NVIDIA drivers that are too old for the CUDA image (anything that ships a Vulkan ICD) and on AMD cards; `cuda-12.8`, `cuda-13.4`, `rocm` and `cpu` builds are also available.
+
+`LLAMA_MODEL`, `LLAMA_CTX`, `LLAMA_PARALLEL`, `LLAMA_KV_TYPE`, `LLAMA_PORT` and `MODELS_DIR` in `.env` apply to both modes. The pipeline only needs an OpenAI-compatible endpoint, so `LLM_BASE_URL` / `LLM_MODEL` / `LLM_API_KEY` can point at Ollama, vLLM, or a hosted API instead.
 
 ## Daily run
 
-`scripts/run_nightly.sh` starts the LLM container, runs the pipeline, then stops the container so the GPU is free for other work. Example crontab entry:
+`scripts/run_nightly.sh` starts llama-server, runs the pipeline, then stops it so the GPU is free for other work. Example crontab entry:
 
 ```
 30 3 * * * /home/you/scholarship-radar/scripts/run_nightly.sh >> /home/you/scholarship-radar/data/logs/nightly.log 2>&1
@@ -72,11 +79,18 @@ To adapt the project to another nationality, edit `target` in `settings.yaml` an
 
 ## Choosing a model
 
-`benchmark/labels.yaml` holds hand-labelled pages. `scripts/bench_all.sh` restarts llama-server with each model listed in it and runs `scholarship-radar benchmark`, printing eligibility accuracy, false positives, deadline accuracy, JSON validity and throughput. On an RTX 3090 (24 GB) the Q4_K_M quantisations of Qwen3-30B-A3B, Gemma 3 27B and Qwen3-32B all fit; on a 16 GB card use a 12B to 14B model.
+`benchmark/labels.yaml` holds 51 hand-labelled pages in English, Mongolian, Russian, Japanese, Korean and Chinese. `scripts/bench_all.sh` restarts llama-server with each model listed in it and runs `scholarship-radar benchmark`, printing eligibility accuracy, false positives, deadline accuracy, JSON validity and throughput. Results on an RTX 3090 (Vulkan build b11433, Q4_K_M, 4 parallel slots):
+
+| Model | Eligibility accuracy | False "yes" | Deadline accuracy | Set wall time | Gen tok/s |
+|---|---|---|---|---|---|
+| gemma-4-12b-it | 0.80 | 7 | 1.00 | 243 s | 68 |
+| gemma-4-26B-A4B-it | 0.80 | 7 | 1.00 | 161 s | 101 |
+
+The remaining misses are almost all pages that say "international students from 150 countries" without listing them; both models answer `yes` where the strict label is `unclear`. On a 16 GB card use the 12B.
 
 ### AMD GPUs
 
-Swap the image in `docker-compose.yml` for `ghcr.io/ggml-org/llama.cpp:server-vulkan`, replace the `deploy.resources` block with `devices: ["/dev/dri:/dev/dri", "/dev/kfd:/dev/kfd"]`, and keep `-ngl 99`. Untested by the author.
+Use `LLAMA_MODE=native` with `scripts/install_llama.sh vulkan` (or `rocm`). Untested by the author.
 
 ## Google Sheets
 
@@ -85,7 +99,8 @@ Install the extra (`uv sync --extra sheets`), create a Google Cloud service acco
 ## Limits
 
 - Facebook pages are not crawled; many Mongolian embassy announcements only appear there.
-- A 27B to 32B local model is weaker than frontier APIs on long country lists. Treat `unclear` as "read the page yourself".
+- Sites behind aggressive bot protection (adb.org, campuschina.org, scholarshipportal.com) and JavaScript-only pages (msmt.gov.cz) are skipped; no browser automation in v1.
+- A local 12B to 30B model is weaker than frontier APIs on long country lists. Explicit country lists and exclusions are handled by deterministic rules before the model's verdict is accepted; treat `unclear` as "read the page yourself".
 - Deadlines are re-verified only when an anchor page changes; search-discovered pages are extracted once.
 
 ## License

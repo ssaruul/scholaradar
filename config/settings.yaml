@@ -26,7 +26,7 @@ search:
 fetch:
   per_host_delay_seconds: 2.0
   timeout_seconds: 20
-  max_bytes: 3000000
+  max_bytes: 8000000
   user_agent: "Mozilla/5.0 (compatible; scholarship-radar/0.1; +https://github.com/ssaruul/scholarship-radar)"
   max_pages_per_run: 400
   source_recheck_hours: 20
@@ -44,10 +44,10 @@ fetch:
     - quora.com
 
 llm:
-  base_url: http://localhost:8080/v1
-  model: local
+  base_url: http://localhost:8089/v1
+  model: gemma-4-26B-A4B-it-UD-Q4_K_M
   max_input_chars: 12000
-  max_tokens: 1200
+  max_tokens: 2000
   temperature: 0.0
   timeout_seconds: 300
   concurrency: 4

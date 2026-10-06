@@ -45,11 +45,11 @@ class FetchConfig(BaseModel):
 
 
 class LlmConfig(BaseModel):
-    base_url: str = "http://localhost:8080/v1"
+    base_url: str = "http://localhost:8089/v1"
     model: str = "local"
     api_key: str = ""
     max_input_chars: int = 12000
-    max_tokens: int = 1200
+    max_tokens: int = 2000
     temperature: float = 0.0
     timeout_seconds: float = 300.0
     concurrency: int = 4
