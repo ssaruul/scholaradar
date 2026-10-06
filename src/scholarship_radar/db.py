@@ -222,6 +222,12 @@ def mark_page_error(conn: sqlite3.Connection, page_id: int, http_status: int | N
     )
 
 
+def requeue_llm_errors(conn: sqlite3.Connection) -> int:
+    cur = conn.execute("UPDATE pages SET status='fetched' WHERE status='error' AND error LIKE 'llm:%'")
+    conn.commit()
+    return cur.rowcount
+
+
 def set_page_status(conn: sqlite3.Connection, page_id: int, status: str, error: str | None = None) -> None:
     conn.execute("UPDATE pages SET status=?, error=? WHERE id=?", (status, error, page_id))
 

@@ -55,7 +55,12 @@ class ExtractionOutcome:
     error: str | None
 
 
-def _clip(text: str, max_chars: int) -> str:
+DENSE_LANGS = {"ja", "zh", "ko"}
+
+
+def _clip(text: str, max_chars: int, lang: str | None = None) -> str:
+    if lang in DENSE_LANGS:
+        max_chars = max_chars // 2
     if len(text) <= max_chars:
         return text
     head = int(max_chars * 0.75)
@@ -65,7 +70,7 @@ def _clip(text: str, max_chars: int) -> str:
 
 def extract_one(client: LlmClient, settings: Settings, page: db.PageRow, text: str, today: date, schema: dict) -> ExtractionOutcome:
     system = system_prompt(settings.target.name, settings.target.all_names(), today)
-    user = user_prompt(page.url, page.title or "", _clip(text, settings.llm.max_input_chars))
+    user = user_prompt(page.url, page.title or "", _clip(text, settings.llm.max_input_chars, page.lang))
     completion = client.complete_json(system, user, schema)
     if completion.error or completion.data is None:
         return ExtractionOutcome(page, completion, None, False, completion.error or "empty")
@@ -101,6 +106,7 @@ def to_record(page: db.PageRow, opp: Opportunity, verified: bool, model: str) ->
 
 def extract_pages(conn: sqlite3.Connection, settings: Settings, client: LlmClient, limit: int, today: date) -> ExtractStats:
     stats = ExtractStats()
+    db.requeue_llm_errors(conn)
     pages = db.pages_with_status(conn, "fetched", limit)
     schema = opportunity_json_schema()
     model_name = client.model or settings.llm.model

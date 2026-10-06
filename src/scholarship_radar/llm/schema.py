@@ -15,8 +15,8 @@ class Opportunity(BaseModel):
     title: str = Field(description="Official name of the opportunity in the page language")
     provider: str = Field(description="Organisation funding or running it")
     host_country: str = Field(description="Country where the study or activity takes place, in English")
-    degree_levels: list[DegreeLevel]
-    fields_of_study: list[str] = Field(description="Empty list if open to all fields")
+    degree_levels: list[DegreeLevel] = Field(max_length=6, description="Each level at most once")
+    fields_of_study: list[str] = Field(max_length=8, description="Empty list if open to all fields")
     funding_type: FundingType
     deadline: str | None = Field(description="Application deadline as YYYY-MM-DD, or null if none is stated")
     deadline_text: str = Field(description="Deadline exactly as written on the page, empty if none")

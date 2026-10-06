@@ -35,7 +35,7 @@ start() {
       echo "llama-server already running (pid $(cat "$PID_FILE"))"
     else
       nohup "$BIN/llama-server" -m "$MODEL_FILE" --alias local \
-        -c "${LLAMA_CTX:-32768}" --parallel "${LLAMA_PARALLEL:-4}" -ngl 99 \
+        -c "${LLAMA_CTX:-65536}" --parallel "${LLAMA_PARALLEL:-4}" -ngl 99 \
         --flash-attn on -ctk "${LLAMA_KV_TYPE:-q8_0}" -ctv "${LLAMA_KV_TYPE:-q8_0}" \
         --jinja --host 127.0.0.1 --port "$PORT" \
         >> "data/logs/llama-server.log" 2>&1 &
