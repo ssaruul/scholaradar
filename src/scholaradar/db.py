@@ -179,8 +179,8 @@ def requeue_page(conn: sqlite3.Connection, page_id: int) -> None:
     conn.execute("UPDATE pages SET status='new' WHERE id=?", (page_id,))
 
 
-def adopt_as_source(conn: sqlite3.Connection, page_id: int, source_id: int) -> None:
-    conn.execute("UPDATE pages SET source_id=?, discovered_via='source', status='new' WHERE id=?", (source_id, page_id))
+def adopt_as_source(conn: sqlite3.Connection, page_id: int, source_id: int, url: str) -> None:
+    conn.execute("UPDATE pages SET source_id=?, url=?, discovered_via='source', status='new', error=NULL WHERE id=?", (source_id, url, page_id))
 
 
 def _page_from_row(row: sqlite3.Row) -> PageRow:

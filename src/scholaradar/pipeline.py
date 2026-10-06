@@ -72,7 +72,7 @@ def discover(conn: sqlite3.Connection, settings: Settings, fetcher: Fetcher, run
         else:
             page_id, created = db.add_page(conn, source.url, canonicalize(source.url), source_id, "source")
             if not created:
-                db.adopt_as_source(conn, page_id, source_id)
+                db.adopt_as_source(conn, page_id, source_id, source.url)
         db.touch_source(conn, source_id)
         stats.sources += 1
     conn.commit()
