@@ -1,0 +1,121 @@
+cases:
+  - url: https://mn.china-embassy.gov.cn/eng/zytz/202511/t20251113_11752783.htm
+    target_eligible: "yes"
+    deadline: 2026-02-01
+    note: 'Chinese Government Scholarship via Mongolian quota; "be a citizen of Mongolia"; applications Nov 10 2025 to Feb 1 2026'
+  - url: https://www.australiaawardsmongolia.org/scholarships/who-can-apply/
+    target_eligible: "yes"
+    note: 'country-specific conditions for candidates from Mongolia; next round reopens early 2027, no date'
+  - url: https://www.australiaawardsmongolia.org/scholarships/applications/
+    target_eligible: "yes"
+    note: '"emerging Mongolian leaders"'
+  - url: https://www.worldbank.org/en/programs/scholarships/jj-wbgsp
+    target_eligible: "unclear"
+    note: '"citizens of certain developing countries", list elsewhere; two application windows in 2027'
+  - url: https://www.worldbank.org/en/programs/scholarships/brief/robert-s-mcnamara-fellowships-program
+    target_eligible: "yes"
+    note: 'researchers from developing countries'
+  - url: https://www.scholars4dev.com/2191/weidenfeld-scholarships-at-university-of-oxford/
+    target_eligible: "yes"
+    note: 'explicit country list includes Mongolia; deadline given as range Dec 2026/Jan 2027'
+  - url: https://www.scholars4dev.com/3299/british-chevening-scholarships/
+    target_eligible: "unclear"
+    deadline: 2026-10-06
+    note: '"citizens of Chevening-eligible countries", list not on page'
+  - url: https://www.scholars4dev.com/3648/reach-oxford-undergraduate-scholarships-for-developing-country-students/
+    target_eligible: "yes"
+    note: 'nationals of DAC ODA-recipient countries; two deadlines listed'
+  - url: https://www.scholars4dev.com/4900/commonwealth-scholarships-for-developing-commonwealth-countries/
+    target_eligible: "no"
+    deadline: 2026-10-20
+    note: 'citizens of developing Commonwealth countries only'
+  - url: https://www.scholars4dev.com/26028/benjamin-a-gilman-international-scholarship/
+    target_eligible: "no"
+    deadline: 2025-10-03
+    note: 'US citizens only'
+  - url: https://www.worldbank.org/en/programs/scholarships/japanese-nationals
+    target_eligible: "no"
+    deadline: 2027-04-16
+    note: 'Japanese nationals only'
+  - url: https://opportunitydesk.org/2026/10/05/switzer-fellowships-2027/
+    target_eligible: "no"
+    deadline: 2026-12-14
+    note: 'US citizens or residents; international students ineligible'
+  - url: https://nawa.gov.pl/en/students/foreign-students/the-ignacy-lukasiewicz-scholarship-programme
+    target_eligible: "unclear"
+    note: 'programme overview without country list'
+  - url: https://nawa.gov.pl/en/students/foreign-students/the-banach-scholarship-programme/information-for-applicants
+    target_eligible: "yes"
+    note: 'explicit country list includes Mongolia'
+  - url: https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships-at-a-glance
+    target_eligible: "unclear"
+    note: '"limited number of countries", list not on page'
+  - url: https://www.turkiyeburslari.gov.tr/announcements/turkiye-scholarships-2026-applications-121
+    target_eligible: "yes"
+    deadline: 2026-02-20
+    note: 'international students from all countries; 10 Jan to 20 Feb 2026'
+  - url: https://stipendiumhungaricum.hu/news/application-is-on-for-the-2026-2027-stipendium-hungaricum-scholarship/
+    target_eligible: "unclear"
+    deadline: 2026-01-15
+    note: 'no nationality statement on page'
+  - url: https://www.scholars4dev.com/29477/asbs-global-impact-scholarship/
+    target_eligible: "yes"
+    note: 'explicit country list includes Mongolia; two round deadlines in 2026'
+  - url: https://moe.gov.mn/post/171887
+    target_eligible: "unclear"
+    deadline: 2026-02-20
+    note: 'Mongolian ministry announcement of Turkiye Scholarships, Mongolian text, nationality not stated explicitly'
+  - url: https://opportunitydesk.org/2026/10/05/aixbio-fellowship-2027/
+    target_eligible: "unclear"
+    deadline: 2026-10-19
+    note: 'no nationality statement'
+  - url: https://opportunitydesk.org/2026/10/05/yale-maurice-r-greenberg-world-fellows-programme-2027/
+    target_eligible: "yes"
+    deadline: 2026-12-02
+    note: 'citizens of a country other than the United States'
+  - url: https://www.scholars4dev.com/14048/kth-tuition-fee-waivers-for-non-eu-students/
+    target_eligible: "yes"
+    deadline: 2027-01-15
+    note: 'citizens from non-EU/EEA/EFTA countries'
+  - url: https://www.scholars4dev.com/1877/aauw-international-fellowships-in-usa-for-women/
+    target_eligible: "yes"
+    deadline: 2026-09-17
+    note: 'women who are not US citizens or permanent residents'
+  - url: https://www.scholars4dev.com/2887/hubert-humphrey-fellowships-for-international-students/
+    target_eligible: "unclear"
+    note: 'citizens of eligible countries within listed regions; list not on page; deadline varies by country'
+  - url: https://www.scholars4dev.com/2876/usa-fulbright-scholarships-for-international-students/
+    target_eligible: "unclear"
+    note: '155 countries, list not on page'
+  - url: https://www.scholars4dev.com/6767/vanier-canada-scholarships-for-international-students/
+    target_eligible: "yes"
+    deadline: 2024-10-30
+    note: 'Canadian citizens, permanent residents and foreign citizens eligible'
+  - url: https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/
+    target_eligible: "unclear"
+    note: 'MEXT overview by category, nationality rule not stated on page'
+  - url: https://www.scholars4dev.com/2043/gates-scholarships-for-international-students-at-university-of-cambridge/
+    target_eligible: "yes"
+    note: 'applicants from countries outside the UK; three deadlines listed'
+  - url: https://www.scholars4dev.com/20918/lester-b-pearson-international-scholarship-program-at-university-of-toronto/
+    target_eligible: "yes"
+    note: 'international students from around the world; two deadlines listed'
+  - url: https://www.koica.go.kr/koica_en/3441/subview.do
+    target_eligible: "yes"
+    note: 'KOICA CIAT invites participants from developing countries; programme overview'
+  - url: https://elf.gov.mn/foreign-loan/
+    target_eligible: "unclear"
+    is_opportunity: false
+    note: 'Mongolian loan fund listing of foreign scholarships, not one opportunity'
+  - url: https://www.studyinkorea.go.kr/ko/plan/scholarship.do
+    target_eligible: "unclear"
+    is_opportunity: false
+    note: 'Study in Korea listing of many scholarships'
+  - url: https://www.mext.go.jp/content/20240801-mxt_kotokoku01-100001310_01.pdf
+    target_eligible: "unclear"
+    is_opportunity: false
+    note: 'MEXT administrative notice PDF about combining scholarships'
+  - url: https://www.scholars4dev.com/6179/scholarships-canada-international-students/
+    target_eligible: "unclear"
+    is_opportunity: false
+    note: 'roundup list of 10+ scholarships'

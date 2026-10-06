@@ -1,0 +1,13 @@
+Scholarship Radar, {{ today }}
+{{ rows | length }} opportunities for citizens of {{ target_name }}, sorted by deadline.
+
+{% for r in rows -%}
+{{ loop.index }}. {{ r.title }}
+   {{ 'Eligible' if r.target_eligible == 'yes' else ('Not eligible' if r.target_eligible == 'no' else 'Unclear') }}{% if not r.evidence_verified %} (unverified){% endif %}{% if r.provider %} | {{ r.provider }}{% endif %}{% if r.host_country %} | {{ r.host_country }}{% endif %}{% if r.degree_levels %} | {{ r.degree_levels | join(', ') }}{% endif %} | {{ r.funding_type }} | {% if r.deadline %}deadline {{ r.deadline }}{% else %}no deadline stated{% endif %}
+
+   {{ r.eligibility_summary }}
+   {{ r.apply_url or r.page_url }}
+
+{% else -%}
+No new opportunities since the last run.
+{% endfor %}

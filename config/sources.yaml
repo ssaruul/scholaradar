@@ -1,0 +1,136 @@
+sources:
+  - name: MEXT Study in Japan scholarships
+    url: https://www.studyinjapan.go.jp/en/planning/scholarships/
+    kind: page
+    lang: en
+    follow_links: true
+  - name: MEXT 国費外国人留学生
+    url: https://www.mext.go.jp/a_menu/koutou/ryugaku/06032818.htm
+    kind: page
+    lang: ja
+    follow_links: true
+  - name: JDS Mongolia
+    url: https://jds-scholarship.org/country/mongolia/
+    kind: page
+    lang: en
+    follow_links: true
+    implies_eligible: true
+  - name: GKS Study in Korea 장학금 공지
+    url: https://www.studyinkorea.go.kr/ko/notice/scholarshipsList.do?boardSort=3
+    kind: page
+    lang: ko
+    follow_links: true
+  - name: Chinese Embassy in Mongolia notices
+    url: https://mn.china-embassy.gov.cn/eng/zytz/
+    kind: page
+    lang: en
+    follow_links: true
+    implies_eligible: true
+  - name: Education in Russia
+    url: https://education-in-russia.com/
+    kind: page
+    lang: ru
+    follow_links: true
+  - name: DAAD scholarship database
+    url: https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/
+    kind: page
+    lang: en
+    follow_links: true
+  - name: Türkiye Bursları
+    url: https://www.turkiyeburslari.gov.tr/en
+    kind: page
+    lang: en
+    follow_links: true
+  - name: Stipendium Hungaricum
+    url: https://stipendiumhungaricum.hu/
+    kind: page
+    lang: en
+    follow_links: true
+  - name: Australia Awards Mongolia
+    url: https://www.australiaawardsmongolia.org/
+    kind: page
+    lang: en
+    follow_links: true
+    implies_eligible: true
+  - name: Chevening Mongolia
+    url: https://www.chevening.org/scholarship/mongolia/
+    kind: page
+    lang: en
+    implies_eligible: true
+  - name: Fulbright Mongolia
+    url: https://mn.usembassy.gov/fulbright-student-program/
+    kind: page
+    lang: en
+    follow_links: true
+    implies_eligible: true
+  - name: Erasmus Mundus catalogue
+    url: https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en
+    kind: page
+    lang: en
+  - name: Taiwan Scholarship
+    url: https://taiwanscholarship.moe.gov.tw/
+    kind: page
+    lang: en
+    follow_links: true
+  - name: TaiwanICDF scholarship
+    url: https://www.icdf.org.tw/wSite/mp?mp=2
+    kind: page
+    lang: en
+    follow_links: true
+  - name: Czech government scholarships
+    url: https://msmt.gov.cz/eu-and-international-affairs/government-scholarships-developing-countries
+    kind: page
+    lang: en
+    follow_links: true
+    enabled: false
+  - name: NAWA Poland students
+    url: https://nawa.gov.pl/en/students
+    kind: page
+    lang: en
+    follow_links: true
+  - name: Swiss Government Excellence Scholarships
+    url: https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html
+    kind: page
+    lang: en
+    follow_links: true
+  - name: ICCR India A2A scholarships
+    url: https://a2ascholarships.iccr.gov.in/
+    kind: page
+    lang: en
+    follow_links: true
+  - name: World Bank scholarships
+    url: https://www.worldbank.org/en/programs/scholarships
+    kind: page
+    lang: en
+    follow_links: true
+  - name: KOICA scholarship program
+    url: https://www.koica.go.kr/koica_en/3453/subview.do
+    kind: page
+    lang: en
+    follow_links: true
+  - name: scholars4dev
+    url: https://www.scholars4dev.com/
+    kind: page
+    lang: en
+    follow_links: true
+  - name: opportunitydesk feed
+    url: https://opportunitydesk.org/feed/
+    kind: rss
+    lang: en
+  - name: Боловсролын яам гадаадад суралцах
+    url: https://moe.gov.mn/study-abroad?category_id=11453
+    kind: page
+    lang: mn
+    follow_links: true
+    implies_eligible: true
+  - name: Боловсролын зээлийн сан
+    url: https://www.elf.gov.mn/
+    kind: page
+    lang: mn
+    follow_links: true
+    implies_eligible: true
+  - name: ikon.mn feed
+    url: https://ikon.mn/rss
+    kind: rss
+    lang: mn
+    title_filter: true

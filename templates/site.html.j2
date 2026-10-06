@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scholarship Radar</title>
+<style>
+  :root { --bg: #ffffff; --fg: #1a1a1a; --muted: #6b6b6b; --line: #e3e3e3; --card: #f7f7f7; --yes: #1b7f3b; --no: #a12d2d; --unclear: #946200; --accent: #2456b5; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #121212; --fg: #ececec; --muted: #9a9a9a; --line: #2a2a2a; --card: #1c1c1c; --yes: #5fcb7f; --no: #e07373; --unclear: #e0b35a; --accent: #7aa2ff; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--fg); }
+  header { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; margin-bottom: 12px; }
+  h1 { font-size: 22px; margin: 0; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; margin-bottom: 14px; }
+  .filters label { display: flex; flex-direction: column; font-size: 12px; color: var(--muted); gap: 3px; }
+  .filters input, .filters select { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
+  .count { margin: 0 0 10px; color: var(--muted); font-size: 13px; }
+  .card { border: 1px solid var(--line); background: var(--card); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+  .card h2 { font-size: 16px; margin: 0 0 4px; }
+  .card h2 a { color: var(--accent); text-decoration: none; }
+  .card h2 a:hover { text-decoration: underline; }
+  .row { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid currentColor; }
+  .yes { color: var(--yes); } .no { color: var(--no); } .unclear { color: var(--unclear); }
+  .summary { margin: 4px 0; }
+  details { font-size: 13px; color: var(--muted); }
+  details summary { cursor: pointer; }
+  blockquote { margin: 6px 0 0; padding-left: 10px; border-left: 3px solid var(--line); white-space: pre-wrap; }
+  .deadline-soon { color: var(--no); font-weight: 600; }
+  .empty { padding: 30px; text-align: center; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Scholarship Radar</h1>
+  <span class="meta">Eligibility judged for citizens of {{ target_name }} &middot; {{ total }} opportunities, {{ eligible }} explicitly eligible &middot; generated {{ generated }}</span>
+</header>
+<div class="filters">
+  <label>Search <input id="q" type="search" placeholder="title, provider, field"></label>
+  <label>Eligibility <select id="elig"><option value="yes,unclear">Eligible or unclear</option><option value="yes">Eligible only</option><option value="yes,no,unclear">All</option></select></label>
+  <label>Level <select id="level"><option value="">Any</option></select></label>
+  <label>Host country <select id="country"><option value="">Any</option></select></label>
+  <label>Deadline <select id="deadline"><option value="future">Upcoming or none</option><option value="30">Within 30 days</option><option value="90">Within 90 days</option><option value="all">Include past</option></select></label>
+  <label>Sort <select id="sort"><option value="deadline">Deadline</option><option value="new">Newest first</option></select></label>
+</div>
+<p class="count" id="count"></p>
+<div id="list"></div>
+<script id="data" type="application/json">{{ data_json | safe }}</script>
+<script>
+(function () {
+  const rows = JSON.parse(document.getElementById('data').textContent);
+  const today = new Date().toISOString().slice(0, 10);
+  const byId = id => document.getElementById(id);
+  const levels = new Set(), countries = new Set();
+  rows.forEach(r => { r.degree_levels.forEach(l => levels.add(l)); if (r.host_country) countries.add(r.host_country); });
+  const fill = (sel, values) => [...values].sort().forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
+  fill(byId('level'), levels); fill(byId('country'), countries);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const daysUntil = d => Math.round((new Date(d) - new Date(today)) / 86400000);
+  function render() {
+    const q = byId('q').value.trim().toLowerCase();
+    const elig = byId('elig').value.split(',');
+    const level = byId('level').value, country = byId('country').value, dl = byId('deadline').value, sort = byId('sort').value;
+    let out = rows.filter(r => elig.includes(r.target_eligible)
+      && (!level || r.degree_levels.includes(level))
+      && (!country || r.host_country === country)
+      && (dl === 'all' || !r.deadline || (r.deadline >= today && (dl === 'future' || daysUntil(r.deadline) <= Number(dl))))
+      && (!q || [r.title, r.provider, r.host_country, r.eligibility_summary, ...r.fields_of_study].join(' ').toLowerCase().includes(q)));
+    if (sort === 'new') out.sort((a, b) => b.first_seen.localeCompare(a.first_seen));
+    else out.sort((a, b) => (a.deadline || '9999').localeCompare(b.deadline || '9999'));
+    byId('count').textContent = out.length + ' of ' + rows.length + ' shown';
+    byId('list').innerHTML = out.length ? out.map(card).join('') : '<p class="empty">Nothing matches these filters.</p>';
+  }
+  function card(r) {
+    const soon = r.deadline && r.deadline >= today && daysUntil(r.deadline) <= 14;
+    const deadline = r.deadline ? `<span class="${soon ? 'deadline-soon' : ''}">Deadline ${esc(r.deadline)}${soon ? ' (' + daysUntil(r.deadline) + ' days)' : ''}</span>` : '<span>No deadline stated</span>';
+    return `<article class="card">
+      <h2><a href="${esc(r.apply_url || r.page_url)}" target="_blank" rel="noopener">${esc(r.title)}</a></h2>
+      <div class="row">
+        <span class="badge ${r.target_eligible}">${r.target_eligible === 'yes' ? 'Eligible' : r.target_eligible === 'no' ? 'Not eligible' : 'Unclear'}${r.evidence_verified ? '' : ' (unverified)'}</span>
+        ${r.provider ? `<span>${esc(r.provider)}</span>` : ''}
+        ${r.host_country ? `<span>${esc(r.host_country)}</span>` : ''}
+        ${r.degree_levels.length ? `<span>${esc(r.degree_levels.join(', '))}</span>` : ''}
+        <span>${esc(r.funding_type)}</span>
+        ${deadline}
+      </div>
+      <p class="summary">${esc(r.eligibility_summary)}</p>
+      <details><summary>Evidence, source</summary>
+        ${r.evidence_quote ? `<blockquote>${esc(r.evidence_quote)}</blockquote>` : '<p>No explicit statement found on the page.</p>'}
+        <p>${r.fields_of_study.length ? 'Fields: ' + esc(r.fields_of_study.join(', ')) + ' &middot; ' : ''}Source: <a href="${esc(r.page_url)}" target="_blank" rel="noopener">${esc(r.page_url)}</a> &middot; first seen ${esc(r.first_seen.slice(0, 10))}</p>
+      </details>
+    </article>`;
+  }
+  ['q', 'elig', 'level', 'country', 'deadline', 'sort'].forEach(id => byId(id).addEventListener('input', render));
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+templates:
+  en:
+    - "{demonym} students scholarship {year}"
+    - "scholarship for citizens of {target} {year}"
+    - "fully funded scholarship {year} international students master"
+    - "fully funded PhD scholarship {year} developing countries"
+    - "undergraduate scholarship {year} international students fully funded"
+    - "government scholarship {year} {target} eligible countries"
+    - "{target} exchange program {year} university students"
+    - "fellowship {year} early career researchers developing countries"
+    - "summer school {year} scholarship international students Asia"
+    - "{year} scholarship application open Asian students"
+  mn:
+    - "{year} тэтгэлэг гадаадад суралцах"
+    - "{year} тэтгэлэгт хөтөлбөр магистр"
+    - "{year} тэтгэлэгт хөтөлбөр бакалавр гадаад"
+    - "докторын тэтгэлэг {year} гадаад"
+    - "засгийн газрын тэтгэлэг {year} монгол оюутан"
+    - "{year} солилцооны хөтөлбөр оюутан"
+  ru:
+    - "стипендия для граждан Монголии {year}"
+    - "стипендия {year} иностранные студенты магистратура полное финансирование"
+    - "квота обучение иностранцев {year} Монголия"
+    - "грант на обучение за рубежом {year} студенты"
+  ja:
+    - "モンゴル 留学生 奨学金 {year}"
+    - "外国人留学生 奨学金 {year} 募集 修士"
+    - "国費外国人留学生 {year} 募集"
+    - "{year} 奨学金 留学生 博士 募集 全額"
+  ko:
+    - "몽골 유학생 장학금 {year}"
+    - "외국인 유학생 장학금 {year} 모집 석사"
+    - "정부초청장학금 {year} 모집"
+    - "{year} 외국인 장학생 선발 공고"
+  zh:
+    - "蒙古 留学生 奖学金 {year}"
+    - "{year} 国际学生 全额奖学金 硕士 申请"
+    - "中国政府奖学金 {year} 申请"
+    - "{year} 来华留学 奖学金 招生"
+  de:
+    - "Stipendium {year} internationale Studierende Master Vollstipendium"
+    - "Stipendium mongolische Studierende {year}"
+    - "Promotionsstipendium {year} Ausländer Bewerbung"
+  tr:
+    - "{year} uluslararası öğrenci burs tam burslu yüksek lisans"
+    - "Moğolistan öğrenci burs {year}"
+    - "{year} yabancı öğrenci burs başvuru"

@@ -1,0 +1,94 @@
+target:
+  name: Mongolia
+  demonym: Mongolian
+  names:
+    en: [Mongolia, Mongolian, Mongolians]
+    mn: [Монгол Улс, Монгол улсын, Монголын, Монгол]
+    ru: [Монголия, Монголии, Монголию, монгольск]
+    ja: [モンゴル]
+    ko: [몽골]
+    zh: [蒙古]
+    de: [Mongolei, mongolisch]
+    tr: [Moğolistan, Moğol]
+    fr: [Mongolie, mongol]
+
+languages: [en, mn, ru, ja, ko, zh, de, tr]
+
+search:
+  base_url: http://localhost:8888
+  queries_per_run: 100
+  results_per_query: 10
+  years_ahead: 1
+  query_delay_seconds: 1.5
+  language_map:
+    mn: all
+
+fetch:
+  per_host_delay_seconds: 2.0
+  timeout_seconds: 20
+  max_bytes: 3000000
+  user_agent: "Mozilla/5.0 (compatible; scholarship-radar/0.1; +https://github.com/ssaruul/scholarship-radar)"
+  max_pages_per_run: 400
+  source_recheck_hours: 20
+  max_links_per_source: 40
+  blocked_hosts:
+    - facebook.com
+    - instagram.com
+    - twitter.com
+    - x.com
+    - linkedin.com
+    - youtube.com
+    - tiktok.com
+    - pinterest.com
+    - reddit.com
+    - quora.com
+
+llm:
+  base_url: http://localhost:8080/v1
+  model: local
+  max_input_chars: 12000
+  max_tokens: 1200
+  temperature: 0.0
+  timeout_seconds: 300
+  concurrency: 4
+  extra_body:
+    chat_template_kwargs:
+      enable_thinking: false
+
+prefilter:
+  keywords:
+    - scholarship
+    - fellowship
+    - bursary
+    - stipend
+    - studentship
+    - тэтгэлэг
+    - стипенди
+    - 奨学金
+    - 장학금
+    - 奖学金
+    - 獎學金
+    - stipendium
+    - stipendien
+    - burs
+    - bourse
+    - beca
+
+outputs:
+  site:
+    enabled: true
+    dir: data/site
+  csv:
+    enabled: true
+    path: data/exports/opportunities.csv
+  email:
+    enabled: false
+    only_new: true
+    subject_prefix: "[scholarship-radar]"
+  sheets:
+    enabled: false
+    spreadsheet_id: ""
+    worksheet: opportunities
+    credentials_file: service_account.json
+
+data_dir: data

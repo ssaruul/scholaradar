@@ -1,0 +1,55 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: radar-searxng
+    ports:
+      - "127.0.0.1:8888:8080"
+    volumes:
+      - ./docker/searxng:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8888/
+      - SEARXNG_SECRET=${SEARXNG_SECRET:-local-only-change-me-9f1c2a7e4b}
+    restart: unless-stopped
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  llama:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    container_name: radar-llama
+    profiles: ["llm"]
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ${MODELS_DIR:-${HOME}/models/gguf}:/models:ro
+    command: >
+      -m /models/${LLAMA_MODEL:-Qwen3-30B-A3B-Instruct-2507-Q4_K_M.gguf}
+      --alias local
+      -c ${LLAMA_CTX:-32768}
+      --parallel ${LLAMA_PARALLEL:-4}
+      -ngl 99
+      --flash-attn on
+      -ctk ${LLAMA_KV_TYPE:-q8_0} -ctv ${LLAMA_KV_TYPE:-q8_0}
+      --jinja
+      --host 0.0.0.0 --port 8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 90
+      start_period: 30s
