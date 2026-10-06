@@ -24,6 +24,10 @@ _None._
 | 2026-10-31 | [第41期 イノアック国際教育振興財団奨学金](https://gaxi.jp/organization/1vEXjgpO1x6k9poD/project/jKn1pRPx05RXL2M7) | Japan | master, phd | stipend_only | Eligible |
 | 2026-10-31 | [Begabtenförderung - Stipendien der Friedrich-Naumann-Stiftung](https://www.freiheit.org/de/begabtenfoerderung) | Germany | bachelor, master, phd | full | Eligible |
 
+## Changed since the previous run (0)
+
+_None._
+
 ## Coverage
 
 Pages by language: en 122, ja 37, ko 31, zh 30, mn 27, de 18, ru 15, tr 4.
