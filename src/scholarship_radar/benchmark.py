@@ -137,6 +137,7 @@ def run_benchmark(settings: Settings, model: str, labels_path: Path, limit: int)
     deadline_correct = sum(1 for r in deadline_cases if r.predicted_deadline == r.expected_deadline)
     opp_correct = sum(1 for r in scored if r.predicted_is_opportunity == r.expected_is_opportunity)
     false_yes = sum(1 for r in opportunities if r.predicted_eligible == "yes" and r.expected_eligible != "yes")
+    swaps = sum(1 for r in opportunities if {r.predicted_eligible, r.expected_eligible} == {"yes", "no"})
     completion_tokens = sum(r.completion_tokens for r in results)
     summary = {
         "model": model,
@@ -144,7 +145,9 @@ def run_benchmark(settings: Settings, model: str, labels_path: Path, limit: int)
         "scored": len(scored),
         "errors": sorted({r.error for r in results if r.error}),
         "eligible_accuracy": round(eligible_correct / len(opportunities), 3) if opportunities else 0.0,
+        "safe_accuracy": round(1 - swaps / len(opportunities), 3) if opportunities else 0.0,
         "false_yes": false_yes,
+        "yes_no_swaps": swaps,
         "deadline_accuracy": round(deadline_correct / len(deadline_cases), 3) if deadline_cases else None,
         "is_opportunity_accuracy": round(opp_correct / len(scored), 3) if scored else 0.0,
         "verified_rate": round(sum(1 for r in opportunities if r.verified) / len(opportunities), 3) if opportunities else 0.0,

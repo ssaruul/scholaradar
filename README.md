@@ -81,12 +81,13 @@ To adapt the project to another nationality, edit `target` in `settings.yaml` an
 
 `benchmark/labels.yaml` holds 51 hand-labelled pages in English, Mongolian, Russian, Japanese, Korean and Chinese. `scripts/bench_all.sh` restarts llama-server with each model listed in it and runs `scholarship-radar benchmark`, printing eligibility accuracy, false positives, deadline accuracy, JSON validity and throughput. Results on an RTX 3090 (Vulkan build b11433, Q4_K_M, 4 parallel slots):
 
-| Model | Eligibility accuracy | False "yes" | Deadline accuracy | Set wall time | Gen tok/s |
+| Model | Strict accuracy | Safe accuracy (no yes/no swaps) | Deadline accuracy | Set wall time | Gen tok/s |
 |---|---|---|---|---|---|
-| gemma-4-12b-it | 0.80 | 7 | 1.00 | 243 s | 68 |
-| gemma-4-26B-A4B-it | 0.80 | 7 | 1.00 | 161 s | 101 |
+| gemma-4-12b-it | 0.80 | 1.00 | 1.00 | 243 s | 68 |
+| gemma-4-26B-A4B-it (default) | 0.80 | 1.00 | 1.00 | 161 s | 101 |
+| Qwen3.5-27B | 0.80 | 1.00 | 0.95 | 337 s | 46 |
 
-The remaining misses are almost all pages that say "international students from 150 countries" without listing them; both models answer `yes` where the strict label is `unclear`. On a 16 GB card use the 12B.
+Strict accuracy demands the exact label (`yes` / `no` / `unclear`); the misses are almost all pages that say "international students from 150 countries" without listing them, where the models answer `yes` and the strict label is `unclear`. Safe accuracy counts only `yes`/`no` swaps, and none of the models produced one. On a 16 GB card use the 12B.
 
 ### AMD GPUs
 
@@ -102,6 +103,7 @@ Install the extra (`uv sync --extra sheets`), create a Google Cloud service acco
 - Sites behind aggressive bot protection (adb.org, campuschina.org, scholarshipportal.com) and JavaScript-only pages (msmt.gov.cz) are skipped; no browser automation in v1.
 - A local 12B to 30B model is weaker than frontier APIs on long country lists. Explicit country lists and exclusions are handled by deterministic rules before the model's verdict is accepted; treat `unclear` as "read the page yourself".
 - Deadlines are re-verified only when an anchor page changes; search-discovered pages are extracted once.
+- The same programme found on several pages (official site, aggregator, ministry announcement) appears as several rows; there is no cross-page merging yet.
 
 ## License
 

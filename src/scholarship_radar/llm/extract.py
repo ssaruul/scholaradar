@@ -18,6 +18,22 @@ from .verify import verify
 
 log = logging.getLogger(__name__)
 
+COUNTRY_ALIASES = {
+    "usa": "United States", "u.s.": "United States", "u.s.a.": "United States", "us": "United States", "united states of america": "United States", "america": "United States",
+    "uk": "United Kingdom", "u.k.": "United Kingdom", "britain": "United Kingdom", "great britain": "United Kingdom", "england": "United Kingdom",
+    "korea": "South Korea", "republic of korea": "South Korea", "korea, republic of": "South Korea",
+    "turkey": "Türkiye", "turkiye": "Türkiye",
+    "people's republic of china": "China", "prc": "China", "mainland china": "China",
+    "russian federation": "Russia", "the netherlands": "Netherlands", "holland": "Netherlands",
+    "czechia": "Czech Republic", "uae": "United Arab Emirates", "taiwan (roc)": "Taiwan", "republic of china (taiwan)": "Taiwan",
+    "unknown": "", "n/a": "", "not specified": "", "multiple": "Multiple", "various": "Multiple", "online": "Remote",
+}
+
+
+def normalize_country(value: str) -> str:
+    cleaned = value.strip().strip(".")
+    return COUNTRY_ALIASES.get(cleaned.casefold(), cleaned)
+
 
 @dataclass
 class ExtractStats:
@@ -66,7 +82,7 @@ def to_record(page: db.PageRow, opp: Opportunity, verified: bool, model: str) ->
         page_id=page.id,
         title=opp.title.strip() or (page.title or page.url),
         provider=opp.provider.strip(),
-        host_country=opp.host_country.strip(),
+        host_country=normalize_country(opp.host_country),
         degree_levels=list(dict.fromkeys(opp.degree_levels)),
         fields_of_study=opp.fields_of_study,
         funding_type=opp.funding_type,
