@@ -79,6 +79,7 @@ outputs:
     enabled: true
     dir: docs
     pages_url: https://ssaruul.github.io/scholaradar/
+    repo_url: https://github.com/ssaruul/scholaradar
   csv:
     enabled: true
     path: docs/opportunities.csv
@@ -86,6 +87,16 @@ outputs:
     enabled: true
     dir: reports
     window_days: 30
+  facebook:
+    enabled: false
+    max_items: 8
+    language: mn
+    only_eligible: true
+  telegram:
+    enabled: false
+    max_items: 10
+    language: mn
+    only_eligible: true
   git:
     enabled: false
     push: true

@@ -64,6 +64,7 @@ class SiteOutput(BaseModel):
     enabled: bool = True
     dir: Path = Path("docs")
     pages_url: str = ""
+    repo_url: str = "https://github.com/ssaruul/scholaradar"
 
 
 class CsvOutput(BaseModel):
@@ -75,6 +76,16 @@ class ReportOutput(BaseModel):
     enabled: bool = True
     dir: Path = Path("reports")
     window_days: int = 30
+
+
+class SocialOutput(BaseModel):
+    enabled: bool = False
+    max_items: int = 8
+    language: str = "en"
+    only_eligible: bool = True
+    page_id: str = ""
+    chat_id: str = ""
+    graph_version: str = "v23.0"
 
 
 class GitOutput(BaseModel):
@@ -101,6 +112,8 @@ class OutputsConfig(BaseModel):
     site: SiteOutput = Field(default_factory=SiteOutput)
     csv: CsvOutput = Field(default_factory=CsvOutput)
     report: ReportOutput = Field(default_factory=ReportOutput)
+    facebook: SocialOutput = Field(default_factory=SocialOutput)
+    telegram: SocialOutput = Field(default_factory=SocialOutput)
     git: GitOutput = Field(default_factory=GitOutput)
     email: EmailOutput = Field(default_factory=EmailOutput)
     sheets: SheetsOutput = Field(default_factory=SheetsOutput)
@@ -115,6 +128,7 @@ class SourceConfig(BaseModel):
     follow_links: bool = False
     title_filter: bool = False
     implies_eligible: bool = False
+    render: bool = False
 
 
 class Settings(BaseModel):
@@ -161,6 +175,10 @@ class Secrets(BaseSettings):
     llm_api_key: str = ""
     searx_base_url: str = ""
     git_push: str = ""
+    facebook_page_id: str = ""
+    facebook_page_token: str = ""
+    telegram_bot_token: str = ""
+    telegram_chat_id: str = ""
 
 
 def _resolve(root: Path, path: Path) -> Path:
@@ -196,6 +214,10 @@ def load_settings(root_dir: Path) -> Settings:
         settings.search.base_url = secrets.searx_base_url
     if secrets.git_push:
         settings.outputs.git.enabled = secrets.git_push.lower() in {"1", "true", "yes"}
+    if secrets.facebook_page_id:
+        settings.outputs.facebook.page_id = secrets.facebook_page_id
+    if secrets.telegram_chat_id:
+        settings.outputs.telegram.chat_id = secrets.telegram_chat_id
     return settings
 
 

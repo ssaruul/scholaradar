@@ -22,6 +22,21 @@ services:
         max-size: "1m"
         max-file: "1"
 
+  radar:
+    build: .
+    image: scholaradar:local
+    profiles: ["app"]
+    network_mode: host
+    environment:
+      - SEARX_BASE_URL=http://localhost:8888
+      - LLM_BASE_URL=http://localhost:${LLAMA_PORT:-8089}/v1
+    volumes:
+      - ./config:/app/config:ro
+      - ./data:/app/data
+      - ./docs:/app/docs
+      - ./reports:/app/reports
+      - ./.env:/app/.env:ro
+
   llama:
     image: ghcr.io/ggml-org/llama.cpp:server-cuda
     container_name: radar-llama

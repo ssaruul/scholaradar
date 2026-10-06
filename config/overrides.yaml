@@ -1,0 +1,8 @@
+overrides: []
+# Manual corrections applied at publish time. Example:
+#   - url: https://example.org/scholarship
+#     target_eligible: "no"
+#     deadline: 2027-01-15
+#     note: US citizens only
+#   - url: https://example.org/not-a-scholarship
+#     dismiss: true

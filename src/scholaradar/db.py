@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS sources (
     lang TEXT NOT NULL,
     follow_links INTEGER NOT NULL DEFAULT 0,
     implies_eligible INTEGER NOT NULL DEFAULT 0,
+    render INTEGER NOT NULL DEFAULT 0,
     enabled INTEGER NOT NULL DEFAULT 1,
     last_checked TEXT
 );
@@ -66,6 +67,22 @@ CREATE TABLE IF NOT EXISTS search_hits (
     lang TEXT NOT NULL,
     url TEXT NOT NULL,
     rank INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS changes (
+    id INTEGER PRIMARY KEY,
+    opportunity_id INTEGER NOT NULL REFERENCES opportunities(id),
+    field TEXT NOT NULL,
+    old_value TEXT,
+    new_value TEXT,
+    changed_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS social_posts (
+    id INTEGER PRIMARY KEY,
+    channel TEXT NOT NULL,
+    opportunity_id INTEGER NOT NULL REFERENCES opportunities(id),
+    posted_at TEXT NOT NULL,
+    external_id TEXT,
+    UNIQUE(channel, opportunity_id)
 );
 CREATE TABLE IF NOT EXISTS runs (
     id INTEGER PRIMARY KEY,
@@ -127,15 +144,17 @@ def connect(path: Path) -> sqlite3.Connection:
     columns = {row["name"] for row in conn.execute("PRAGMA table_info(sources)")}
     if "implies_eligible" not in columns:
         conn.execute("ALTER TABLE sources ADD COLUMN implies_eligible INTEGER NOT NULL DEFAULT 0")
+    if "render" not in columns:
+        conn.execute("ALTER TABLE sources ADD COLUMN render INTEGER NOT NULL DEFAULT 0")
     return conn
 
 
-def upsert_source(conn: sqlite3.Connection, name: str, url: str, kind: str, lang: str, follow_links: bool, implies_eligible: bool, enabled: bool) -> int:
+def upsert_source(conn: sqlite3.Connection, name: str, url: str, kind: str, lang: str, follow_links: bool, implies_eligible: bool, enabled: bool, render: bool = False) -> int:
     conn.execute(
-        """INSERT INTO sources(name, url, kind, lang, follow_links, implies_eligible, enabled) VALUES (?, ?, ?, ?, ?, ?, ?)
+        """INSERT INTO sources(name, url, kind, lang, follow_links, implies_eligible, enabled, render) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
            ON CONFLICT(name) DO UPDATE SET url=excluded.url, kind=excluded.kind, lang=excluded.lang,
-           follow_links=excluded.follow_links, implies_eligible=excluded.implies_eligible, enabled=excluded.enabled""",
-        (name, url, kind, lang, int(follow_links), int(implies_eligible), int(enabled)),
+           follow_links=excluded.follow_links, implies_eligible=excluded.implies_eligible, enabled=excluded.enabled, render=excluded.render""",
+        (name, url, kind, lang, int(follow_links), int(implies_eligible), int(enabled), int(render)),
     )
     row = conn.execute("SELECT id FROM sources WHERE name=?", (name,)).fetchone()
     return int(row["id"])
@@ -158,6 +177,10 @@ def add_page(conn: sqlite3.Connection, url: str, canonical_url: str, source_id: 
 
 def requeue_page(conn: sqlite3.Connection, page_id: int) -> None:
     conn.execute("UPDATE pages SET status='new' WHERE id=?", (page_id,))
+
+
+def adopt_as_source(conn: sqlite3.Connection, page_id: int, source_id: int) -> None:
+    conn.execute("UPDATE pages SET source_id=?, discovered_via='source', status='new' WHERE id=?", (source_id, page_id))
 
 
 def _page_from_row(row: sqlite3.Row) -> PageRow:
@@ -239,6 +262,13 @@ def source_follow_links(conn: sqlite3.Connection, source_id: int | None) -> bool
     return bool(row and row["follow_links"])
 
 
+def source_renders(conn: sqlite3.Connection, source_id: int | None) -> bool:
+    if source_id is None:
+        return False
+    row = conn.execute("SELECT render FROM sources WHERE id=?", (source_id,)).fetchone()
+    return bool(row and row["render"])
+
+
 def source_implying_eligibility(conn: sqlite3.Connection, source_id: int | None) -> str | None:
     if source_id is None:
         return None
@@ -246,8 +276,18 @@ def source_implying_eligibility(conn: sqlite3.Connection, source_id: int | None)
     return row["name"] if row and row["implies_eligible"] else None
 
 
-def upsert_opportunity(conn: sqlite3.Connection, rec: OpportunityRecord) -> None:
+TRACKED_FIELDS = ("deadline", "target_eligible", "funding_type")
+
+
+def upsert_opportunity(conn: sqlite3.Connection, rec: OpportunityRecord) -> list[tuple[str, str | None, str | None]]:
     now = now_iso()
+    previous = conn.execute("SELECT id, deadline, target_eligible, funding_type FROM opportunities WHERE page_id=?", (rec.page_id,)).fetchone()
+    changes: list[tuple[str, str | None, str | None]] = []
+    if previous:
+        for field in TRACKED_FIELDS:
+            old, new = previous[field], getattr(rec, field)
+            if old != new:
+                changes.append((field, old, new))
     conn.execute(
         """INSERT INTO opportunities(page_id, title, provider, host_country, degree_levels, fields_of_study, funding_type,
            deadline, deadline_text, eligibility_summary, nationality_mode, target_eligible, evidence_quote, evidence_verified,
@@ -265,6 +305,22 @@ def upsert_opportunity(conn: sqlite3.Connection, rec: OpportunityRecord) -> None
             rec.evidence_quote, int(rec.evidence_verified), rec.apply_url, rec.lang, rec.model, now, now,
         ),
     )
+    if previous and changes:
+        conn.executemany(
+            "INSERT INTO changes(opportunity_id, field, old_value, new_value, changed_at) VALUES (?, ?, ?, ?, ?)",
+            [(previous["id"], field, old, new, now) for field, old, new in changes],
+        )
+    return changes
+
+
+def changes_since(conn: sqlite3.Connection, since: str | None) -> list[dict]:
+    rows = conn.execute(
+        """SELECT c.field, c.old_value, c.new_value, c.changed_at, o.title, o.apply_url, p.url AS page_url
+           FROM changes c JOIN opportunities o ON o.id=c.opportunity_id JOIN pages p ON p.id=o.page_id
+           WHERE (? IS NULL OR c.changed_at > ?) ORDER BY c.changed_at DESC""",
+        (since, since),
+    ).fetchall()
+    return [dict(row) for row in rows]
 
 
 def opportunities(conn: sqlite3.Connection, since: str | None = None, include_dismissed: bool = False) -> list[dict]:
@@ -289,6 +345,20 @@ def opportunities(conn: sqlite3.Connection, since: str | None = None, include_di
         item["evidence_verified"] = bool(item["evidence_verified"])
         result.append(item)
     return result
+
+
+def unposted(conn: sqlite3.Connection, channel: str, rows: list[dict]) -> list[dict]:
+    posted = {row["opportunity_id"] for row in conn.execute("SELECT opportunity_id FROM social_posts WHERE channel=?", (channel,))}
+    return [row for row in rows if row["id"] not in posted]
+
+
+def mark_posted(conn: sqlite3.Connection, channel: str, opportunity_ids: list[int], external_id: str | None) -> None:
+    now = now_iso()
+    conn.executemany(
+        "INSERT OR IGNORE INTO social_posts(channel, opportunity_id, posted_at, external_id) VALUES (?, ?, ?, ?)",
+        [(channel, oid, now, external_id) for oid in opportunity_ids],
+    )
+    conn.commit()
 
 
 def start_run(conn: sqlite3.Connection) -> int:

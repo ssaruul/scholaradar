@@ -60,3 +60,32 @@ def test_site_and_csv_render(tmp_path: Path) -> None:
     count = write_csv(tmp_path / "out.csv", SAMPLE_ROWS)
     assert count == 1
     assert "engineering" in (tmp_path / "out.csv").read_text(encoding="utf-8")
+
+
+def test_overrides_apply_and_dismiss(tmp_path: Path) -> None:
+    from scholaradar.publish.overrides import apply_overrides, load_overrides
+
+    (tmp_path / "overrides.yaml").write_text(
+        "overrides:\n  - url: https://example.com/page/\n    target_eligible: no\n    note: US citizens only\n  - url: https://example.com/other\n    dismiss: true\n",
+        encoding="utf-8",
+    )
+    overrides = load_overrides(tmp_path / "overrides.yaml")
+    other = dict(SAMPLE_ROWS[0], id=2, page_url="https://example.com/other", apply_url="")
+    rows = apply_overrides([SAMPLE_ROWS[0], other], overrides)
+    assert len(rows) == 1
+    assert rows[0]["target_eligible"] == "no"
+    assert rows[0]["evidence_quote"].startswith("Manual correction")
+
+
+def test_grouping_merges_same_programme() -> None:
+    from scholaradar.publish.dedupe import group_opportunities
+
+    a = dict(SAMPLE_ROWS[0], id=1, title="Chevening", apply_url="https://chevening.org", host_country="United Kingdom")
+    b = dict(SAMPLE_ROWS[0], id=2, title="British Chevening Scholarships in UK | Scholars4Dev", apply_url="http://www.chevening.org/", host_country="United Kingdom", page_url="https://www.scholars4dev.com/x")
+    c = dict(SAMPLE_ROWS[0], id=3, title="Gates Cambridge Scholarships", apply_url="https://gatescambridge.org", host_country="United Kingdom")
+    d = dict(SAMPLE_ROWS[0], id=4, title="Stipendium Hungaricum", apply_url="", host_country="Hungary")
+    groups = group_opportunities([a, b, c, d], date(2026, 10, 6))
+    assert len(groups) == 3
+    chevening = next(g for g in groups if "Chevening" in g["title"])
+    assert sorted(chevening["group_ids"]) == [1, 2]
+    assert chevening["page_url"] == "https://example.com/page"

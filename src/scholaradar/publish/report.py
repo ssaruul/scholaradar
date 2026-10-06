@@ -28,7 +28,17 @@ def _table(items: list[dict]) -> str:
     return header + "\n".join(_row(item) for item in items) + "\n"
 
 
-def render_report(rows: list[dict], new_rows: list[dict], target_name: str, today: date, pages_url: str, window_days: int = 30) -> str:
+def _changes_table(changes: list[dict]) -> str:
+    if not changes:
+        return "_None._\n"
+    header = "| Opportunity | What changed | Before | After |\n|---|---|---|---|\n"
+    body = "\n".join(
+        f"| [{_cell(c['title'])[:80]}]({c['apply_url'] or c['page_url']}) | {_cell(c['field'])} | {_cell(c['old_value'])} | {_cell(c['new_value'])} |" for c in changes
+    )
+    return header + body + "\n"
+
+
+def render_report(rows: list[dict], new_rows: list[dict], target_name: str, today: date, pages_url: str, window_days: int = 30, changes: list[dict] | None = None) -> str:
     cutoff = today.isoformat()
     horizon = (today + timedelta(days=window_days)).isoformat()
     upcoming = [r for r in rows if r["deadline"] and cutoff <= r["deadline"] <= horizon and r["target_eligible"] != "no"]
@@ -50,6 +60,9 @@ def render_report(rows: list[dict], new_rows: list[dict], target_name: str, toda
         f"## Deadlines in the next {window_days} days ({len(upcoming)})",
         "",
         _table(upcoming),
+        f"## Changed since the previous run ({len(changes or [])})",
+        "",
+        _changes_table(changes or []),
         "## Coverage",
         "",
         "Pages by language: " + ", ".join(f"{lang} {count}" for lang, count in languages.most_common()) + ".",

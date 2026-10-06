@@ -19,6 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 sheets = ["gspread>=6.0"]
+browser = ["playwright>=1.45"]
 
 [project.scripts]
 scholaradar = "scholaradar.cli:main"

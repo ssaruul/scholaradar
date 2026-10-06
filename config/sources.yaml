@@ -134,3 +134,65 @@ sources:
     kind: rss
     lang: mn
     title_filter: true
+  - name: JICA Mongolia
+    url: https://www.jica.go.jp/mongolia/english/index.html
+    kind: page
+    lang: en
+    follow_links: true
+    implies_eligible: true
+  - name: Hungarian Embassy Ulaanbaatar
+    url: https://ulanbator.mfa.gov.hu/eng
+    kind: page
+    lang: en
+    follow_links: true
+    implies_eligible: true
+  - name: Czech Embassy Ulaanbaatar
+    url: https://mzv.gov.cz/ulaanbaatar/en/
+    kind: page
+    lang: en
+    follow_links: true
+    implies_eligible: true
+  - name: Chinese Embassy in Mongolia мэдэгдэл
+    url: https://mn.china-embassy.gov.cn/mn/zytz/
+    kind: page
+    lang: mn
+    follow_links: true
+    implies_eligible: true
+  - name: NUM оюутны мэдээ
+    url: https://news.num.edu.mn/?cat=8
+    kind: page
+    lang: mn
+    follow_links: true
+    implies_eligible: true
+  - name: Боловсролын тэтгэлгийн портал
+    url: https://scholarship.esis.edu.mn/
+    kind: page
+    lang: mn
+    follow_links: true
+    implies_eligible: true
+    render: true
+  - name: OYAOP feed
+    url: https://www.oyaop.com/feed/
+    kind: rss
+    lang: en
+    title_filter: true
+  - name: JASSO scholarships for international students
+    url: https://www.jasso.go.jp/en/ryugaku/scholarship_j/index.html
+    kind: page
+    lang: en
+    follow_links: true
+  - name: Study in Taiwan scholarships
+    url: https://www.studyintaiwan.org/scholarship
+    kind: page
+    lang: en
+    follow_links: true
+  - name: ScholarshipPortal listing
+    url: https://www.scholarshipportal.com/scholarships
+    kind: page
+    lang: en
+    follow_links: true
+  - name: Study in Sweden scholarships
+    url: https://www.studyinsweden.se/scholarships/
+    kind: page
+    lang: en
+    follow_links: true

@@ -18,7 +18,8 @@ from .llm.client import LlmClient
 from .llm.extract import extract_pages
 from .llm.server import LlamaServer, LlamaSettings, default_install_dir, install_llama
 from .pipeline import discover, fetch_pages
-from .publish.run import publish_all
+from .publish.dedupe import group_opportunities
+from .publish.run import post_social, publish_all, social_rows
 
 log = logging.getLogger("scholaradar")
 
@@ -160,6 +161,24 @@ def cmd_nightly(settings: Settings, args: argparse.Namespace) -> int:
     return status
 
 
+def cmd_social(settings: Settings, args: argparse.Namespace) -> int:
+    conn = db.connect(settings.db_path)
+    today = date.today()
+    rows = group_opportunities(db.opportunities(conn), today)
+    if args.since_last_run:
+        last = conn.execute("SELECT started FROM runs WHERE finished IS NOT NULL ORDER BY id DESC LIMIT 1").fetchone()
+        if last:
+            new_ids = {row["id"] for row in db.opportunities(conn, since=last["started"])}
+            rows = [row for row in rows if set(row["group_ids"]) & new_ids]
+    options = getattr(settings.outputs, args.channel)
+    candidates = social_rows(conn, args.channel, rows, today, options.only_eligible)
+    if args.limit:
+        candidates = candidates[: args.limit]
+    posted = post_social(conn, settings, load_secrets(settings.root_dir), args.channel, candidates, today, dry_run=args.dry_run)
+    print(f"{args.channel}: {posted} items {'previewed' if args.dry_run else 'posted'}, {len(candidates)} candidates")
+    return 0
+
+
 def cmd_open(settings: Settings, args: argparse.Namespace) -> int:
     open_dashboard(settings)
     return 0
@@ -231,6 +250,12 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--backend", default="vulkan", help="install: vulkan | cuda-12.8 | cuda-13.4 | rocm | cpu")
     p.add_argument("--dest", default=None, help="install: directory to unpack llama.cpp into")
     p.set_defaults(func=cmd_llm)
+    p = sub.add_parser("social")
+    p.add_argument("channel", choices=["facebook", "telegram"])
+    p.add_argument("--dry-run", action="store_true", help="print the post instead of sending it")
+    p.add_argument("--since-last-run", action="store_true", help="only items first seen since the previous run")
+    p.add_argument("--limit", type=int, default=0)
+    p.set_defaults(func=cmd_social)
     sub.add_parser("open").set_defaults(func=cmd_open)
     p = sub.add_parser("serve")
     p.add_argument("--port", type=int, default=8787)

@@ -13,7 +13,12 @@ SKIP_PATH_FRAGMENTS = ("privacy", "cookie", "login", "signin", "register", "cont
 
 def extract_candidate_links(page_html: bytes, base_url: str, keywords: list[str], limit: int) -> list[str]:
     try:
-        tree = lxml_html.fromstring(page_html)
+        page_html.decode("utf-8")
+        parser = lxml_html.HTMLParser(encoding="utf-8")
+    except UnicodeDecodeError:
+        parser = lxml_html.HTMLParser()
+    try:
+        tree = lxml_html.document_fromstring(page_html, parser=parser)
     except (etree.ParserError, ValueError):
         return []
     tree.make_links_absolute(base_url)

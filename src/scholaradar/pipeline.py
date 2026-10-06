@@ -12,6 +12,7 @@ from .discover.rss import parse_feed
 from .discover.searx import SearxClient, queries_for_day, run_searches
 from .fetch import Fetcher, content_hash, store_raw, store_text
 from .prefilter import keyword_hit, nationality_hits
+from .render import render_page
 from .textract import Extracted, extract_html, extract_pdf
 from .urls import canonicalize, host_of, is_http
 
@@ -44,7 +45,7 @@ class FetchStats:
 def sync_sources(conn: sqlite3.Connection, settings: Settings) -> dict[str, int]:
     ids = {}
     for source in settings.sources:
-        ids[source.name] = db.upsert_source(conn, source.name, source.url, source.kind, source.lang, source.follow_links, source.implies_eligible, source.enabled)
+        ids[source.name] = db.upsert_source(conn, source.name, source.url, source.kind, source.lang, source.follow_links, source.implies_eligible, source.enabled, source.render)
     conn.commit()
     return ids
 
@@ -71,7 +72,7 @@ def discover(conn: sqlite3.Connection, settings: Settings, fetcher: Fetcher, run
         else:
             page_id, created = db.add_page(conn, source.url, canonicalize(source.url), source_id, "source")
             if not created:
-                db.requeue_page(conn, page_id)
+                db.adopt_as_source(conn, page_id, source_id)
         db.touch_source(conn, source_id)
         stats.sources += 1
     conn.commit()
@@ -117,14 +118,19 @@ def fetch_pages(conn: sqlite3.Connection, settings: Settings, fetcher: Fetcher, 
             db.mark_page_error(conn, page.id, result.status, f"unsupported_type:{result.content_type[:60]}", status="skipped")
             conn.commit()
             continue
-        digest = content_hash(result.body)
+        body = result.body
+        if result.is_html and db.source_renders(conn, page.source_id):
+            rendered = render_page(page.url, settings.fetch.user_agent, settings.fetch.timeout_seconds)
+            if rendered:
+                body = rendered
+        digest = content_hash(body)
         if page.content_hash == digest and page.text_path:
             db.mark_fetched(conn, page.id, result.status, digest, page.text_path, page.title or "", page.lang or "", page.nationality_hits, "unchanged")
             stats.unchanged += 1
             conn.commit()
             continue
-        store_raw(settings.raw_dir, digest, result.body, ".pdf" if result.is_pdf else ".html")
-        extracted = _extract(result.body, result.is_pdf, result.final_url)
+        store_raw(settings.raw_dir, digest, body, ".pdf" if result.is_pdf else ".html")
+        extracted = _extract(body, result.is_pdf, result.final_url)
         if extracted is None:
             db.mark_page_error(conn, page.id, result.status, "no_text", status="skipped")
             conn.commit()
@@ -133,7 +139,7 @@ def fetch_pages(conn: sqlite3.Connection, settings: Settings, fetcher: Fetcher, 
         hits = nationality_hits(extracted.text, names)
         follow = page.discovered_via == "source" and db.source_follow_links(conn, page.source_id)
         if follow and result.is_html:
-            stats.links_added += _enqueue_links(conn, settings, page, result.body, result.final_url)
+            stats.links_added += _enqueue_links(conn, settings, page, body, result.final_url)
         if follow:
             status = "listing"
         elif keyword_hit(extracted.text, settings.prefilter.keywords) is None:
