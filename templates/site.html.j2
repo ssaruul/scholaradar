@@ -113,8 +113,7 @@
     return `https://calendar.google.com/calendar/render?${params.toString()}`;
   }
   function issueUrl(r) {
-    const body = `Page: ${r.page_url}\nCurrent verdict: ${r.target_eligible}\nCurrent deadline: ${r.deadline || 'none'}\n\nWhat is wrong (eligibility, deadline, duplicate, not a scholarship)?\n\n`;
-    const params = new URLSearchParams({ title: `Correction: ${r.title.slice(0, 70)}`, body, labels: 'correction' });
+    const params = new URLSearchParams({ template: 'correction.yml', title: `Correction: ${r.title.slice(0, 70)}`, page_url: r.page_url, evidence: `Current verdict: ${r.target_eligible}; current deadline: ${r.deadline || 'none'}` });
     return `${repo}/issues/new?${params.toString()}`;
   }
   function render() {

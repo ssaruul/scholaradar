@@ -15,7 +15,7 @@ from .gitsync import sync_outputs
 from .overrides import apply_overrides, load_overrides
 from .report import render_report, write_report
 from .sheets import push_to_sheets
-from .site import write_site
+from .site import write_badges, write_site
 from .social import FacebookPage, TelegramChannel, format_digest
 
 log = logging.getLogger(__name__)
@@ -100,6 +100,7 @@ def publish_all(conn: sqlite3.Connection, settings: Settings, secrets: Secrets, 
         stats.site = len(shown)
         write_rss(outputs.site.dir / "feed.xml", shown, settings.target.name, outputs.site.pages_url, today)
         write_ics(outputs.site.dir / "deadlines.ics", shown, settings.target.name, today)
+        write_badges(outputs.site.dir, len(shown), sum(1 for r in shown if r["target_eligible"] == "yes"), today, "fully funded" if outputs.funding == ["full"] else "opportunities")
         log.info("site: %s (+ feed.xml, deadlines.ics)", index)
     if outputs.report.enabled:
         content = render_report(shown, new_rows, settings.target.name, today, outputs.site.pages_url, outputs.report.window_days, db.changes_since(conn, previous), outputs.funding)

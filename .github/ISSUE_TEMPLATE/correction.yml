@@ -1,0 +1,36 @@
+name: Wrong verdict or deadline
+description: A scholarship is marked eligible/not eligible wrongly, has the wrong deadline, is a duplicate, or is not a scholarship at all.
+title: "Correction: "
+labels: [correction]
+body:
+  - type: input
+    id: page_url
+    attributes:
+      label: Page URL
+      description: The source link shown on the card (Evidence, source).
+      placeholder: https://
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What is wrong?
+      options:
+        - Eligibility verdict (should be eligible)
+        - Eligibility verdict (should be not eligible)
+        - Deadline
+        - Duplicate of another card
+        - Not a scholarship / expired page
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: correct_value
+    attributes:
+      label: Correct value
+      description: For deadlines use YYYY-MM-DD.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Where does the page say so?
+      description: Paste the sentence from the page, if there is one.

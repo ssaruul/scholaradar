@@ -6,6 +6,13 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+
+def write_badges(site_dir: Path, shown: int, eligible: int, today: date, funding_label: str) -> None:
+    badges = site_dir / "badges"
+    badges.mkdir(parents=True, exist_ok=True)
+    (badges / "opportunities.json").write_text(json.dumps({"schemaVersion": 1, "label": funding_label, "message": f"{shown} tracked, {eligible} eligible", "color": "2456b5"}), encoding="utf-8")
+    (badges / "updated.json").write_text(json.dumps({"schemaVersion": 1, "label": "last run", "message": today.isoformat(), "color": "1b7f3b"}), encoding="utf-8")
+
 SITE_FIELDS = (
     "id", "title", "provider", "host_country", "degree_levels", "fields_of_study", "funding_type", "deadline", "deadline_text",
     "target_eligible", "evidence_verified", "nationality_mode", "eligibility_summary", "evidence_quote", "apply_url", "page_url",

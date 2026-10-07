@@ -1,0 +1,28 @@
+name: Suggest a source
+description: A website, feed or portal that posts scholarships and should be checked every night.
+title: "Source: "
+labels: [source]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: what
+    attributes:
+      label: What does it publish?
+      placeholder: Embassy announcements, university scholarship notices, ...
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options: [English, Mongolian, Russian, Japanese, Korean, Chinese, German, Turkish, Other]
+  - type: checkboxes
+    id: nationality
+    attributes:
+      label: Audience
+      options:
+        - label: Everything on this site is addressed to Mongolian citizens (embassy in Ulaanbaatar, Mongolian ministry, Mongolian university)

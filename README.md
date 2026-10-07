@@ -12,6 +12,9 @@
 </p>
 
 <p align="center">
+  <a href="https://ssaruul.github.io/scholaradar/"><img alt="Opportunities tracked" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fssaruul.github.io%2Fscholaradar%2Fbadges%2Fopportunities.json"></a>
+  <a href="reports/latest.md"><img alt="Last run" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fssaruul.github.io%2Fscholaradar%2Fbadges%2Fupdated.json"></a>
+  <a href="https://github.com/ssaruul/scholaradar/actions/workflows/ci.yml"><img alt="Tests" src="https://github.com/ssaruul/scholaradar/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="MIT license" src="https://img.shields.io/badge/license-MIT-green">
   <img alt="Linux and Windows" src="https://img.shields.io/badge/runs%20on-Linux%20%7C%20Windows-blue">
   <img alt="No API keys" src="https://img.shields.io/badge/API%20keys-none-brightgreen">
