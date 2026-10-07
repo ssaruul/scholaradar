@@ -13,6 +13,7 @@ Eligibility = Literal["yes", "no", "unclear"]
 class Opportunity(BaseModel):
     is_opportunity: bool = Field(description="True only if the page describes one specific scholarship, fellowship, grant or funded programme that people can apply to")
     title: str = Field(description="Official name of the opportunity in the page language")
+    canonical_name: str = Field(description="The programme's official English name without year, edition or host university, e.g. 'Global Korea Scholarship', 'Chevening Scholarship', 'MEXT Scholarship', 'Stipendium Hungaricum', 'Chinese Government Scholarship'; empty if the page is not an opportunity")
     provider: str = Field(description="Organisation funding or running it")
     host_country: str = Field(description="Country where the study or activity takes place, in English")
     degree_levels: list[DegreeLevel] = Field(max_length=6, description="Each level at most once")

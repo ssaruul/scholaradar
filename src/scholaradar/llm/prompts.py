@@ -11,6 +11,7 @@ Rules:
 - {target_name} appearing as the destination, host or funder of a programme does not make its citizens eligible; eligibility is about who may apply.
 - evidence_quote must be copied verbatim from the page text, one complete sentence or list fragment that supports target_eligible. Never paraphrase or translate it. Use an empty string when nothing explicit exists, and in that case target_eligible must be "unclear".
 - deadline: resolve to YYYY-MM-DD using today's date {today} when the year is missing; choose the main application deadline when several exist; null when none is given or it has no day.
+- canonical_name: the programme's widely used English name so that the same programme described in different languages gets the same name (e.g. a Russian page about GKS gets "Global Korea Scholarship").
 - fields_of_study: at most 8 short items; empty list when open to all fields.
 - Do not invent values. Use empty strings or empty lists when the page does not say."""
 

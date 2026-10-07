@@ -47,12 +47,31 @@ def _priority(row: dict, today: str) -> tuple:
     official = not any(host in host_of(row["page_url"]) for host in AGGREGATOR_HOSTS)
     deadline = row["deadline"] or ""
     deadline_rank = 0 if deadline >= today and deadline else (1 if not deadline else 2)
-    return (deadline_rank, VERDICT_RANK.get(row["target_eligible"], 3), not row["evidence_verified"], not official, deadline if deadline_rank == 0 else "", -len(row["eligibility_summary"] or ""))
+    return (deadline_rank, row.get("lang") != "en", VERDICT_RANK.get(row["target_eligible"], 3), not row["evidence_verified"], not official, deadline if deadline_rank == 0 else "", -len(row["eligibility_summary"] or ""))
+
+
+def _canonical_key(row: dict) -> frozenset[str]:
+    name = (row.get("canonical_name") or "").strip()
+    return title_tokens(name) if name else frozenset()
+
+
+def _merge_verdict(representative: dict, members: list[dict]) -> None:
+    if representative["target_eligible"] != "unclear" and representative["evidence_verified"]:
+        return
+    for verdict in ("yes", "no"):
+        best = next((m for m in members if m["target_eligible"] == verdict and m["evidence_verified"]), None)
+        if best is not None:
+            representative["target_eligible"] = verdict
+            representative["evidence_quote"] = best["evidence_quote"]
+            representative["evidence_verified"] = True
+            representative["nationality_mode"] = best["nationality_mode"]
+            return
 
 
 def group_opportunities(rows: list[dict], today: date | None = None) -> list[dict]:
     today_text = (today or date.today()).isoformat()
     tokens = [title_tokens(row["title"]) for row in rows]
+    canonical = [_canonical_key(row) for row in rows]
     frequency = Counter(token for token_set in tokens for token in token_set)
     distinctive_limit = max(3, len(rows) // 100)
     distinctive = [frozenset(token for token in token_set if frequency[token] <= distinctive_limit) for token_set in tokens]
@@ -61,7 +80,11 @@ def group_opportunities(rows: list[dict], today: date | None = None) -> list[dic
     def same(i: int, j: int) -> bool:
         if apply_keys[i] and apply_keys[i] == apply_keys[j]:
             return True
-        if not _compatible_country(rows[i], rows[j]) or not tokens[i] or not tokens[j]:
+        if not _compatible_country(rows[i], rows[j]):
+            return False
+        if canonical[i] and canonical[i] == canonical[j]:
+            return True
+        if not tokens[i] or not tokens[j]:
             return False
         if tokens[i] == tokens[j]:
             return True
@@ -89,6 +112,7 @@ def group_opportunities(rows: list[dict], today: date | None = None) -> list[dic
     for members in groups.values():
         members.sort(key=lambda row: _priority(row, today_text))
         representative = dict(members[0])
+        _merge_verdict(representative, members)
         representative["group_ids"] = [member["id"] for member in members]
         representative["also_on"] = [{"title": member["title"], "url": member["page_url"]} for member in members[1:]]
         merged.append(representative)

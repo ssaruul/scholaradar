@@ -4,7 +4,7 @@ import csv
 from pathlib import Path
 
 COLUMNS = [
-    "id", "title", "provider", "host_country", "degree_levels", "fields_of_study", "funding_type", "deadline", "deadline_text",
+    "id", "title", "canonical_name", "provider", "host_country", "degree_levels", "fields_of_study", "funding_type", "deadline", "deadline_text",
     "target_eligible", "evidence_verified", "nationality_mode", "eligibility_summary", "evidence_quote", "apply_url", "page_url",
     "lang", "first_seen", "extracted_at", "model",
 ]

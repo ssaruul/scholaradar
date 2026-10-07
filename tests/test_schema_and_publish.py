@@ -28,7 +28,7 @@ def test_schema_is_grammar_friendly() -> None:
 
 def test_opportunity_roundtrip() -> None:
     payload = {
-        "is_opportunity": True, "title": "GKS 2027", "provider": "NIIED", "host_country": "South Korea",
+        "is_opportunity": True, "title": "GKS 2027", "canonical_name": "Global Korea Scholarship", "provider": "NIIED", "host_country": "South Korea",
         "degree_levels": ["master", "phd"], "fields_of_study": [], "funding_type": "full", "deadline": "2027-03-01",
         "deadline_text": "March 1, 2027", "eligibility_summary": "Open to 150 countries including Mongolia.",
         "nationality_mode": "list", "target_eligible": "yes", "evidence_quote": "Mongolia", "apply_url": "",
@@ -89,3 +89,26 @@ def test_grouping_merges_same_programme() -> None:
     chevening = next(g for g in groups if "Chevening" in g["title"])
     assert sorted(chevening["group_ids"]) == [1, 2]
     assert chevening["page_url"] == "https://example.com/page"
+
+
+def test_cross_language_duplicates_prefer_english() -> None:
+    from scholaradar.publish.dedupe import group_opportunities
+
+    ru = dict(SAMPLE_ROWS[0], id=1, title="Стипендия GKS в Корее 2027: суммы и сроки", canonical_name="Global Korea Scholarship", host_country="South Korea", lang="ru", apply_url="", target_eligible="unclear", evidence_verified=False, page_url="https://blog.example/ru")
+    en = dict(SAMPLE_ROWS[0], id=2, title="2027 Global Korea Scholarship for Graduate Degrees", canonical_name="Global Korea Scholarship", host_country="South Korea", lang="en", apply_url="", target_eligible="yes", evidence_verified=True, page_url="https://studyinkorea.go.kr/gks")
+    mn = dict(SAMPLE_ROWS[0], id=3, title="БНСУ-ын Засгийн газрын тэтгэлэг 2027", canonical_name="Global Korea Scholarship", host_country="South Korea", lang="mn", apply_url="", page_url="https://moe.gov.mn/post/1")
+    other = dict(SAMPLE_ROWS[0], id=4, title="Türkiye Scholarships 2027", canonical_name="Türkiye Scholarships", host_country="Türkiye", lang="en", apply_url="", page_url="https://turkiyeburslari.gov.tr")
+    groups = group_opportunities([ru, en, mn, other], date(2026, 10, 6))
+    assert len(groups) == 2
+    gks = next(g for g in groups if g["canonical_name"] == "Global Korea Scholarship")
+    assert gks["lang"] == "en" and gks["page_url"] == "https://studyinkorea.go.kr/gks"
+    assert sorted(gks["group_ids"]) == [1, 2, 3]
+
+
+def test_group_verdict_merges_from_verified_member() -> None:
+    from scholaradar.publish.dedupe import group_opportunities
+
+    a = dict(SAMPLE_ROWS[0], id=1, title="Chevening Scholarship", canonical_name="Chevening Scholarship", lang="en", apply_url="", target_eligible="unclear", evidence_verified=False, evidence_quote="")
+    b = dict(SAMPLE_ROWS[0], id=2, title="Chevening Scholarship Mongolia", canonical_name="Chevening Scholarship", lang="mn", apply_url="", target_eligible="yes", evidence_verified=True, evidence_quote="Монгол Улсын иргэн байх", page_url="https://moe.gov.mn/post/2")
+    groups = group_opportunities([a, b], date(2026, 10, 6))
+    assert len(groups) == 1 and groups[0]["lang"] == "en" and groups[0]["target_eligible"] == "yes" and groups[0]["evidence_quote"] == "Монгол Улсын иргэн байх"

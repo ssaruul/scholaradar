@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS opportunities (
     id INTEGER PRIMARY KEY,
     page_id INTEGER NOT NULL UNIQUE REFERENCES pages(id),
     title TEXT NOT NULL,
+    canonical_name TEXT,
     provider TEXT,
     host_country TEXT,
     degree_levels TEXT,
@@ -132,6 +133,7 @@ class OpportunityRecord:
     apply_url: str
     lang: str
     model: str
+    canonical_name: str = ""
 
 
 def connect(path: Path) -> sqlite3.Connection:
@@ -146,6 +148,9 @@ def connect(path: Path) -> sqlite3.Connection:
         conn.execute("ALTER TABLE sources ADD COLUMN implies_eligible INTEGER NOT NULL DEFAULT 0")
     if "render" not in columns:
         conn.execute("ALTER TABLE sources ADD COLUMN render INTEGER NOT NULL DEFAULT 0")
+    opportunity_columns = {row["name"] for row in conn.execute("PRAGMA table_info(opportunities)")}
+    if "canonical_name" not in opportunity_columns:
+        conn.execute("ALTER TABLE opportunities ADD COLUMN canonical_name TEXT")
     return conn
 
 
@@ -291,9 +296,9 @@ def upsert_opportunity(conn: sqlite3.Connection, rec: OpportunityRecord) -> list
     conn.execute(
         """INSERT INTO opportunities(page_id, title, provider, host_country, degree_levels, fields_of_study, funding_type,
            deadline, deadline_text, eligibility_summary, nationality_mode, target_eligible, evidence_quote, evidence_verified,
-           apply_url, lang, model, extracted_at, first_seen)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-           ON CONFLICT(page_id) DO UPDATE SET title=excluded.title, provider=excluded.provider, host_country=excluded.host_country,
+           apply_url, lang, model, extracted_at, first_seen, canonical_name)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+           ON CONFLICT(page_id) DO UPDATE SET title=excluded.title, provider=excluded.provider, host_country=excluded.host_country, canonical_name=excluded.canonical_name,
            degree_levels=excluded.degree_levels, fields_of_study=excluded.fields_of_study, funding_type=excluded.funding_type,
            deadline=excluded.deadline, deadline_text=excluded.deadline_text, eligibility_summary=excluded.eligibility_summary,
            nationality_mode=excluded.nationality_mode, target_eligible=excluded.target_eligible, evidence_quote=excluded.evidence_quote,
@@ -302,7 +307,7 @@ def upsert_opportunity(conn: sqlite3.Connection, rec: OpportunityRecord) -> list
         (
             rec.page_id, rec.title, rec.provider, rec.host_country, json.dumps(rec.degree_levels), json.dumps(rec.fields_of_study, ensure_ascii=False),
             rec.funding_type, rec.deadline, rec.deadline_text, rec.eligibility_summary, rec.nationality_mode, rec.target_eligible,
-            rec.evidence_quote, int(rec.evidence_verified), rec.apply_url, rec.lang, rec.model, now, now,
+            rec.evidence_quote, int(rec.evidence_verified), rec.apply_url, rec.lang, rec.model, now, now, rec.canonical_name,
         ),
     )
     if previous and changes:

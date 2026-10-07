@@ -8,6 +8,7 @@ def make(**overrides: object) -> Opportunity:
     base = dict(
         is_opportunity=True,
         title="Test Scholarship",
+        canonical_name="Test Scholarship",
         provider="Test Foundation",
         host_country="Japan",
         degree_levels=["master"],

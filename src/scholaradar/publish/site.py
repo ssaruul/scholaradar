@@ -14,7 +14,7 @@ def write_badges(site_dir: Path, shown: int, eligible: int, today: date, funding
     (badges / "updated.json").write_text(json.dumps({"schemaVersion": 1, "label": "last run", "message": today.isoformat(), "color": "1b7f3b"}), encoding="utf-8")
 
 SITE_FIELDS = (
-    "id", "title", "provider", "host_country", "degree_levels", "fields_of_study", "funding_type", "deadline", "deadline_text",
+    "id", "title", "canonical_name", "provider", "host_country", "degree_levels", "fields_of_study", "funding_type", "deadline", "deadline_text",
     "target_eligible", "evidence_verified", "nationality_mode", "eligibility_summary", "evidence_quote", "apply_url", "page_url",
     "lang", "first_seen", "also_on",
 )

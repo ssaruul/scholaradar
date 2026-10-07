@@ -110,6 +110,7 @@ def to_record(page: db.PageRow, opp: Opportunity, verified: bool, model: str, te
         page_id=page.id,
         title=opp.title.strip() or (page.title or page.url),
         provider=opp.provider.strip(),
+        canonical_name=opp.canonical_name.strip(),
         host_country=normalize_country(opp.host_country),
         degree_levels=list(dict.fromkeys(opp.degree_levels)),
         fields_of_study=opp.fields_of_study,
