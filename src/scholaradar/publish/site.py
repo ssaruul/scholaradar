@@ -13,7 +13,7 @@ SITE_FIELDS = (
 )
 
 
-def write_site(site_dir: Path, templates_dir: Path, rows: list[dict], target_name: str, today: date, repo_url: str = "https://github.com/ssaruul/scholaradar") -> Path:
+def write_site(site_dir: Path, templates_dir: Path, rows: list[dict], target_name: str, today: date, repo_url: str = "https://github.com/ssaruul/scholaradar", funding: list[str] | None = None) -> Path:
     site_dir.mkdir(parents=True, exist_ok=True)
     items = [{key: row.get(key, []) for key in SITE_FIELDS} for row in rows]
     data_json = json.dumps(items, ensure_ascii=False)
@@ -24,6 +24,7 @@ def write_site(site_dir: Path, templates_dir: Path, rows: list[dict], target_nam
         data_json=data_json.replace("</", "<\\/"),
         target_name=target_name,
         repo_url=repo_url,
+        default_funding=list(funding or []),
         generated=today.isoformat(),
         total=len(items),
         eligible=sum(1 for item in items if item["target_eligible"] == "yes"),

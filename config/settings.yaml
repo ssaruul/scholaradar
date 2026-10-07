@@ -75,6 +75,7 @@ prefilter:
     - beca
 
 outputs:
+  funding: [full]
   site:
     enabled: true
     dir: docs

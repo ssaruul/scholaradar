@@ -38,7 +38,10 @@ def _changes_table(changes: list[dict]) -> str:
     return header + body + "\n"
 
 
-def render_report(rows: list[dict], new_rows: list[dict], target_name: str, today: date, pages_url: str, window_days: int = 30, changes: list[dict] | None = None) -> str:
+FUNDING_LABEL = {"full": "fully funded", "partial": "partially funded", "tuition_only": "tuition only", "stipend_only": "stipend only", "unknown": "funding not stated"}
+
+
+def render_report(rows: list[dict], new_rows: list[dict], target_name: str, today: date, pages_url: str, window_days: int = 30, changes: list[dict] | None = None, funding: list[str] | None = None) -> str:
     cutoff = today.isoformat()
     horizon = (today + timedelta(days=window_days)).isoformat()
     upcoming = [r for r in rows if r["deadline"] and cutoff <= r["deadline"] <= horizon and r["target_eligible"] != "no"]
@@ -51,7 +54,7 @@ def render_report(rows: list[dict], new_rows: list[dict], target_name: str, toda
     lines = [
         f"# Scholaradar report, {today.isoformat()}",
         "",
-        f"{len(rows)} opportunities tracked for citizens of {target_name}: {verdicts.get('yes', 0)} eligible, {verdicts.get('unclear', 0)} unclear, {verdicts.get('no', 0)} not eligible.",
+        f"{len(rows)} {' / '.join(FUNDING_LABEL.get(f, f) for f in funding) + ' ' if funding else ''}opportunities tracked for citizens of {target_name}: {verdicts.get('yes', 0)} eligible, {verdicts.get('unclear', 0)} unclear, {verdicts.get('no', 0)} not eligible.",
         f"Filterable dashboard: [{pages_url}]({pages_url}) (also `docs/index.html` in this repository). Full data: `docs/opportunities.csv`.",
         "",
         f"## New since the previous run ({len(new_visible)})",

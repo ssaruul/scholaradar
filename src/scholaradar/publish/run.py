@@ -35,6 +35,12 @@ class PublishStats:
     sheets: int = 0
 
 
+def _funded(rows: list[dict], funding: list[str]) -> list[dict]:
+    if not funding:
+        return rows
+    return [row for row in rows if row["funding_type"] in funding]
+
+
 def _upcoming(rows: list[dict], today: date) -> list[dict]:
     cutoff = today.isoformat()
     return [row for row in rows if row["deadline"] is None or row["deadline"] >= cutoff]
@@ -83,19 +89,20 @@ def publish_all(conn: sqlite3.Connection, settings: Settings, secrets: Secrets, 
     previous = db.previous_run_started(conn, run_id)
     new_ids = {row["id"] for row in (db.opportunities(conn, since=previous) if previous else rows)}
     grouped = group_opportunities(rows, today)
-    new_rows = [group for group in grouped if set(group["group_ids"]) & new_ids]
+    shown = _funded(grouped, outputs.funding)
+    new_rows = [group for group in shown if set(group["group_ids"]) & new_ids]
     stats.new_rows = len(new_rows)
     if outputs.csv.enabled:
         stats.csv = write_csv(outputs.csv.path, rows)
         log.info("csv: %d rows -> %s", stats.csv, outputs.csv.path)
     if outputs.site.enabled:
-        index = write_site(outputs.site.dir, settings.templates_dir, grouped, settings.target.name, today, outputs.site.repo_url)
-        stats.site = len(grouped)
-        write_rss(outputs.site.dir / "feed.xml", grouped, settings.target.name, outputs.site.pages_url, today)
-        write_ics(outputs.site.dir / "deadlines.ics", grouped, settings.target.name, today)
+        index = write_site(outputs.site.dir, settings.templates_dir, grouped, settings.target.name, today, outputs.site.repo_url, outputs.funding)
+        stats.site = len(shown)
+        write_rss(outputs.site.dir / "feed.xml", shown, settings.target.name, outputs.site.pages_url, today)
+        write_ics(outputs.site.dir / "deadlines.ics", shown, settings.target.name, today)
         log.info("site: %s (+ feed.xml, deadlines.ics)", index)
     if outputs.report.enabled:
-        content = render_report(grouped, new_rows, settings.target.name, today, outputs.site.pages_url, outputs.report.window_days, db.changes_since(conn, previous))
+        content = render_report(shown, new_rows, settings.target.name, today, outputs.site.pages_url, outputs.report.window_days, db.changes_since(conn, previous), outputs.funding)
         stats.report = str(write_report(outputs.report.dir, content, today))
         log.info("report: %s", stats.report)
     for channel in ("facebook", "telegram"):
@@ -112,7 +119,7 @@ def publish_all(conn: sqlite3.Connection, settings: Settings, secrets: Secrets, 
             outputs.git.push,
         )
     if outputs.email.enabled or force_email:
-        digest_rows = _upcoming(new_rows if outputs.email.only_new and not force_email else rows, today)
+        digest_rows = _upcoming(new_rows if outputs.email.only_new and not force_email else shown, today)
         if not smtp_configured(secrets):
             log.warning("email enabled but SMTP_HOST/DIGEST_TO not set in .env")
         elif digest_rows or force_email:

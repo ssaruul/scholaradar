@@ -109,6 +109,7 @@ class SheetsOutput(BaseModel):
 
 
 class OutputsConfig(BaseModel):
+    funding: list[str] = Field(default_factory=list)
     site: SiteOutput = Field(default_factory=SiteOutput)
     csv: CsvOutput = Field(default_factory=CsvOutput)
     report: ReportOutput = Field(default_factory=ReportOutput)
