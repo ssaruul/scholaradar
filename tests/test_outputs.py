@@ -34,3 +34,23 @@ def test_report_sections() -> None:
     assert "## New since the previous run (1)" in text
     assert "## Deadlines in the next 120 days (1)" in text
     assert "| deadline | 2027-01-01 | 2027-01-15 |" in text
+
+
+def test_clean_apply_url() -> None:
+    from scholaradar.llm.extract import clean_apply_url
+
+    page = "https://scholars4dev.com/123/chevening"
+    text = "Apply at www.chevening.org/apply before 6 October. Questions: scholarshipapplicants@worldbank.org"
+    assert clean_apply_url("https://www.chevening.org/apply", page, text) == "https://www.chevening.org/apply"
+    assert clean_apply_url("www.chevening.org/apply", page, text) == "https://www.chevening.org/apply"
+    assert clean_apply_url("mailto:scholarshipapplicants@worldbank.org", page, text) == page
+    assert clean_apply_url("https://OIAA Application System", page, text) == page
+    assert clean_apply_url("https://made-up-portal.example", page, text) == page
+    assert clean_apply_url("", page, text) == page
+
+
+def test_report_mongolian_with_open_list() -> None:
+    text = render_report([ROW], [], "Mongolia", date(2026, 10, 6), "https://example.org/", 90, [], ["full"], "mn", 80)
+    assert "## Одоо нээлттэй бүх тэтгэлэг (1)" in text
+    assert "бүрэн санхүүжилттэй" in text and "| 2027-01-15 | 101 |" in text
+    assert "## Ойрын 90 хоногт дуусах хугацаатай (0)" in text

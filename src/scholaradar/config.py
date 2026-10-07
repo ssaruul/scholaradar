@@ -53,6 +53,7 @@ class LlmConfig(BaseModel):
     temperature: float = 0.0
     timeout_seconds: float = 300.0
     concurrency: int = 4
+    summary_language: str = "English"
     extra_body: dict[str, Any] = Field(default_factory=dict)
 
 
@@ -65,6 +66,7 @@ class SiteOutput(BaseModel):
     dir: Path = Path("docs")
     pages_url: str = ""
     repo_url: str = "https://github.com/ssaruul/scholaradar"
+    default_language: str = "en"
 
 
 class CsvOutput(BaseModel):
@@ -75,7 +77,9 @@ class CsvOutput(BaseModel):
 class ReportOutput(BaseModel):
     enabled: bool = True
     dir: Path = Path("reports")
-    window_days: int = 30
+    window_days: int = 90
+    language: str = "en"
+    max_open: int = 80
 
 
 class SocialOutput(BaseModel):

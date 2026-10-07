@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import re
 import sqlite3
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
@@ -15,6 +16,7 @@ from .client import Completion, LlmClient
 from .prompts import system_prompt, user_prompt
 from .schema import Opportunity, opportunity_json_schema
 from .verify import verify
+from ..urls import host_of
 
 log = logging.getLogger(__name__)
 
@@ -28,6 +30,26 @@ COUNTRY_ALIASES = {
     "czechia": "Czech Republic", "uae": "United Arab Emirates", "taiwan (roc)": "Taiwan", "republic of china (taiwan)": "Taiwan",
     "unknown": "", "n/a": "", "not specified": "", "unclear": "", "none": "", "not stated": "", "multiple": "Multiple", "various": "Multiple", "online": "Remote",
 }
+
+
+URL_HOST = re.compile(r"^[\w.-]+\.[a-z]{2,}(?:[/?#].*)?$", re.I)
+
+
+def clean_apply_url(url: str, page_url: str, text: str) -> str:
+    candidate = (url or "").strip()
+    if not candidate or candidate.startswith(("mailto:", "tel:")) or " " in candidate:
+        return page_url
+    if not candidate.lower().startswith(("http://", "https://")):
+        if not URL_HOST.match(candidate):
+            return page_url
+        candidate = "https://" + candidate
+    host = host_of(candidate)
+    if not host or "." not in host:
+        return page_url
+    bare = host[4:] if host.startswith("www.") else host
+    if bare not in text and bare not in host_of(page_url):
+        return page_url
+    return candidate
 
 
 def normalize_country(value: str) -> str:
@@ -53,6 +75,7 @@ class ExtractionOutcome:
     opportunity: Opportunity | None
     verified: bool
     error: str | None
+    text: str = ""
 
 
 DENSE_LANGS = {"ja", "zh", "ko"}
@@ -69,20 +92,20 @@ def _clip(text: str, max_chars: int, lang: str | None = None) -> str:
 
 
 def extract_one(client: LlmClient, settings: Settings, page: db.PageRow, text: str, today: date, schema: dict) -> ExtractionOutcome:
-    system = system_prompt(settings.target.name, settings.target.all_names(), today)
+    system = system_prompt(settings.target.name, settings.target.all_names(), today, settings.llm.summary_language)
     user = user_prompt(page.url, page.title or "", _clip(text, settings.llm.max_input_chars, page.lang))
     completion = client.complete_json(system, user, schema)
     if completion.error or completion.data is None:
-        return ExtractionOutcome(page, completion, None, False, completion.error or "empty")
+        return ExtractionOutcome(page, completion, None, False, completion.error or "empty", text)
     try:
         opp = Opportunity.model_validate(completion.data)
     except ValidationError as exc:
-        return ExtractionOutcome(page, completion, None, False, f"schema:{exc.error_count()}")
+        return ExtractionOutcome(page, completion, None, False, f"schema:{exc.error_count()}", text)
     opp, verified = verify(opp, text, settings.target.all_names())
-    return ExtractionOutcome(page, completion, opp, verified, None)
+    return ExtractionOutcome(page, completion, opp, verified, None, text)
 
 
-def to_record(page: db.PageRow, opp: Opportunity, verified: bool, model: str) -> db.OpportunityRecord:
+def to_record(page: db.PageRow, opp: Opportunity, verified: bool, model: str, text: str = "") -> db.OpportunityRecord:
     return db.OpportunityRecord(
         page_id=page.id,
         title=opp.title.strip() or (page.title or page.url),
@@ -98,7 +121,7 @@ def to_record(page: db.PageRow, opp: Opportunity, verified: bool, model: str) ->
         target_eligible=opp.target_eligible,
         evidence_quote=opp.evidence_quote,
         evidence_verified=verified,
-        apply_url=opp.apply_url or page.url,
+        apply_url=clean_apply_url(opp.apply_url, page.url, text),
         lang=page.lang or "",
         model=model,
     )
@@ -129,7 +152,7 @@ def extract_pages(conn: sqlite3.Connection, settings: Settings, client: LlmClien
                 db.set_page_status(conn, outcome.page.id, "not_opportunity")
             else:
                 stats.extracted += 1
-                record = to_record(outcome.page, outcome.opportunity, outcome.verified, model_name)
+                record = to_record(outcome.page, outcome.opportunity, outcome.verified, model_name, outcome.text)
                 source_name = db.source_implying_eligibility(conn, outcome.page.source_id)
                 if source_name and record.target_eligible == "unclear":
                     record.target_eligible = "yes"

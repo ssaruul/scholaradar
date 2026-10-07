@@ -51,6 +51,7 @@ llm:
   temperature: 0.0
   timeout_seconds: 300
   concurrency: 4
+  summary_language: Mongolian
   extra_body:
     chat_template_kwargs:
       enable_thinking: false
@@ -81,13 +82,16 @@ outputs:
     dir: docs
     pages_url: https://ssaruul.github.io/scholaradar/
     repo_url: https://github.com/ssaruul/scholaradar
+    default_language: mn
   csv:
     enabled: true
     path: docs/opportunities.csv
   report:
     enabled: true
     dir: reports
-    window_days: 30
+    window_days: 90
+    language: mn
+    max_open: 80
   facebook:
     enabled: false
     max_items: 8

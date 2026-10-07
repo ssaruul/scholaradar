@@ -72,22 +72,23 @@
   const repo = {{ repo_url | tojson }};
   const generated = {{ generated | tojson }};
   const defaultFunding = {{ default_funding | tojson }};
+  const defaultLanguage = {{ default_language | tojson }};
   const I18N = {
     en: { meta: `Eligibility judged for citizens of ${target} · ${rows.length} opportunities · updated ${generated}`, lang: 'Монгол', calendar: 'Subscribe to deadlines (calendar)', feed: 'RSS feed', csv: 'Download CSV', about: 'About / source code',
       search: 'Search', funding: 'Funding', fundingFull: 'Fully funded only', fundingSome: 'Any funding (not tuition-only)', eligibility: 'Eligibility', eligOrUnclear: 'Eligible or unclear', eligOnly: 'Eligible only', all: 'All', level: 'Level', any: 'Any', host: 'Host country', deadline: 'Deadline', upcoming: 'Upcoming or none', d30: 'Within 30 days', d90: 'Within 90 days', incPast: 'Include past', show: 'Show', scopeActive: 'Not hidden', scopeSaved: 'Saved only', scopeHidden: 'Hidden only', sort: 'Sort', byDeadline: 'Deadline', byNew: 'Newest first',
-      shown: (a, b) => `${a} of ${b} shown`, eligible: 'Eligible', notEligible: 'Not eligible', unclear: 'Unclear', unverified: ' (unverified)', deadlineLabel: 'Deadline', days: d => `${d} days`, noDeadline: 'No deadline stated', evidence: 'Evidence, source', noEvidence: 'No explicit statement found on the page.', fields: 'Fields', source: 'Source', firstSeen: 'first seen', alsoOn: 'Also found on', save: 'Save', unsave: 'Saved', hide: 'Hide', unhide: 'Unhide', addCal: 'Add to Google Calendar', wrong: 'Report a mistake', empty: 'Nothing matches these filters.',
+      shown: (a, b) => `${a} of ${b} shown`, eligible: 'Eligible', notEligible: 'Not eligible', unclear: 'Unclear', unverified: ' (unverified)', deadlineLabel: 'Deadline', days: d => d === 0 ? 'today' : d === 1 ? 'tomorrow' : `${d} days left`, noDeadline: 'No deadline stated', apply: 'Official page / apply', evidence: 'Evidence, source', noEvidence: 'No explicit statement found on the page.', fields: 'Fields', source: 'Source', firstSeen: 'first seen', alsoOn: 'Also found on', save: 'Save', unsave: 'Saved', hide: 'Hide', unhide: 'Unhide', addCal: 'Add to Google Calendar', wrong: 'Report a mistake', empty: 'Nothing matches these filters.',
       levels: { bachelor: 'bachelor', master: 'master', phd: 'PhD', postdoc: 'postdoc', research: 'research', exchange: 'exchange', short_course: 'short course', language: 'language', other: 'other' },
       funding: { full: 'fully funded', partial: 'partial', tuition_only: 'tuition only', stipend_only: 'stipend only', unknown: 'funding unknown' } },
     mn: { meta: `Монгол Улсын иргэдэд хамаарах эсэхийг шалгасан · ${rows.length} тэтгэлэг · шинэчилсэн ${generated}`, lang: 'English', calendar: 'Хугацааны календарьт бүртгүүлэх', feed: 'RSS', csv: 'CSV татах', about: 'Тухай / эх код',
       search: 'Хайх', funding: 'Санхүүжилт', fundingFull: 'Зөвхөн бүрэн санхүүжилттэй', fundingSome: 'Дурын санхүүжилт (зөвхөн төлбөрөөс бусад)', eligibility: 'Хамаарах эсэх', eligOrUnclear: 'Хамаарах эсвэл тодорхойгүй', eligOnly: 'Зөвхөн хамаарах', all: 'Бүгд', level: 'Түвшин', any: 'Бүгд', host: 'Суралцах улс', deadline: 'Хугацаа', upcoming: 'Удахгүй болон заагаагүй', d30: '30 хоногийн дотор', d90: '90 хоногийн дотор', incPast: 'Өнгөрснийг оруулах', show: 'Харуулах', scopeActive: 'Нуугаагүй', scopeSaved: 'Зөвхөн хадгалсан', scopeHidden: 'Зөвхөн нуусан', sort: 'Эрэмбэ', byDeadline: 'Хугацаагаар', byNew: 'Шинээр нэмэгдсэн',
-      shown: (a, b) => `${b}-с ${a} харуулж байна`, eligible: 'Хамаарна', notEligible: 'Хамаарахгүй', unclear: 'Тодорхойгүй', unverified: ' (баталгаажаагүй)', deadlineLabel: 'Хугацаа', days: d => `${d} хоног`, noDeadline: 'Хугацаа заагаагүй', evidence: 'Нотолгоо, эх сурвалж', noEvidence: 'Хуудсан дээр тодорхой өгүүлбэр олдсонгүй.', fields: 'Чиглэл', source: 'Эх сурвалж', firstSeen: 'анх олдсон', alsoOn: 'Мөн эндээс олдсон', save: 'Хадгалах', unsave: 'Хадгалсан', hide: 'Нуух', unhide: 'Буцаах', addCal: 'Google Calendar-т нэмэх', wrong: 'Алдаа мэдэгдэх', empty: 'Энэ шүүлтүүрт тохирох зүйл алга.',
+      shown: (a, b) => `${b}-с ${a} харуулж байна`, eligible: 'Хамаарна', notEligible: 'Хамаарахгүй', unclear: 'Тодорхойгүй', unverified: ' (баталгаажаагүй)', deadlineLabel: 'Хугацаа', days: d => d === 0 ? 'өнөөдөр' : d === 1 ? 'маргааш' : `${d} хоног үлдсэн`, noDeadline: 'Хугацаа заагаагүй', apply: 'Албан ёсны хуудас / өргөдөл', evidence: 'Нотолгоо, эх сурвалж', noEvidence: 'Хуудсан дээр тодорхой өгүүлбэр олдсонгүй.', fields: 'Чиглэл', source: 'Эх сурвалж', firstSeen: 'анх олдсон', alsoOn: 'Мөн эндээс олдсон', save: 'Хадгалах', unsave: 'Хадгалсан', hide: 'Нуух', unhide: 'Буцаах', addCal: 'Google Calendar-т нэмэх', wrong: 'Алдаа мэдэгдэх', empty: 'Энэ шүүлтүүрт тохирох зүйл алга.',
       levels: { bachelor: 'бакалавр', master: 'магистр', phd: 'доктор', postdoc: 'постдок', research: 'судалгаа', exchange: 'солилцоо', short_course: 'богино хугацааны', language: 'хэлний', other: 'бусад' },
       funding: { full: 'бүрэн санхүүжилт', partial: 'хэсэгчилсэн', tuition_only: 'зөвхөн сургалтын төлбөр', stipend_only: 'зөвхөн тэтгэмж', unknown: 'санхүүжилт тодорхойгүй' } },
   };
   const byId = id => document.getElementById(id);
   const store = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (e) { return fallback; } };
   const keep = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} };
-  let lang = store('scholaradar.lang', navigator.language && navigator.language.startsWith('mn') ? 'mn' : 'en');
+  let lang = store('scholaradar.lang', I18N[defaultLanguage] ? defaultLanguage : 'en');
   const saved = new Set(store('scholaradar.saved', []));
   const hidden = new Set(store('scholaradar.hidden', []));
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -135,12 +136,14 @@
   }
   function card(r) {
     const s = t();
-    const soon = r.deadline && r.deadline >= today && daysUntil(r.deadline) <= 14;
-    const deadline = r.deadline ? `<span class="${soon ? 'deadline-soon' : ''}">${esc(s.deadlineLabel)} ${esc(r.deadline)}${soon ? ' (' + s.days(daysUntil(r.deadline)) + ')' : ''}</span>` : `<span>${esc(s.noDeadline)}</span>`;
+    const left = r.deadline ? daysUntil(r.deadline) : null;
+    const soon = left !== null && left >= 0 && left <= 14;
+    const deadline = r.deadline ? `<span class="${soon ? 'deadline-soon' : ''}">${esc(s.deadlineLabel)} ${esc(r.deadline)}${left !== null && left >= 0 && left <= 60 ? ' (' + s.days(left) + ')' : ''}</span>` : `<span>${esc(s.noDeadline)}</span>`;
+    const hasApply = r.apply_url && r.apply_url !== r.page_url;
     const verdict = r.target_eligible === 'yes' ? s.eligible : r.target_eligible === 'no' ? s.notEligible : s.unclear;
     const isSaved = saved.has(r.id), isHidden = hidden.has(r.id);
     return `<article class="card ${isSaved ? 'saved' : ''}" data-id="${r.id}">
-      <h2><a href="${esc(r.apply_url || r.page_url)}" target="_blank" rel="noopener">${esc(r.title)}</a></h2>
+      <h2><a href="${esc(r.page_url)}" target="_blank" rel="noopener">${esc(r.title)}</a></h2>
       <div class="row">
         <span class="badge ${r.target_eligible}">${esc(verdict)}${r.evidence_verified ? '' : esc(s.unverified)}</span>
         ${r.provider ? `<span>${esc(r.provider)}</span>` : ''}
@@ -151,6 +154,7 @@
       </div>
       <p class="summary">${esc(r.eligibility_summary)}</p>
       <div class="actions">
+        ${hasApply ? `<a href="${esc(r.apply_url)}" target="_blank" rel="noopener">${esc(s.apply)}</a>` : ''}
         <button type="button" data-act="save">${isSaved ? '★ ' + esc(s.unsave) : '☆ ' + esc(s.save)}</button>
         <button type="button" data-act="hide">${isHidden ? esc(s.unhide) : esc(s.hide)}</button>
         ${r.deadline && r.deadline >= today ? `<a href="${gcal(r)}" target="_blank" rel="noopener">${esc(s.addCal)}</a>` : ''}

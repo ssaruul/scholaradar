@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import date
 
 SYSTEM_PROMPT = """You extract structured data about scholarships and funded study or research opportunities from web page text.
-You answer only with a JSON object matching the provided schema. Pages may be in any language; output English for host_country and eligibility_summary, keep title and evidence_quote in the page language.
+You answer only with a JSON object matching the provided schema. Pages may be in any language; output English for host_country, write eligibility_summary in {summary_language}, keep title and evidence_quote in the page language.
 
 Rules:
 - is_opportunity is true only when the page describes one specific opportunity people can apply to. News articles, listings of many opportunities, general advice pages and university homepages are not opportunities.
@@ -15,8 +15,8 @@ Rules:
 - Do not invent values. Use empty strings or empty lists when the page does not say."""
 
 
-def system_prompt(target_name: str, target_names: list[str], today: date) -> str:
-    return SYSTEM_PROMPT.format(target_name=target_name, target_names=", ".join(target_names), today=today.isoformat())
+def system_prompt(target_name: str, target_names: list[str], today: date, summary_language: str = "English") -> str:
+    return SYSTEM_PROMPT.format(target_name=target_name, target_names=", ".join(target_names), today=today.isoformat(), summary_language=summary_language)
 
 
 def user_prompt(url: str, title: str, text: str) -> str:

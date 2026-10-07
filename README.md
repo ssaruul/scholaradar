@@ -23,6 +23,18 @@
 
 <p align="center"><img src="assets/dashboard.png" alt="Scholaradar dashboard" width="900"></p>
 
+## Монгол оюутнуудад
+
+Scholaradar шөнө бүр найман хэл дээр гадаадад суралцах тэтгэлэг хайж, хуудас бүрийг уншаад **Монгол Улсын иргэн өргөдөл гаргах боломжтой эсэхийг** хуудасны үгчилсэн ишлэлээр шалгадаг. Суулгах шаардлагагүй, бэлэн үр дүнг нь ашиглаарай:
+
+- **Самбар** (монгол хэл дээр, хугацаагаар эрэмбэлсэн, зөвхөн бүрэн санхүүжилттэй): https://ssaruul.github.io/scholaradar/
+- **Өдөр бүрийн тайлан**: [reports/latest.md](reports/latest.md), шинээр нэмэгдсэн болон ойрын 90 хоногт дуусах тэтгэлгүүд
+- **Хугацааны календарь**: `https://ssaruul.github.io/scholaradar/deadlines.ics` холбоосыг Google эсвэл Apple Calendar-т бүртгүүлбэл хугацаа бүр долоо хоногийн өмнө сануулна
+- **Хүснэгт**: [docs/opportunities.csv](docs/opportunities.csv)
+- Самбар дээрх карт бүрт албан ёсны хуудасны холбоос, нотлох өгүүлбэр, "Алдаа мэдэгдэх" товч бий. Хамаарах эсэхийг өргөдөл гаргахын өмнө албан ёсны хуудаснаас заавал баталгаажуулаарай.
+
+Telegram суваг болон Facebook хуудас руу өдөр бүр автоматаар нийтлэх тохиргоотой; холбоосыг нээлттэй болмогц энд нэмнэ.
+
 ## The problem
 
 Scholarships for studying abroad are scattered across thousands of university, embassy, foundation and ministry websites, written in Japanese, Korean, Chinese, Russian, German, Turkish and Mongolian as often as in English. Half of them quietly exclude your country in paragraph nine. Most students find out about the good ones after the deadline.

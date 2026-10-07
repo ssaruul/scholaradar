@@ -96,14 +96,14 @@ def publish_all(conn: sqlite3.Connection, settings: Settings, secrets: Secrets, 
         stats.csv = write_csv(outputs.csv.path, rows)
         log.info("csv: %d rows -> %s", stats.csv, outputs.csv.path)
     if outputs.site.enabled:
-        index = write_site(outputs.site.dir, settings.templates_dir, grouped, settings.target.name, today, outputs.site.repo_url, outputs.funding)
+        index = write_site(outputs.site.dir, settings.templates_dir, grouped, settings.target.name, today, outputs.site.repo_url, outputs.funding, outputs.site.default_language)
         stats.site = len(shown)
         write_rss(outputs.site.dir / "feed.xml", shown, settings.target.name, outputs.site.pages_url, today)
         write_ics(outputs.site.dir / "deadlines.ics", shown, settings.target.name, today)
         write_badges(outputs.site.dir, len(shown), sum(1 for r in shown if r["target_eligible"] == "yes"), today, "fully funded" if outputs.funding == ["full"] else "opportunities")
         log.info("site: %s (+ feed.xml, deadlines.ics)", index)
     if outputs.report.enabled:
-        content = render_report(shown, new_rows, settings.target.name, today, outputs.site.pages_url, outputs.report.window_days, db.changes_since(conn, previous), outputs.funding)
+        content = render_report(shown, new_rows, settings.target.name, today, outputs.site.pages_url, outputs.report.window_days, db.changes_since(conn, previous), outputs.funding, outputs.report.language, outputs.report.max_open)
         stats.report = str(write_report(outputs.report.dir, content, today))
         log.info("report: %s", stats.report)
     for channel in ("facebook", "telegram"):
