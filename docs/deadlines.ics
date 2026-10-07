@@ -5,179 +5,8 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Scholarship deadlines (Mongolia)
 BEGIN:VEVENT
-UID:f015f1760ac7f27cce82a3396ee8e795224938db@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261008
-DTEND;VALUE=DATE:20261009
-SUMMARY:Deadline: 2027年度海外留学支援制度（大学院学位
- 取得型）
-DESCRIPTION:Unclear.  master\, phd. Students currently enrolled in or gr
- aduated from a Japanese university\, or individuals who have obtained a
-  bachelor's degree or higher from an overseas higher education institut
- ion and cannot apply through a Japanese university. https://www.jasso.g
- o.jp/ryugaku/scholarship_a/daigakuin/2027.html
-URL:https://www.jasso.go.jp/ryugaku/scholarship_a/daigakuin/2027.html
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: 2027年度海外留学支援制度（大学
- 院学位取得型）
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:54e257ada8b0ebe9c50cd81fd67a6228cb744cbd@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261009
-DTEND;VALUE=DATE:20261010
-SUMMARY:Deadline: NetHope Humanitarian AI Research Fellowship 2026/2027
-DESCRIPTION:Unclear. Remote . Open to mid-career to seasoned practitione
- rs with strong writing and analytical skills. Applicants can apply via 
- two streams: one for policy/program evaluation and one for computer sci
- ence/machine learning/data science backgrounds. https://opportunitydesk
- .org/2026/10/05/nethope-humanitarian-ai-research-fellowship-2026-2027/
-URL:https://opportunitydesk.org/2026/10/05/nethope-humanitarian-ai-resea
- rch-fellowship-2026-2027/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: NetHope Humanitarian AI Research Fellowship 2
- 026/2027
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:96ac309f1e5e1635f05cbfb79774ec58f7c3dead@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261019
-DTEND;VALUE=DATE:20261020
-SUMMARY:Deadline: Fellowship 2027 in Cambridge\, UK (Fully Funded) - OYA
-  Opportunities
-DESCRIPTION:Eligible. United Kingdom . The fellowship is open to researc
- hers\, entrepreneurs\, engineers\, scientists\, policy professionals\, 
- and other talented individuals aged 18 or older from various academic a
- nd professional backgrounds. It is open to all nationalities\, providin
- g travel support and visa sponsorship for international participants fr
- om most countries. https://oyaop.com/opportunity/scholarships-and-fello
- wships/fellowship-2027-in-cambridge-uk-fully-funded/
-URL:https://oyaop.com/opportunity/scholarships-and-fellowships/fellowshi
- p-2027-in-cambridge-uk-fully-funded/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Fellowship 2027 in Cambridge\, UK (Fully Fund
- ed) - OYA Opportunities
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:aea4e7580a216fa4a34e61be8b4635a661b9c2bc@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261025
-DTEND;VALUE=DATE:20261026
-SUMMARY:Deadline: 2027年度 公益財団法人KDDI財団 語学留学
- 助成
-DESCRIPTION:Unclear. Japan . Students planning to begin studying Burmese
- \, Mongolian\, or Cambodian for at least 6 months between April 1\, 202
- 7\, and March 31\, 2028. https://www.tufs.ac.jp/student/tuition_scholar
- ship/scholarship/nihongakusei.html
-URL:https://www.tufs.ac.jp/student/tuition_scholarship/scholarship/nihon
- gakusei.html
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: 2027年度 公益財団法人KDDI財団 語
- 学留学助成
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:daed83bd4d5c879c4a998652e9d918967043d3a0@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261028
-DTEND;VALUE=DATE:20261029
-SUMMARY:Deadline: Эрдэмтэн Г.Очирын нэрэмжит за
- луу оюутан судлаачдыг дэмжих тэтгэлэг 
- зарлагдлаа
-DESCRIPTION:Eligible. Mongolia master\, phd. Mongolian citizens who are 
- master's or doctoral students at MUST (МУИС) studying in chemistry 
- or environmental sciences\, with a GPA of 3.2 or higher\, English profi
- ciency\, and research experience. https://news.num.edu.mn/?p=118091
-URL:https://news.num.edu.mn/?p=118091
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Эрдэмтэн Г.Очирын нэрэмж
- ит залуу оюутан судлаачдыг дэмжих тэтг
- элэг зарлагдлаа
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:cb51063011a9160b60185b9f5ddc8266993731db@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261030
-DTEND;VALUE=DATE:20261031
-SUMMARY:Deadline: 財団法人　藤井国際奨学財団 ２０２７
- 年度 奨学生募集要項 （留学生用）
-DESCRIPTION:Eligible. Japan bachelor\, master\, phd. International stude
- nts (private students with nationality from Asian countries) enrolled i
- n designated universities who are academically excellent\, healthy\, an
- d in need of financial support. Applicants must be under 25 for undergr
- aduates\, 30 for masters\, and 35 for doctoral students as of April 1\,
-  2027. https://web.isc.ehime-u.ac.jp/wp-content/uploads/2026/07/yoko_20
- 27%E5%B9%B4%E5%BA%A6%E7%89%88-%E7%95%99%E5%AD%A6%E7%94%9F%E5%8B%9F%E9%9
- B%86%E8%A6%81%E9%A0%85.pdf
-URL:https://web.isc.ehime-u.ac.jp/wp-content/uploads/2026/07/yoko_2027%E
- 5%B9%B4%E5%BA%A6%E7%89%88-%E7%95%99%E5%AD%A6%E7%94%9F%E5%8B%9F%E9%9B%86
- %E8%A6%81%E9%A0%85.pdf
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: 財団法人　藤井国際奨学財団 ２
- ０２７年度 奨学生募集要項 （留学生用）
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:2ee717f87a0a94b53654de6269b3baff28787659@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261030
-DTEND;VALUE=DATE:20261031
-SUMMARY:Deadline: Jerome R. Lewis Legislative Fellows Program 2027
-DESCRIPTION:Unclear. United States master\, bachelor. Full-time master's
-  degree students or highly qualified junior/senior undergraduate studen
- ts (GPA 3.4+) from partnering universities with backgrounds in relevant
-  social science or business fields. https://opportunitydesk.org/2026/10
- /06/jerome-r-lewis-legislative-fellows-program-2027/
-URL:https://opportunitydesk.org/2026/10/06/jerome-r-lewis-legislative-fe
- llows-program-2027/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Jerome R. Lewis Legislative Fellows Program 2
- 027
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:ab64256bbc7dc46408106f4334841cc4733eb705@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261031
-DTEND;VALUE=DATE:20261101
-SUMMARY:Deadline: Melbourne International Undergraduate Scholarships 202
- 6-2027 | Scholars4Dev
-DESCRIPTION:Eligible. Australia bachelor. High achieving international s
- tudents who are citizens of a country with a GDP per capita of US$10\,0
- 00 or less\, have applied for an Overseas Fee place in a bachelor degre
- e\, completed secondary school outside Australia\, and have not previou
- sly undertaken tertiary studies. https://scholarships.unimelb.edu.au/aw
- ards/melbourne-international-undergraduate-scholarship
-URL:https://scholarships.unimelb.edu.au/awards/melbourne-international-u
- ndergraduate-scholarship
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Melbourne International Undergraduate Scholar
- ships 2026-2027 | Scholars4Dev
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:e255d40920215802036ddd9e2f4cf200b41beb1b@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
 SUMMARY:Deadline: Fulbright Visiting Scholar Program
@@ -194,52 +23,8 @@ DESCRIPTION:One week left: Fulbright Visiting Scholar Program
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:1b60b4c8838a7078291e51115e5dde63dd28b1ba@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261031
-DTEND;VALUE=DATE:20261101
-SUMMARY:Deadline: 外国人留学生奨学金 | 財団法人 本庄国
- 際奨学財団
-DESCRIPTION:Eligible. Japan postdoc\, master\, phd. International studen
- ts studying at a graduate school in Japan. Applicants must be currently
-  enrolled or planning to enroll in a Japanese graduate school for the 2
- 026 academic year. Open to all nationalities and any field of study. ht
- tps://www.hisf.or.jp/scholarship/foreigner/
-URL:https://www.hisf.or.jp/scholarship/foreigner/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: 外国人留学生奨学金 | 財団法人 
- 本庄国際奨学財団
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:ec243fb789db5fd5b26b9789ac90606a91c6a95f@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261031
-DTEND;VALUE=DATE:20261101
-SUMMARY:Deadline: 第41期 イノアック国際教育振興財団奨学
- 金
-DESCRIPTION:Eligible. Japan master\, phd. International students studyin
- g at a graduate school in Japan who do not hold Japanese nationality. A
- pplicants must be enrolled or planning to enroll in a graduate program 
- as of April 2027. Doctoral students must be under 35 and Master's stude
- nts under 30 at the time of enrollment. Applicants must have a plan to 
- contribute to their home country after graduation and possess daily con
- versational Japanese skills. https://gaxi.jp/organization/1vEXjgpO1x6k9
- poD/project/jKn1pRPx05RXL2M7
-URL:https://gaxi.jp/organization/1vEXjgpO1x6k9poD/project/jKn1pRPx05RXL2
- M7
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: 第41期 イノアック国際教育振興財
- 団奨学金
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:b5c382442a42856136631a885afb78ad9dc55379@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
 SUMMARY:Deadline: Begabtenförderung - Stipendien der Friedrich-Naumann-
@@ -261,7 +46,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ea7df18b75435df664462a340c7559713d185f18@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261106
 DTEND;VALUE=DATE:20261107
 SUMMARY:Deadline: 2027年度大学推薦による国費外国人留学
@@ -281,7 +66,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b7880e3c4aea6101d4cb586f4f37a8bc9bf6e550@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261107
 DTEND;VALUE=DATE:20261108
 SUMMARY:Deadline: HP-UCL IOE Fellowship in AI in Education 2027
@@ -300,7 +85,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2cfea26c475d5b77acddf35708dd0e549dec7736@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261107
 DTEND;VALUE=DATE:20261108
 SUMMARY:Deadline: Lester B. Pearson International Scholarship Program at
@@ -320,7 +105,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8e2ffa3c0bcc6214bdecc69f573fba3626b64ede@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Deadline: [Japan] Kyoto University – Asian Future Leaders Scho
@@ -339,7 +124,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:dd63bcf83a0ba410a9173ed74b2682fd58b3ade8@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261115
 DTEND;VALUE=DATE:20261116
 SUMMARY:Deadline: International Scholars Program at University of Britis
@@ -361,7 +146,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:9fc9efc60210df5130f1fd57839e50c0b88f21e5@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261115
 DTEND;VALUE=DATE:20261116
 SUMMARY:Deadline: ISQOLS Developing Country Fellowship
@@ -377,48 +162,8 @@ DESCRIPTION:One week left: ISQOLS Developing Country Fellowship
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:fed88848d37241b4dd3cdbcc26f27ce896c0a32b@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261120
-DTEND;VALUE=DATE:20261121
-SUMMARY:Deadline: Sara E. and Bruce B. Collette Postdoctoral Fellowship 
- in Systematic Ichthyology 
-DESCRIPTION:Eligible. United States postdoc. The fellowship is open to b
- oth US and non-US citizens who have a proven research record in fish sy
- stematics and will have completed their Ph.D. before the start date. ht
- tps://opportunitydesk.org/2026/10/06/sara-e-and-bruce-b-collette-postdo
- ctoral-fellowship-in-systematic-ichthyology-2027/
-URL:https://opportunitydesk.org/2026/10/06/sara-e-and-bruce-b-collette-p
- ostdoctoral-fellowship-in-systematic-ichthyology-2027/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Sara E. and Bruce B. Collette Postdoctoral Fe
- llowship in Systematic Ichthyology 
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:d4e7982c90d4771f514d0172cf39cb42b674ad53@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261122
-DTEND;VALUE=DATE:20261123
-SUMMARY:Deadline: 留学生福利来了！AUT奖学金别错过！
-DESCRIPTION:Eligible. New Zealand bachelor\, postdoc\, master. Internati
- onal students from North Asia (including China\, Hong Kong\, Taiwan\, J
- apan\, Mongolia\, North Korea\, and South Korea) who are new full-fee p
- aying students with a valid AUT offer for 2027. https://autuni.cn/17896
- 12010347-AUT
-URL:https://autuni.cn/1789612010347-AUT
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: 留学生福利来了！AUT奖学金别错过
- ！
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:80f0c1897b367a01e1bf9a1a93d239623a4e15b4@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261125
 DTEND;VALUE=DATE:20261126
 SUMMARY:Deadline: Master's Degree Program | Mongolia | JDS
@@ -435,51 +180,8 @@ DESCRIPTION:One week left: Master's Degree Program | Mongolia | JDS
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:74785623dff82c4979ff44d522f038141a856943@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261201
-DTEND;VALUE=DATE:20261202
-SUMMARY:Deadline: America in the World Consortium Predoctoral Fellowship
-  2027-2028 (Stipend availa
-DESCRIPTION:Unclear. United States phd. Current Ph.D. students who have 
- passed their comprehensives/preliminary/qualifying exams and advanced t
- o doctoral candidacy. Applicants from all disciplines whose research be
- ars directly on American grand strategy are welcome. https://opportunit
- ydesk.org/2026/10/05/america-in-the-world-consortium-predoctoral-fellow
- ship-2027-2028/
-URL:https://opportunitydesk.org/2026/10/05/america-in-the-world-consorti
- um-predoctoral-fellowship-2027-2028/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: America in the World Consortium Predoctoral F
- ellowship 2027-2028 (Stipend availa
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:231d24c5f1d69ebbdbfc4dce658b5151f883ba0b@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261201
-DTEND;VALUE=DATE:20261202
-SUMMARY:Deadline: America in the World Consortium Postdoctoral Fellowshi
- p 2027-2028 ($73\,500 stipe
-DESCRIPTION:Unclear. United States postdoc. Recent Ph.D. recipients in r
- elevant fields (such as history\, political science\, public policy\, c
- lassics\, or political philosophy) who will have received their degree 
- by August 1\, 2027. https://opportunitydesk.org/2026/10/05/america-in-t
- he-world-consortium-postdoctoral-fellowship-2027-2028/
-URL:https://opportunitydesk.org/2026/10/05/america-in-the-world-consorti
- um-postdoctoral-fellowship-2027-2028/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: America in the World Consortium Postdoctoral 
- Fellowship 2027-2028 ($73\,500 stipe
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:18a7f7880a9e9846c46666a97d485b87a32a9d73@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
 SUMMARY:Deadline: Justus & Louise van Effen Excellence Scholarships for 
@@ -500,7 +202,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:819125dcae827bcbef403038423b7ee06e23cb31@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
 SUMMARY:Deadline: Asian Development Bank–Japan Scholarship Program 202
@@ -521,7 +223,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:5dfc0b9f3450921c062a7ac012400ead9ae587ae@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261202
 DTEND;VALUE=DATE:20261203
 SUMMARY:Deadline: Yale Maurice R. Greenberg World Fellows Programme 2027
@@ -541,28 +243,8 @@ DESCRIPTION:One week left: Yale Maurice R. Greenberg World Fellows Progr
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:4dd35198ba9ca4b5cac948ad1ddf6cda1580d783@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261215
-DTEND;VALUE=DATE:20261216
-SUMMARY:Deadline: Alfred Friendly Press Partners Fellowship 2027 ($2\,00
- 0 stipend)
-DESCRIPTION:Unclear. United States . Open only for foreign journalists w
- ho are currently exiled and living in the USA. English proficiency is r
- equired. https://opportunitydesk.org/2026/10/05/alfred-friendly-press-p
- artners-fellowship-2027/
-URL:https://opportunitydesk.org/2026/10/05/alfred-friendly-press-partner
- s-fellowship-2027/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Alfred Friendly Press Partners Fellowship 202
- 7 ($2\,000 stipend)
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:debadfca49e3ee36c452bb361e1d59b8fd73cb90@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261215
 DTEND;VALUE=DATE:20261216
 SUMMARY:Deadline: MOPGA 2027: Visiting Fellowship Program for Early Care
@@ -583,7 +265,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:5db020ac1319a619ec5ce891721b64515e1a1b3b@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20261215
 DTEND;VALUE=DATE:20261216
 SUMMARY:Deadline: ENS International Selection Scholarships 2026-2027 | S
@@ -603,37 +285,8 @@ DESCRIPTION:One week left: ENS International Selection Scholarships 2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:09a888098a11adfb28ddd39a9a5bbe6bcb9eac11@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20261223
-DTEND;VALUE=DATE:20261224
-SUMMARY:Deadline: [중요/학사] 2027학년도 1학기 시행: 학부 
- 외국인 재학생 장학금 지급 기준 변경 안내
-DESCRIPTION:Eligible. South Korea bachelor. International undergraduate 
- students currently enrolled at Yeungnam University must meet specific T
- OPIK proficiency levels and GPA requirements to receive tuition waivers
- . https://www.yu.ac.kr/issh/board/announcements.do?mode=view&articleNo=
- 231427879&title=%5B%EC%A4%91%EC%9A%94%2F%ED%95%99%EC%82%AC%5D+2027%ED%9
- 5%99%EB%85%84%EB%8F%84+1%ED%95%99%EA%B8%B0+%EC%8B%9C%ED%96%89%3A+%ED%95
- %99%EB%B6%80+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EC%9E%AC%ED%95%99%EC%83%9D+%E
- C%9E%A5%ED%95%99%EA%B8%88+%EC%A7%80%EA%B8%89+%EA%B8%B0%EC%A4%80+%EB%B3%
- 80%EA%B2%BD+%EC%95%88%EB%82%B4
-URL:https://www.yu.ac.kr/issh/board/announcements.do?mode=view&articleNo
- =231427879&title=%5B%EC%A4%91%EC%9A%94%2F%ED%95%99%EC%82%AC%5D+2027%ED%
- 95%99%EB%85%84%EB%8F%84+1%ED%95%99%EA%B8%B0+%EC%8B%9C%ED%96%89%3A+%ED%9
- 5%99%EB%B6%80+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EC%9E%AC%ED%95%99%EC%83%9D+%
- EC%9E%A5%ED%95%99%EA%B8%88+%EC%A7%80%EA%B8%89+%EA%B8%B0%EC%A4%80+%EB%B3
- %80%EA%B2%BD+%EC%95%88%EB%82%B4
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: [중요/학사] 2027학년도 1학기 시행:
-  학부 외국인 재학생 장학금 지급 기준 변경 안내
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:90b1f9a8de66907620e42b2de0314b3f760bbc8f@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270101
 DTEND;VALUE=DATE:20270102
 SUMMARY:Deadline: Clarendon Fund Scholarships at University of Oxford 20
@@ -651,7 +304,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:02e445481865ea76957ee44cacbd72b653e2c3d3@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270105
 DTEND;VALUE=DATE:20270106
 SUMMARY:Deadline: Harvard Loeb Fellowship 2027–28: Fully Funded - OYA 
@@ -672,7 +325,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6d3678137cbc952547242c2e322de8dc5523c779@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270106
 DTEND;VALUE=DATE:20270107
 SUMMARY:Deadline: Skoll Scholarship 2027 at Oxford University (Fully Fun
@@ -694,7 +347,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b103b158c40b56013fd718f7d156710e5153e540@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270114
 DTEND;VALUE=DATE:20270115
 SUMMARY:Deadline: GLOCAL Erasmus Mundus Scholarship 2027(Fully Funded) -
@@ -715,44 +368,8 @@ DESCRIPTION:One week left: GLOCAL Erasmus Mundus Scholarship 2027(Fully
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:c209383904a3bdea74263fba515fbe37f95afc3c@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20270115
-DTEND;VALUE=DATE:20270116
-SUMMARY:Deadline: KTH Scholarships 2026-2027 | Scholars4Dev
-DESCRIPTION:Eligible. Sweden master. Students required to pay tuition fe
- es who have applied for a Master's programme at KTH as their first prio
- rity and are citizens from non-EU/EEA/EFTA countries. https://www.kth.s
- e/en/studies/master/general/scholarships/kth-scholarship-1.72827
-URL:https://www.kth.se/en/studies/master/general/scholarships/kth-schola
- rship-1.72827
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: KTH Scholarships 2026-2027 | Scholars4Dev
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:d96477d3514809b7b605cd4ae2225aaa3f776246@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20270115
-DTEND;VALUE=DATE:20270116
-SUMMARY:Deadline: Bewerbung
-DESCRIPTION:Eligible. Germany research\, postdoc\, master\, bachelor\, p
- hd\, other. The program is open to students\, doctoral candidates\, and
-  international students (foreigners). International students must demon
- strate German language proficiency at a B2 level or equivalent. https:/
- /www.hss.de/stipendium/bewerbung/
-URL:https://www.hss.de/stipendium/bewerbung/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Bewerbung
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:043af7dda6f7f9b291536f50e4917fd2637efc37@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270115
 DTEND;VALUE=DATE:20270116
 SUMMARY:Deadline: AU Emerging Global Leader Scholarship 2027 in USA | Fu
@@ -775,7 +392,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e21152236b5f68d41018049909171a35f768a422@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270115
 DTEND;VALUE=DATE:20270116
 SUMMARY:Deadline: Adlerbert Study Scholarships at Chalmers University of
@@ -796,7 +413,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:622d83a8c5b5db9b2bb14da5bc4ee557a8e66e74@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270126
 DTEND;VALUE=DATE:20270127
 SUMMARY:Deadline: Reach Oxford Scholarships for Developing Country Stude
@@ -817,30 +434,8 @@ DESCRIPTION:One week left: Reach Oxford Scholarships for Developing Coun
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7868c614077d91a3f661f9da9209f2c16ab1d974@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20270131
-DTEND;VALUE=DATE:20270201
-SUMMARY:Deadline: Radboud Scholarship Programme for International Studen
- ts 2026-2027 | Scholars4De
-DESCRIPTION:Eligible. Netherlands master. Prospective non-EEA internatio
- nal students who hold a non-EU/EEA passport\, have a Bachelor's degree 
- from outside the Netherlands\, and have been admitted to an English-tau
- ght Master's programme at Radboud University. http://www.ru.nl/english/
- education/master’s-programmes/financial-matters/scholarships-grants/r
- ead_more/rsprogramme/
-URL:http://www.ru.nl/english/education/master’s-programmes/financial-m
- atters/scholarships-grants/read_more/rsprogramme/
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Radboud Scholarship Programme for Internation
- al Students 2026-2027 | Scholars4De
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:555898922012f8ed6e3308e1c4e63b15c826e7c4@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270201
 DTEND;VALUE=DATE:20270202
 SUMMARY:Deadline: Стипендии Маастрихтского уни
@@ -862,7 +457,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e190ab166032ef042bbfaad5177e672931e4a64c@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270201
 DTEND;VALUE=DATE:20270202
 SUMMARY:Deadline: Hamad Bin Khalifa University Scholarship in Qatar (Ful
@@ -885,7 +480,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ce967db20bad7650e6c638d26d07b5348a9dc633@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270201
 DTEND;VALUE=DATE:20270202
 SUMMARY:Deadline: Maastricht University NL-High Potential Scholarships f
@@ -908,29 +503,8 @@ DESCRIPTION:One week left: Maastricht University NL-High Potential Schol
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:9b4513810e19b481d87358fd451c832ac9d84c05@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20270201
-DTEND;VALUE=DATE:20270202
-SUMMARY:Deadline: VU Amsterdam Fellowship Programme for International St
- udents 2026-2027 | Scholar
-DESCRIPTION:Eligible. Netherlands master. Non-EU/EEA students who are no
- t Dutch nationals\, hold a non-EU/EEA passport\, are not eligible for l
- ower tuition fees\, and demonstrate academic excellence (GPA equivalent
-  to a Dutch 8). Applicants must be admitted to a full-time English-taug
- ht Master's programme at VU Amsterdam starting in September. https://vu
- .nl/en/education/more-about/incoming-master-scholarships
-URL:https://vu.nl/en/education/more-about/incoming-master-scholarships
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: VU Amsterdam Fellowship Programme for Interna
- tional Students 2026-2027 | Scholar
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:8a7ae989352b810af336983d19ae39f38bef7a47@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270220
 DTEND;VALUE=DATE:20270221
 SUMMARY:Deadline: Türkiye Bursları
@@ -949,7 +523,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:0e1fa16b5e7e2b217b572b412f992f4809ef219f@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270226
 DTEND;VALUE=DATE:20270227
 SUMMARY:Deadline: World Bank Scholarships Program - JJ/WBGSP
@@ -967,50 +541,8 @@ DESCRIPTION:One week left: World Bank Scholarships Program - JJ/WBGSP
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b8f302b7fedf0020d0a78f0a3e3a78d6d528ec75@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20270301
-DTEND;VALUE=DATE:20270302
-SUMMARY:Deadline: „Studienstipendium Bewerbung“ | Heinrich-Böll-Sti
- ftung
-DESCRIPTION:Eligible. Germany bachelor\, master\, postdoc\, phd\, other.
-  The scholarship is open to domestic students (German or those with Ger
- man school leaving certificates) and international students (those with
-  foreign school leaving certificates) pursuing a Master's or advanced d
- egree in Germany. Priority is given to applicants from DAC countries wh
- o are still residing in their home country. https://www.boell.de/de/sti
- pendium-studium
-URL:https://www.boell.de/de/stipendium-studium
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: „Studienstipendium Bewerbung“ | Heinrich-
- Böll-Stiftung
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:802219e726a8276903e0ff390d7fbe509a5058ee@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20270301
-DTEND;VALUE=DATE:20270302
-SUMMARY:Deadline: „Promotionsstipendium Bewerbung“ | Heinrich-Böll-
- Stiftung
-DESCRIPTION:Eligible. Germany phd. International doctoral students (from
-  the EU or outside the EU\, including refugees) for doctoral studies in
-  Germany in all subjects. Priority is given to applicants from DAC coun
- tries who are still in their home country at the time of application. h
- ttps://www.boell.de/de/stipendium-promotion
-URL:https://www.boell.de/de/stipendium-promotion
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: „Promotionsstipendium Bewerbung“ | Heinri
- ch-Böll-Stiftung
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:7ade5a1627b02ede535d1c69882860d4e1b7c230@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270315
 DTEND;VALUE=DATE:20270316
 SUMMARY:Deadline: Apply Now
@@ -1025,24 +557,8 @@ DESCRIPTION:One week left: Apply Now
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:d3da9b313b9ab56f46f5487e90d793944a5b4ff1@scholaradar
-DTSTAMP:20261006T190903Z
-DTSTART;VALUE=DATE:20270415
-DTEND;VALUE=DATE:20270416
-SUMMARY:Deadline: Global Summer Programme (GSP)
-DESCRIPTION:Eligible. Singapore postdoc. Undergraduate\, postgraduate\, 
- or recent graduates. The programme is open to international students. h
- ttps://geo.smu.edu.sg/study-in-smu/global-summer-programme
-URL:https://geo.smu.edu.sg/study-in-smu/global-summer-programme
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Global Summer Programme (GSP)
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:338c1de54595cec08e9ddd6c3c678afb51ae1b64@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270831
 DTEND;VALUE=DATE:20270901
 SUMMARY:Deadline: Weiss Fund Fellowship for Junior Researchers 2027
@@ -1061,7 +577,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20881e66857b17365291b3527021f0716196103b@scholaradar
-DTSTAMP:20261006T190903Z
+DTSTAMP:20261007T044019Z
 DTSTART;VALUE=DATE:20270930
 DTEND;VALUE=DATE:20271001
 SUMMARY:Deadline: Admissions - Schwarzman Scholars

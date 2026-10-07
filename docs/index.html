@@ -56,6 +56,7 @@
   <label><span data-i18n="eligibility"></span><select id="elig"><option value="yes,unclear" data-i18n="eligOrUnclear"></option><option value="yes" data-i18n="eligOnly"></option><option value="yes,no,unclear" data-i18n="all"></option></select></label>
   <label><span data-i18n="level"></span><select id="level"></select></label>
   <label><span data-i18n="host"></span><select id="country"><option value="" data-i18n="any"></option></select></label>
+  <label><span data-i18n="funding"></span><select id="funding"><option value="" data-i18n="any"></option><option value="full" data-i18n="fundingFull"></option><option value="full,partial,stipend_only" data-i18n="fundingSome"></option></select></label>
   <label><span data-i18n="deadline"></span><select id="deadline"><option value="future" data-i18n="upcoming"></option><option value="30" data-i18n="d30"></option><option value="90" data-i18n="d90"></option><option value="all" data-i18n="incPast"></option></select></label>
   <label><span data-i18n="show"></span><select id="scope"><option value="active" data-i18n="scopeActive"></option><option value="saved" data-i18n="scopeSaved"></option><option value="hidden" data-i18n="scopeHidden"></option></select></label>
   <label><span data-i18n="sort"></span><select id="sort"><option value="deadline" data-i18n="byDeadline"></option><option value="new" data-i18n="byNew"></option></select></label>
@@ -70,14 +71,15 @@
   const target = "Mongolia";
   const repo = "https://github.com/ssaruul/scholaradar";
   const generated = "2026-10-07";
+  const defaultFunding = ["full"];
   const I18N = {
     en: { meta: `Eligibility judged for citizens of ${target} · ${rows.length} opportunities · updated ${generated}`, lang: 'Монгол', calendar: 'Subscribe to deadlines (calendar)', feed: 'RSS feed', csv: 'Download CSV', about: 'About / source code',
-      search: 'Search', eligibility: 'Eligibility', eligOrUnclear: 'Eligible or unclear', eligOnly: 'Eligible only', all: 'All', level: 'Level', any: 'Any', host: 'Host country', deadline: 'Deadline', upcoming: 'Upcoming or none', d30: 'Within 30 days', d90: 'Within 90 days', incPast: 'Include past', show: 'Show', scopeActive: 'Not hidden', scopeSaved: 'Saved only', scopeHidden: 'Hidden only', sort: 'Sort', byDeadline: 'Deadline', byNew: 'Newest first',
+      search: 'Search', funding: 'Funding', fundingFull: 'Fully funded only', fundingSome: 'Any funding (not tuition-only)', eligibility: 'Eligibility', eligOrUnclear: 'Eligible or unclear', eligOnly: 'Eligible only', all: 'All', level: 'Level', any: 'Any', host: 'Host country', deadline: 'Deadline', upcoming: 'Upcoming or none', d30: 'Within 30 days', d90: 'Within 90 days', incPast: 'Include past', show: 'Show', scopeActive: 'Not hidden', scopeSaved: 'Saved only', scopeHidden: 'Hidden only', sort: 'Sort', byDeadline: 'Deadline', byNew: 'Newest first',
       shown: (a, b) => `${a} of ${b} shown`, eligible: 'Eligible', notEligible: 'Not eligible', unclear: 'Unclear', unverified: ' (unverified)', deadlineLabel: 'Deadline', days: d => `${d} days`, noDeadline: 'No deadline stated', evidence: 'Evidence, source', noEvidence: 'No explicit statement found on the page.', fields: 'Fields', source: 'Source', firstSeen: 'first seen', alsoOn: 'Also found on', save: 'Save', unsave: 'Saved', hide: 'Hide', unhide: 'Unhide', addCal: 'Add to Google Calendar', wrong: 'Report a mistake', empty: 'Nothing matches these filters.',
       levels: { bachelor: 'bachelor', master: 'master', phd: 'PhD', postdoc: 'postdoc', research: 'research', exchange: 'exchange', short_course: 'short course', language: 'language', other: 'other' },
       funding: { full: 'fully funded', partial: 'partial', tuition_only: 'tuition only', stipend_only: 'stipend only', unknown: 'funding unknown' } },
     mn: { meta: `Монгол Улсын иргэдэд хамаарах эсэхийг шалгасан · ${rows.length} тэтгэлэг · шинэчилсэн ${generated}`, lang: 'English', calendar: 'Хугацааны календарьт бүртгүүлэх', feed: 'RSS', csv: 'CSV татах', about: 'Тухай / эх код',
-      search: 'Хайх', eligibility: 'Хамаарах эсэх', eligOrUnclear: 'Хамаарах эсвэл тодорхойгүй', eligOnly: 'Зөвхөн хамаарах', all: 'Бүгд', level: 'Түвшин', any: 'Бүгд', host: 'Суралцах улс', deadline: 'Хугацаа', upcoming: 'Удахгүй болон заагаагүй', d30: '30 хоногийн дотор', d90: '90 хоногийн дотор', incPast: 'Өнгөрснийг оруулах', show: 'Харуулах', scopeActive: 'Нуугаагүй', scopeSaved: 'Зөвхөн хадгалсан', scopeHidden: 'Зөвхөн нуусан', sort: 'Эрэмбэ', byDeadline: 'Хугацаагаар', byNew: 'Шинээр нэмэгдсэн',
+      search: 'Хайх', funding: 'Санхүүжилт', fundingFull: 'Зөвхөн бүрэн санхүүжилттэй', fundingSome: 'Дурын санхүүжилт (зөвхөн төлбөрөөс бусад)', eligibility: 'Хамаарах эсэх', eligOrUnclear: 'Хамаарах эсвэл тодорхойгүй', eligOnly: 'Зөвхөн хамаарах', all: 'Бүгд', level: 'Түвшин', any: 'Бүгд', host: 'Суралцах улс', deadline: 'Хугацаа', upcoming: 'Удахгүй болон заагаагүй', d30: '30 хоногийн дотор', d90: '90 хоногийн дотор', incPast: 'Өнгөрснийг оруулах', show: 'Харуулах', scopeActive: 'Нуугаагүй', scopeSaved: 'Зөвхөн хадгалсан', scopeHidden: 'Зөвхөн нуусан', sort: 'Эрэмбэ', byDeadline: 'Хугацаагаар', byNew: 'Шинээр нэмэгдсэн',
       shown: (a, b) => `${b}-с ${a} харуулж байна`, eligible: 'Хамаарна', notEligible: 'Хамаарахгүй', unclear: 'Тодорхойгүй', unverified: ' (баталгаажаагүй)', deadlineLabel: 'Хугацаа', days: d => `${d} хоног`, noDeadline: 'Хугацаа заагаагүй', evidence: 'Нотолгоо, эх сурвалж', noEvidence: 'Хуудсан дээр тодорхой өгүүлбэр олдсонгүй.', fields: 'Чиглэл', source: 'Эх сурвалж', firstSeen: 'анх олдсон', alsoOn: 'Мөн эндээс олдсон', save: 'Хадгалах', unsave: 'Хадгалсан', hide: 'Нуух', unhide: 'Буцаах', addCal: 'Google Calendar-т нэмэх', wrong: 'Алдаа мэдэгдэх', empty: 'Энэ шүүлтүүрт тохирох зүйл алга.',
       levels: { bachelor: 'бакалавр', master: 'магистр', phd: 'доктор', postdoc: 'постдок', research: 'судалгаа', exchange: 'солилцоо', short_course: 'богино хугацааны', language: 'хэлний', other: 'бусад' },
       funding: { full: 'бүрэн санхүүжилт', partial: 'хэсэгчилсэн', tuition_only: 'зөвхөн сургалтын төлбөр', stipend_only: 'зөвхөн тэтгэмж', unknown: 'санхүүжилт тодорхойгүй' } },
@@ -119,7 +121,9 @@
     const q = byId('q').value.trim().toLowerCase();
     const elig = byId('elig').value.split(',');
     const level = levelSelect.value, country = byId('country').value, dl = byId('deadline').value, sort = byId('sort').value, scope = byId('scope').value;
+    const funding = byId('funding').value ? byId('funding').value.split(',') : null;
     let out = rows.filter(r => elig.includes(r.target_eligible)
+      && (!funding || funding.includes(r.funding_type))
       && (scope === 'hidden' ? hidden.has(r.id) : scope === 'saved' ? saved.has(r.id) : !hidden.has(r.id))
       && (!level || r.degree_levels.includes(level))
       && (!country || r.host_country === country)
@@ -170,7 +174,8 @@
     render();
   });
   byId('lang').addEventListener('click', () => { lang = lang === 'en' ? 'mn' : 'en'; keep('scholaradar.lang', lang); applyLanguage(); render(); });
-  ['q', 'elig', 'level', 'country', 'deadline', 'scope', 'sort'].forEach(id => byId(id).addEventListener('input', render));
+  ['q', 'elig', 'level', 'country', 'funding', 'deadline', 'scope', 'sort'].forEach(id => byId(id).addEventListener('input', render));
+  if (defaultFunding.length) { const option = [...byId('funding').options].find(o => o.value === defaultFunding.join(',')); if (option) byId('funding').value = option.value; }
   applyLanguage();
   render();
 })();

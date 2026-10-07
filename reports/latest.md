@@ -1,49 +1,21 @@
 # Scholaradar report, 2026-10-07
 
-322 opportunities tracked for citizens of Mongolia: 225 eligible, 55 unclear, 42 not eligible.
+230 fully funded opportunities tracked for citizens of Mongolia: 167 eligible, 35 unclear, 28 not eligible.
 Filterable dashboard: [https://ssaruul.github.io/scholaradar/](https://ssaruul.github.io/scholaradar/) (also `docs/index.html` in this repository). Full data: `docs/opportunities.csv`.
 
-## New since the previous run (21)
+## New since the previous run (3)
 
 | Deadline | Opportunity | Host country | Level | Funding | Verdict |
 |---|---|---|---|---|---|
-| 2026-10-19 | [Fellowship 2027 in Cambridge, UK (Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/fellowship-2027-in-cambridge-uk-fully-funded/) | United Kingdom |  | stipend_only | Eligible |
-| 2026-10-28 | [Эрдэмтэн Г.Очирын нэрэмжит залуу оюутан судлаачдыг дэмжих тэтгэлэг зарлагдлаа](https://news.num.edu.mn/?p=118091) | Mongolia | master, phd | stipend_only | Eligible |
-| 2026-10-30 | [Jerome R. Lewis Legislative Fellows Program 2027](https://opportunitydesk.org/2026/10/06/jerome-r-lewis-legislative-fellows-program-2027/) | United States | master, bachelor | stipend_only | Unclear |
-| 2026-11-20 | [Sara E. and Bruce B. Collette Postdoctoral Fellowship in Systematic Ichthyology 2027 (stip](https://opportunitydesk.org/2026/10/06/sara-e-and-bruce-b-collette-postdoctoral-fellowship-in-systematic-ichthyology-2027/) | United States | postdoc | stipend_only | Eligible |
-| 2026-12-01 | [Asian Development Bank–Japan Scholarship Program 2026 (Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/asian-development-bank-japan-scholarship-program-2026-fully-funded/) | Asia and the Pacific | master | full | Eligible |
 | 2026-12-15 | [ENS International Selection Scholarships 2026-2027 \| Scholars4Dev](http://www.ens.fr/en/academics/admissions/international-selection) | France | master | full | Eligible |
-| 2026-12-15 | [MOPGA 2027: Visiting Fellowship Program for Early Career Researchers](https://campusfrance.smapply.io/prog/mopga_2027/) | France | postdoc | full | Eligible |
-| 2027-01-05 | [Harvard Loeb Fellowship 2027–28: Fully Funded - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/harvard-loeb-fellowship-2027-28-fully-funded/) | United States |  | full | Eligible |
-| 2027-01-06 | [Skoll Scholarship 2027 at Oxford University (Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/skoll-scholarship-2027-at-oxford-university-fully-funded/) | United Kingdom | postdoc, master | full | Eligible |
-| 2027-01-14 | [GLOCAL Erasmus Mundus Scholarship 2027(Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/glocal-erasmus-mundus-scholarship-2027fully-funded/) | United Kingdom, Germany, Spain, Sweden, Netherlands, Japan, Colombia | master | full | Eligible |
-| 2027-01-15 | [AU Emerging Global Leader Scholarship 2027 in USA \| Fully Funded](https://oyaop.com/opportunity/scholarships-and-fellowships/au-emerging-global-leader-scholarship-2027-in-usa-fully-funded/) | United States | bachelor | full | Eligible |
 | 2027-01-15 | [Adlerbert Study Scholarships at Chalmers University of Technology 2026-2027 \| Scholars4De](https://www.chalmers.se/en/education/application-and-admission/scholarships-for-fee-paying-students/) | Sweden | master | full | Eligible |
-| 2027-02-01 | [Hamad Bin Khalifa University Scholarship in Qatar (Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/hamad-bin-khalifa-university-scholarship-in-qatar-fully-funded/) | Qatar | bachelor, master, phd | full | Eligible |
 | 2027-02-01 | [Maastricht University NL-High Potential Scholarships for International Students 2026-2027 ](https://www.maastrichtuniversity.nl/support/your-studies-begin/coming-maastricht-university-abroad/um-scholarships-students-abroad) | Netherlands | master | full | Eligible |
-| 2027-02-01 | [VU Amsterdam Fellowship Programme for International Students 2026-2027 \| Scholars4Dev](https://vu.nl/en/education/more-about/incoming-master-scholarships) | Netherlands | master | tuition_only | Eligible |
-|  | [Erasmus Mundus Joint Masters scholarships](https://www.mastersportal.com/scholarships/4335/erasmus-mundus-joint-masters-scholarships.html) | Multiple | master | full | Eligible |
-|  | [Student Exchange Support Program (Scholarship for Study in Japan under Agreement)](https://www.jasso.go.jp/en/ryugaku/scholarship_j/ukeire.html) | Japan | short_course, bachelor, master, phd | stipend_only | Eligible |
-|  | [Studyportals €10,000 Scholarship](https://www.mastersportal.com/account/?section=recommendations) |  |  | partial | Unclear (unverified) |
-|  | [БНХАУ-ын Засгийн газрын тэтгэлэгт хамрагдах тухай түгээмэл асуулт хариулт](http://mn.china-embassy.gov.cn/zytz/202411/t20241111_11524362.htm) | China |  | full | Eligible |
-|  | [БҮГД НАЙРАМДАХ БОЛГАР УЛСЫН ЗАСГИЙН ГАЗРЫН 2026–2027 ОНЫ ХИЧЭЭЛИЙН ЖИЛИЙН ТЭТГЭЛЭГ ЗАРЛАГД](https://moe.gov.mn/study-abroad?category_id=11459) | Bulgaria | bachelor, master, phd | full | Eligible |
-|  | [長庚大學-Admission for International Students-CGU Doctoral Program Scholarships and Grants](https://www.cgu.edu.tw/recruit_intl/Contents?nodeId=17604) | Taiwan | phd | stipend_only | Unclear (unverified) |
 
-## Deadlines in the next 30 days (13)
+## Deadlines in the next 30 days (3)
 
 | Deadline | Opportunity | Host country | Level | Funding | Verdict |
 |---|---|---|---|---|---|
-| 2026-10-08 | [2027年度海外留学支援制度（大学院学位取得型）](https://www.jasso.go.jp/ryugaku/scholarship_a/daigakuin/2027.html) |  | master, phd | stipend_only | Unclear (unverified) |
-| 2026-10-09 | [NetHope Humanitarian AI Research Fellowship 2026/2027](https://opportunitydesk.org/2026/10/05/nethope-humanitarian-ai-research-fellowship-2026-2027/) | Remote |  | stipend_only | Unclear |
-| 2026-10-19 | [Fellowship 2027 in Cambridge, UK (Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/fellowship-2027-in-cambridge-uk-fully-funded/) | United Kingdom |  | stipend_only | Eligible |
-| 2026-10-25 | [2027年度 公益財団法人KDDI財団 語学留学助成](https://www.tufs.ac.jp/student/tuition_scholarship/scholarship/nihongakusei.html) | Japan |  | partial | Unclear |
-| 2026-10-28 | [Эрдэмтэн Г.Очирын нэрэмжит залуу оюутан судлаачдыг дэмжих тэтгэлэг зарлагдлаа](https://news.num.edu.mn/?p=118091) | Mongolia | master, phd | stipend_only | Eligible |
-| 2026-10-30 | [財団法人　藤井国際奨学財団 ２０２７年度 奨学生募集要項 （留学生用）](https://web.isc.ehime-u.ac.jp/wp-content/uploads/2026/07/yoko_2027%E5%B9%B4%E5%BA%A6%E7%89%88-%E7%95%99%E5%AD%A6%E7%94%9F%E5%8B%9F%E9%9B%86%E8%A6%81%E9%A0%85.pdf) | Japan | bachelor, master, phd | stipend_only | Eligible |
-| 2026-10-30 | [Jerome R. Lewis Legislative Fellows Program 2027](https://opportunitydesk.org/2026/10/06/jerome-r-lewis-legislative-fellows-program-2027/) | United States | master, bachelor | stipend_only | Unclear |
-| 2026-10-31 | [Melbourne International Undergraduate Scholarships 2026-2027 \| Scholars4Dev](https://scholarships.unimelb.edu.au/awards/melbourne-international-undergraduate-scholarship) | Australia | bachelor | partial | Eligible |
 | 2026-10-31 | [Fulbright Visiting Scholar Program](https://apply.iie.org/apply) | United States | phd | full | Eligible |
-| 2026-10-31 | [外国人留学生奨学金 \| 財団法人 本庄国際奨学財団](https://www.hisf.or.jp/scholarship/foreigner/) | Japan | postdoc, master, phd | stipend_only | Eligible |
-| 2026-10-31 | [第41期 イノアック国際教育振興財団奨学金](https://gaxi.jp/organization/1vEXjgpO1x6k9poD/project/jKn1pRPx05RXL2M7) | Japan | master, phd | stipend_only | Eligible |
 | 2026-10-31 | [Begabtenförderung - Stipendien der Friedrich-Naumann-Stiftung](https://www.freiheit.org/de/begabtenfoerderung) | Germany | bachelor, master, phd | full | Eligible |
 | 2026-11-06 | [2027年度大学推薦による国費外国人留学生の募集について／Application for Japanese Government (MEXT) Scholarship Studen](https://www.kaiyodai.ac.jp/international/docs/kokuhi.html) | Japan |  | full | Eligible |
 
@@ -55,8 +27,8 @@ Filterable dashboard: [https://ssaruul.github.io/scholaradar/](https://ssaruul.g
 
 ## Coverage
 
-Pages by language: en 139, mn 47, ja 37, ko 31, zh 30, de 18, ru 16, tr 4.
+Pages by language: en 97, mn 39, zh 28, ko 25, ja 20, ru 14, de 4, tr 3.
 
-Top host countries: China 48, Japan 42, United States 35, South Korea 35, Mongolia 22, United Kingdom 19, Germany 17, Australia 13, Canada 8, Hungary 5.
+Top host countries: China 47, South Korea 30, Japan 25, United States 21, United Kingdom 16, Mongolia 10, Australia 9, Canada 8, Germany 5, Russia 4.
 
 Verdicts come from a local language model and are checked against a verbatim quote from the page; `unverified` means no supporting quote was found. Always confirm eligibility and deadlines on the official page before applying.
