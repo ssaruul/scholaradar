@@ -112,3 +112,30 @@ def test_group_verdict_merges_from_verified_member() -> None:
     b = dict(SAMPLE_ROWS[0], id=2, title="Chevening Scholarship Mongolia", canonical_name="Chevening Scholarship", lang="mn", apply_url="", target_eligible="yes", evidence_verified=True, evidence_quote="Монгол Улсын иргэн байх", page_url="https://moe.gov.mn/post/2")
     groups = group_opportunities([a, b], date(2026, 10, 6))
     assert len(groups) == 1 and groups[0]["lang"] == "en" and groups[0]["target_eligible"] == "yes" and groups[0]["evidence_quote"] == "Монгол Улсын иргэн байх"
+
+
+def test_group_prefers_english_official_and_best_verdict_and_earliest_deadline() -> None:
+    from scholaradar.publish.dedupe import group_opportunities
+
+    ru_blog = dict(SAMPLE_ROWS[0], id=1, title="Стипендиум Хунгарикум 2027", canonical_name="Stipendium Hungaricum", host_country="Hungary", lang="ru", apply_url="", target_eligible="no", evidence_verified=True, evidence_quote="для граждан России", deadline="2027-01-15", page_url="https://global-generations.com/ru")
+    en_official = dict(SAMPLE_ROWS[0], id=2, title="Stipendium Hungaricum", canonical_name="Stipendium Hungaricum", host_country="Hungary", lang="en", apply_url="", target_eligible="unclear", evidence_verified=False, evidence_quote="", deadline=None, page_url="https://stipendiumhungaricum.hu/")
+    mn_ministry = dict(SAMPLE_ROWS[0], id=3, title="Унгарын Засгийн газрын тэтгэлэг", canonical_name="Stipendium Hungaricum", host_country="Hungary", lang="mn", apply_url="", target_eligible="yes", evidence_verified=True, evidence_quote="Монгол Улсын иргэн", deadline="2027-01-10", deadline_text="2027 оны 1 сарын 10", page_url="https://moe.gov.mn/post/9")
+    groups = group_opportunities([ru_blog, en_official, mn_ministry], date(2026, 10, 6))
+    assert len(groups) == 1
+    card = groups[0]
+    assert card["page_url"] == "https://stipendiumhungaricum.hu/"
+    assert card["target_eligible"] == "yes" and card["evidence_quote"] == "Монгол Улсын иргэн"
+    assert card["deadline"] == "2027-01-10" and card["deadline_text"] == "2027 оны 1 сарын 10"
+
+
+def test_is_official() -> None:
+    from scholaradar.publish.dedupe import is_official
+
+    assert is_official("https://mn.china-embassy.gov.cn/eng/zytz/1.htm")
+    assert is_official("https://www.studyinkorea.go.kr/ko/notice/1.do")
+    assert is_official("https://moe.gov.mn/post/1")
+    assert is_official("https://www.chevening.org/scholarship/mongolia/")
+    assert is_official("https://iec.imu.edu.cn/content.jsp")
+    assert not is_official("https://wentchina.com/complete-guide")
+    assert not is_official("https://www.scholars4dev.com/123/x")
+    assert not is_official("https://global-generations.com/blog/gks")

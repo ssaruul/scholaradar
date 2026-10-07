@@ -13,6 +13,8 @@ CJK = re.compile(r"[぀-ヿ㐀-鿿가-힯]+")
 WORD = re.compile(r"[^\W\d_]{3,}", re.UNICODE)
 VERDICT_RANK = {"yes": 0, "unclear": 1, "no": 2}
 SHARED_PORTALS = ("campuschina.org", "csc.edu.cn", "studyinkorea.go.kr", "apply.iie.org", "esis.edu.mn", "turkiyeburslari.gov.tr", "stipendiumhungaricum.hu", "daad.de", "jasso.go.jp", "mext.go.jp", "studyinjapan.go.jp", "chevening.org")
+OFFICIAL_HOST = re.compile(r"(^|\.)(gov|go|edu|ac|mil|gc)\.[a-z]+$|\.(gov|edu|int)$|^(embassy|consulate)\.")
+OFFICIAL_HOSTS = ("chevening.org", "jds-scholarship.org", "australiaawardsmongolia.org", "stipendiumhungaricum.hu", "daad.de", "fulbrightprogram.org", "iie.org", "worldbank.org", "adb.org", "unesco.org", "jica.go.jp", "koica.go.kr", "nawa.gov.pl", "sbfi.admin.ch", "icdf.org.tw", "studyintaiwan.org", "studyinsweden.se", "campusfrance.org", "erasmus-plus.ec.europa.eu", "ec.europa.eu")
 AGGREGATOR_HOSTS = ("scholars4dev", "opportunitydesk", "haniseoul", "global-generations", "studyu", "educations.com", "selfstartglobal", "gaxi.jp", "scholarshiptab", "scholarshipbob", "mastersportal", "fundsforngos")
 
 
@@ -43,11 +45,21 @@ def _compatible_country(a: dict, b: dict) -> bool:
     return len({a["host_country"], b["host_country"]} - {""}) <= 1
 
 
+def is_official(url: str) -> bool:
+    host = host_of(url)
+    bare = host[4:] if host.startswith("www.") else host
+    if any(bare == known or bare.endswith("." + known) for known in OFFICIAL_HOSTS + SHARED_PORTALS):
+        return True
+    if any(agg in bare for agg in AGGREGATOR_HOSTS):
+        return False
+    return bool(OFFICIAL_HOST.search(bare))
+
+
 def _priority(row: dict, today: str) -> tuple:
-    official = not any(host in host_of(row["page_url"]) for host in AGGREGATOR_HOSTS)
+    official = is_official(row["page_url"])
     deadline = row["deadline"] or ""
     deadline_rank = 0 if deadline >= today and deadline else (1 if not deadline else 2)
-    return (deadline_rank, row.get("lang") != "en", VERDICT_RANK.get(row["target_eligible"], 3), not row["evidence_verified"], not official, deadline if deadline_rank == 0 else "", -len(row["eligibility_summary"] or ""))
+    return (row.get("lang") != "en", not official, deadline_rank, not row["evidence_verified"], VERDICT_RANK.get(row["target_eligible"], 3), -len(row["eligibility_summary"] or ""))
 
 
 def _canonical_key(row: dict) -> frozenset[str]:
@@ -55,17 +67,23 @@ def _canonical_key(row: dict) -> frozenset[str]:
     return title_tokens(name) if name else frozenset()
 
 
-def _merge_verdict(representative: dict, members: list[dict]) -> None:
-    if representative["target_eligible"] != "unclear" and representative["evidence_verified"]:
-        return
-    for verdict in ("yes", "no"):
-        best = next((m for m in members if m["target_eligible"] == verdict and m["evidence_verified"]), None)
-        if best is not None:
-            representative["target_eligible"] = verdict
-            representative["evidence_quote"] = best["evidence_quote"]
-            representative["evidence_verified"] = True
-            representative["nationality_mode"] = best["nationality_mode"]
-            return
+def _merge_verdict(representative: dict, members: list[dict], today: str) -> None:
+    verified = [m for m in members if m["evidence_verified"]]
+    yes = [m for m in verified if m["target_eligible"] == "yes"]
+    no = [m for m in verified if m["target_eligible"] == "no"]
+    chosen = yes[0] if yes else (no[0] if no and not any(m["target_eligible"] == "yes" for m in members) else None)
+    if chosen is not None and (representative["target_eligible"] != chosen["target_eligible"] or not representative["evidence_verified"]):
+        representative["target_eligible"] = chosen["target_eligible"]
+        representative["evidence_quote"] = chosen["evidence_quote"]
+        representative["evidence_verified"] = True
+        representative["nationality_mode"] = chosen["nationality_mode"]
+    elif chosen is None and representative["target_eligible"] == "no" and any(m["target_eligible"] != "no" for m in members):
+        representative["target_eligible"] = "unclear"
+    upcoming = sorted(m["deadline"] for m in members if m["deadline"] and m["deadline"] >= today)
+    if upcoming and (not representative["deadline"] or representative["deadline"] < today or representative["deadline"] > upcoming[0]):
+        representative["deadline"] = upcoming[0]
+        source = next(m for m in members if m["deadline"] == upcoming[0])
+        representative["deadline_text"] = source["deadline_text"]
 
 
 def group_opportunities(rows: list[dict], today: date | None = None) -> list[dict]:
@@ -112,7 +130,7 @@ def group_opportunities(rows: list[dict], today: date | None = None) -> list[dic
     for members in groups.values():
         members.sort(key=lambda row: _priority(row, today_text))
         representative = dict(members[0])
-        _merge_verdict(representative, members)
+        _merge_verdict(representative, members, today_text)
         representative["group_ids"] = [member["id"] for member in members]
         representative["also_on"] = [{"title": member["title"], "url": member["page_url"]} for member in members[1:]]
         merged.append(representative)
