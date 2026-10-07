@@ -3,13 +3,9 @@
 230 fully funded opportunities tracked for citizens of Mongolia: 167 eligible, 35 unclear, 28 not eligible.
 Filterable dashboard: [https://ssaruul.github.io/scholaradar/](https://ssaruul.github.io/scholaradar/) (also `docs/index.html` in this repository). Full data: `docs/opportunities.csv`.
 
-## New since the previous run (3)
+## New since the previous run (0)
 
-| Deadline | Opportunity | Host country | Level | Funding | Verdict |
-|---|---|---|---|---|---|
-| 2026-12-15 | [ENS International Selection Scholarships 2026-2027 \| Scholars4Dev](http://www.ens.fr/en/academics/admissions/international-selection) | France | master | full | Eligible |
-| 2027-01-15 | [Adlerbert Study Scholarships at Chalmers University of Technology 2026-2027 \| Scholars4De](https://www.chalmers.se/en/education/application-and-admission/scholarships-for-fee-paying-students/) | Sweden | master | full | Eligible |
-| 2027-02-01 | [Maastricht University NL-High Potential Scholarships for International Students 2026-2027 ](https://www.maastrichtuniversity.nl/support/your-studies-begin/coming-maastricht-university-abroad/um-scholarships-students-abroad) | Netherlands | master | full | Eligible |
+_None._
 
 ## Deadlines in the next 30 days (3)
 
@@ -19,11 +15,9 @@ Filterable dashboard: [https://ssaruul.github.io/scholaradar/](https://ssaruul.g
 | 2026-10-31 | [Begabtenförderung - Stipendien der Friedrich-Naumann-Stiftung](https://www.freiheit.org/de/begabtenfoerderung) | Germany | bachelor, master, phd | full | Eligible |
 | 2026-11-06 | [2027年度大学推薦による国費外国人留学生の募集について／Application for Japanese Government (MEXT) Scholarship Studen](https://www.kaiyodai.ac.jp/international/docs/kokuhi.html) | Japan |  | full | Eligible |
 
-## Changed since the previous run (1)
+## Changed since the previous run (0)
 
-| Opportunity | What changed | Before | After |
-|---|---|---|---|
-| [Mongolia (Chevening Scholarship) \| Chevening](https://www.chevening.org/scholarship/mongolia/) | deadline | 2026-10-06 |  |
+_None._
 
 ## Coverage
 
