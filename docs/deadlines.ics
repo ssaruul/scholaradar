@@ -5,18 +5,40 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Scholarship deadlines (Mongolia)
 BEGIN:VEVENT
+UID:2f841479140e96d1789ad13a33d965c9aafd62fe@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261016
+SUMMARY:Deadline: Haniel
+DESCRIPTION:Unclear. Germany master. Бурхандуулсан эдий
+ н засгийн чиглэлтэй гадаад улсад магис
+ трын зэрэг эзэмших төлөвлөгөөтэй бүх м
+ эргэжлийн оюутнууд горилогдоно. Хэрэв 
+ та герман улсын иргэн биш бол Германы с
+ ургуульд төгссөн эсвэл герман хэлбэрэ
+ эр боловсрол авсан байх шаардлагатай. h
+ ttps://www.studienstiftung.de/haniel
+URL:https://www.studienstiftung.de/haniel
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Haniel
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:96ac309f1e5e1635f05cbfb79774ec58f7c3dead@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261019
 DTEND;VALUE=DATE:20261020
 SUMMARY:Deadline: Fellowship 2027 in Cambridge\, UK (Fully Funded) - OYA
   Opportunities
-DESCRIPTION:Eligible. United Kingdom . Намт least 18 настай\, 
- академик болон мэргэжлийн ямар ч төрли
- йн бэкграундтай хүмүүс оролцох боломж
- той. Өмнө нь судалгааны туршлагатай ба
- йх шаардлагагүй. https://oyaop.com/opportunity/scholarshi
- ps-and-fellowships/fellowship-2027-in-cambridge-uk-fully-funded/
+DESCRIPTION:Eligible. United Kingdom . Нам age 18-аас дээш б
+ үх насны\, судалгаа\, бизнес\, инженерчл
+ эл\, бодлогын чиглэлээр ажилладаг хүмү
+ үс хүсэлт гаргах боломжтой. Өмнө нь суд
+ алгааны туршлагатай байх шаардлагагүй
+ . https://oyaop.com/opportunity/scholarships-and-fellowships/fellowship
+ -2027-in-cambridge-uk-fully-funded/
 URL:https://oyaop.com/opportunity/scholarships-and-fellowships/fellowshi
  p-2027-in-cambridge-uk-fully-funded/
 BEGIN:VALARM
@@ -27,19 +49,87 @@ DESCRIPTION:One week left: Fellowship 2027 in Cambridge\, UK (Fully Fund
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:a0b5efd0aa1a9ab6c5a771eb117cb39d6ba40ac1@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261021
+SUMMARY:Deadline: Commonwealth PhD Scholarships 2027/2028 for full-time 
+ doctoral study at a UK uni
+DESCRIPTION:Eligible. United Kingdom exchange\, research\, postdoc\, phd
+ . Төгсөлтийн зэргийн дээд хоёрдугаар з
+ эрэг (2:1) эсвэл доод хоёрдугаар зэрэг бо
+ лон холбогдох магистрын зэрэгтэй байх 
+ шаардлагатай. Өмчийн улсын иргэн эсвэл
+  дүрвэгч статустай\, эсвэл Британийн ха
+ мгаалалттай этгээд байх ёстой. Түүнчлэ
+ н тухайн улсын иргэн эсвэл оршин суугч 
+ байх шаардлагатай. https://www.opportunitiesforafricans
+ .com/commonwealth-phd-scholarships-2027-2028/
+URL:https://www.opportunitiesforafricans.com/commonwealth-phd-scholarshi
+ ps-2027-2028/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Commonwealth PhD Scholarships 2027/2028 for f
+ ull-time doctoral study at a UK uni
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fc598937e7fb688211e40683a4c84afe7e0b8341@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261028
+SUMMARY:Deadline: 2210 - Yurt İçi Yüksek Lisans Burs Programları
+DESCRIPTION:Unclear. Türkiye master. Турция дотоод дахь
+  магистр оюутнуудад зориулсан тэтгэлэ
+ гт хөтөлбөр. http://e-bideb.tubitak.gov.tr
+URL:http://e-bideb.tubitak.gov.tr
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: 2210 - Yurt İçi Yüksek Lisans Burs Program
+ ları
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:bf512d8976b9733d080aa5eddff128645886e17f@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261028
+SUMMARY:Deadline: Jean Monnet Burs Programı – 2027-2028 Akademik Yıl
+ ı
+DESCRIPTION:Unclear. Türkiye master\, phd. Тусралтын хүрэ
+ энд төрийн албан хаагчид\, хувийн хэвшл
+ ийн ажилчид\, ТГС-ийн академик болон за
+ хиргааны ажилчид\, бакалаврын сүүлчийн
+  курсын оюутан болон магистр\, докторын
+  оюутнууд бүртгүүлж болно. https://jeanmonnet.org
+ .tr/jean-monnet-burs-programi-2027-2028-akademik-yili-basvurulari-basla
+ di/
+URL:https://jeanmonnet.org.tr/jean-monnet-burs-programi-2027-2028-akadem
+ ik-yili-basvurulari-basladi/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Jean Monnet Burs Programı – 2027-2028 Akad
+ emik Yılı
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:cd766038bb980b626b698b5f01be814c357b7cb9@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261030
 DTEND;VALUE=DATE:20261031
 SUMMARY:Deadline: GKS (Global Korea Scholarship) Program
 DESCRIPTION:Eligible. South Korea research\, master\, bachelor\, short_c
- ourse\, other. Өргөдөл гаргагч болон тэдний э
- цэг эх нар БНСУ-ын бус иргэн байх ёстой.
-  Бакалаврын хөтөлбөрт 25 хүртэлх насны\,
-  магистрын хөтөлбөрт 40 хүртэлх насны о
- юутан тавигдана. Мөн академик гүйцэтгэ
- л (80% буюу түүнээс дээш) шаардлагатай. htt
- ps://www.studyinkorea.go.kr/in/plan/scholarship.do
+ ourse\, other. Өргөдөл гаргагч болон тэдгээр
+ ийн эцэг эх хоёр нь Солонгос улсаас бус
+ ад улсын иргэншилтэй байх ёстой. Бакал
+ аврын хөтөлбөрт 25 хүртэлх насны\, магис
+ тр болон докторын хөтөлбөрт 40 хүртэлх 
+ насны оюутан тавигдана. Мөн академик г
+ үйцэтгэл (GPA) 80%-иас дээш байх шаардлага
+ тай. https://www.studyinkorea.go.kr/in/plan/scholarship.do
 URL:https://www.studyinkorea.go.kr/in/plan/scholarship.do
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -48,18 +138,39 @@ DESCRIPTION:One week left: GKS (Global Korea Scholarship) Program
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:1bdc4f006774a060aa26cd6cb03928ff9384fece@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:Deadline: 글로벌경영학과
+DESCRIPTION:Unclear. Germany bachelor\, master. Бакалавр бол
+ он магистрын түвшиний оюутан\, судлаач 
+ нар (ямар ч мэргэжлээр) хамаарна. Тэтгэ
+ лэг авах үед бакалаврын 2-р курсын оюут
+ ан байх шаардлагатай. https://www.smu.ac.kr/newmajori
+ tb/board/sm_notice.do?mode=view&articleNo=768849&srCampus=smu&article.o
+ ffset=0&articleLimit=10
+URL:https://www.smu.ac.kr/newmajoritb/board/sm_notice.do?mode=view&artic
+ leNo=768849&srCampus=smu&article.offset=0&articleLimit=10
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: 글로벌경영학과
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:e255d40920215802036ddd9e2f4cf200b41beb1b@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
 SUMMARY:Deadline: Fulbright Visiting Scholar Program
-DESCRIPTION:Eligible. United States postdoc. Монгол улсын и
- ргэн байх\, одоо Монголд амьдарч байгаа
- \, докторын зэрэг эсвэл түүнтэй дүйцэхү
- йц мэргэжлийн сургалтад хамрагдсан\, а
- жлын туршлага 10 гаруй жилтай\, англи хэ
- лний өндөр түвшний мэдлэгтэй байх шаар
- длагатай. https://apply.iie.org/apply
+DESCRIPTION:Eligible. United States postdoc\, phd. Монгол улсы
+ н иргэн байх\, одоогоор Монголд амьдарч
+  байгаа\, докторын зэрэг эсвэл түүнтэй 
+ дүйцэхүйц мэргэжлийн сургалтад хамраг
+ дсан\, ажлын туршлага 10-аас доошгүй жил
+ тай\, англи хэлний өндөр түвшний мэдлэг
+ тэй байх шаардлагатай. https://apply.iie.org/apply
 URL:https://apply.iie.org/apply
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -68,45 +179,64 @@ DESCRIPTION:One week left: Fulbright Visiting Scholar Program
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:5223f16d38a9b5230207dd25143af84d7dcd8832@scholaradar
-DTSTAMP:20261013T100832Z
+UID:717921972c27336adda67c98325cac878bdc9412@scholaradar
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
-SUMMARY:Deadline: 2026年度本庄国際奨学財団海外留学（大
- 学院生）奨学生募集
-DESCRIPTION:Eligible.  postdoc\, master\, phd. Суайelitian (маги
- стр\, докторант) түвшинд суралцагчдад з
- ориулсан\, тэтгэлэг болон сургалтын тө
- лбөрийн тусламж олгох боломжтой. https://st
- udyabroad.opir.kyoto-u.ac.jp/programs/2026/scholarship/
-URL:https://studyabroad.opir.kyoto-u.ac.jp/programs/2026/scholarship/
+SUMMARY:Deadline: The Rhodes Scholarship
+DESCRIPTION:Eligible. United Kingdom postdoc. Дэлхийн өнцөг 
+ булан бүрээс ирэх авьяаслаг оюутнууда
+ д зориулсан\, Оксфордын их сургуульд ма
+ гистр\, докторуудын түвшинд суралцах б
+ оломжийг олгодог эрх бүхий тэтгэлэг юм
+ . https://www.rhodeshouse.ox.ac.uk/scholarships/the-rhodes-scholarship/
+URL:https://www.rhodeshouse.ox.ac.uk/scholarships/the-rhodes-scholarship
+ /
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
-DESCRIPTION:One week left: 2026年度本庄国際奨学財団海外留
- 学（大学院生）奨学生募集
+DESCRIPTION:One week left: The Rhodes Scholarship
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6e427ab7132a10707b1d1663a6fe55b7ad1f3165@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:Deadline: 奨学金 - 東京大学・医学系研究科・国際
+ 交流室
+DESCRIPTION:Eligible. Japan master\, phd\, postdoc. 私費外国人留
+ 学生（学業支援を目的とした、東京大学大学院医学
+ 系研究科に在籍または入学予定の学生）が対象です
+ 。奨学金によって、特定の国籍（アジア太平洋諸国
+ など）や特定の要件が定められています。 https://koryu
+ .m.u-tokyo.ac.jp/scholarships/
+URL:https://koryu.m.u-tokyo.ac.jp/scholarships/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: 奨学金 - 東京大学・医学系研究科
+ ・国際交流室
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b5c382442a42856136631a885afb78ad9dc55379@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261031
 DTEND;VALUE=DATE:20261101
 SUMMARY:Deadline: Begabtenförderung - Stipendien der Friedrich-Naumann-
  Stiftung
-DESCRIPTION:Eligible. Germany bachelor\, master\, phd\, postdoc. Сур
- алцах болон докторант нан дахь суралца
- гчдад зориулсан энэхүү тэтгэлэг нь гер
- ман болон бусад орны оюутнуудад олгогд
- дог. Докторант нарт бүх чиглэлээр хүлэ
- эн авч болох бөгөөд бакалавр болон маг
- истрын түвшний оюутнууд герман\, ЕХ-ны 
- улс болон Швейцарийн улсын магадлан ит
- гэмжлэгдсэн сургуулиудад суралцаж бай
- х шаардлагатай. Гэхдээ ЕХ-ны бус орны о
- юутнуудад зориулсан бакалаврын түвшни
- й сургалт дэмжигдэхгүй. https://www.freiheit.org/de
- /begabtenfoerderung
+DESCRIPTION:Eligible. Germany bachelor\, master\, phd\, postdoc. Уха
+ ан\, суралцагч болон докторын зэрэг хам
+ гаалагч нарт зориулсан. Герман улсын б
+ олон Европын холбооны улс\, Швейцарийн 
+ төрйн эрх бүхий сургуулиудад суралцаж 
+ буй оюутнууд\, мөн гадаад улсын докторы
+ н зэрэг хамгаалагчид өргөдөл гаргах бо
+ ломжтой. Гэхдээ бакалаврын зэрэг хамга
+ алагч гаднаас ирсэн (non-EU) оюутнуудад зо
+ риулсан бакалаврын тэтгэлэг олгохгүй. 
+ https://www.freiheit.org/de/begabtenfoerderung
 URL:https://www.freiheit.org/de/begabtenfoerderung
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -116,45 +246,41 @@ DESCRIPTION:One week left: Begabtenförderung - Stipendien der Friedrich
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:daf03edd162907c20e24453121f69f8c1b0d8613@scholaradar
-DTSTAMP:20261013T100832Z
+UID:ea7df18b75435df664462a340c7559713d185f18@scholaradar
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261106
 DTEND;VALUE=DATE:20261107
-SUMMARY:Deadline: Japanese Government (MEXT) Scholarship
-DESCRIPTION:Eligible. Japan research\, postdoc\, master\, phd\, bachelor
- \, short_course. Суралчлах хүсэлт гаргагч нь н
- асны хязгаар болон боловсролын түвшнэ
- эс хамаарч дараах шаардлагуудыг ханга
- сан байх ёстой: судалгааны оюутан (35 хү
- ртэл)\, багш бэлтгэх (35 хүртэл\, 5 жил ажи
- лласан туршлагатай)\, бакалавр (25 хүртэ
- л)\, япон судлал (18-29 насны)\, технологийн
-  коллеж (25 хүртэл)\, мэргэжлийн сургалты
- н коллеж (25 хүртэл)\, залуу удирдагч (40 х
- үртэл). https://www.studyinjapan.go.jp/en/planning/scholarships/me
- xt-scholarships/
-URL:https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholar
- ships/
+SUMMARY:Deadline: 2027年度大学推薦による国費外国人留学
+ 生の募集について／Application for Japanese Government (MEXT) S
+ cholars
+DESCRIPTION:Eligible. Japan . Монгол улсын иргэд бол
+ он бусад олон улсын оюутнууд энэхүү тэ
+ тгэлэгт хамрагдах боломжтой. https://www.kaiyo
+ dai.ac.jp/international/docs/kokuhi.html
+URL:https://www.kaiyodai.ac.jp/international/docs/kokuhi.html
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
-DESCRIPTION:One week left: Japanese Government (MEXT) Scholarship
+DESCRIPTION:One week left: 2027年度大学推薦による国費外国
+ 人留学生の募集について／Application for Japanese Government
+  (MEXT) Scholars
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b7880e3c4aea6101d4cb586f4f37a8bc9bf6e550@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261107
 DTEND;VALUE=DATE:20261108
 SUMMARY:Deadline: HP-UCL IOE Fellowship in AI in Education 2027
-DESCRIPTION:Eligible. United Kingdom . Боловсунд нь дэлх
- ийн өнцөг булан бүрээс ирж буй\, боловс
- ролын салбарын ахлах бодлого боловсру
- улагчид\, байгууллагын удирдагчид боло
- н төрийн албан хаагчдад зориулагдсан. 
- Европын\, Ази болон Африкийн орнуудын т
- өлөөлөгчдийг авч үзнэ. https://opportunitydesk.org/2
- 026/10/05/hp-ucl-ioe-fellowship-in-ai-in-education-2027/
+DESCRIPTION:Eligible. United Kingdom . Энэхүү тэтгэлэг н
+ ь дэлхийн өнцөг булан бүрээс ирж буй бо
+ ловсролын салбарын ахлах бодлого боло
+ всруулагчид\, байгууллагын удирдагчид 
+ болон төрийн албан хаагчдад зориулагд
+ сан. Ялангуяа Европ\, Ази болон Африкын 
+ бүс нутгийн удирдагчдыг авч үзнэ. https://o
+ pportunitydesk.org/2026/10/05/hp-ucl-ioe-fellowship-in-ai-in-education-
+ 2027/
 URL:https://opportunitydesk.org/2026/10/05/hp-ucl-ioe-fellowship-in-ai-i
  n-education-2027/
 BEGIN:VALARM
@@ -165,64 +291,41 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2cfea26c475d5b77acddf35708dd0e549dec7736@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261107
 DTEND;VALUE=DATE:20261108
 SUMMARY:Deadline: Lester B. Pearson International Scholarship Program at
-  University of Toronto
+  University of Toronto 202
 DESCRIPTION:Eligible. Canada bachelor. Олон улсын оюутну
- уд (Канадад суралцах зөвшөөрөл шаардла
- гатай бусад улсын иргэд)\, ахлах сургуу
- лийнхаа сүүлчийн жилээ сурч байгаа эсв
- эл 2026 оны 6-р сараас өмнө төгссөн байх ш
- аардлагатай. https://future.utoronto.ca/pearson-scholarships
+ уд (Канадад суралцдаг олон улсын оюутн
+ ууд багтсан)\, 2026/2027 оны ахлах сургуулий
+ н сүүлчийн жилээ суралцаж байгаа эсвэл
+  2026 оны 6-р сараас өмнө төгссөн байх шаа
+ рдлагатай. Торонтогийн их сургуульд 2027
+  оны 9-р сараас эхлэн суралцах ёстой. https
+ ://future.utoronto.ca/pearson-scholarships
 URL:https://future.utoronto.ca/pearson-scholarships
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
 DESCRIPTION:One week left: Lester B. Pearson International Scholarship P
- rogram at University of Toronto
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:7341995972b6f68f16c09e78c00a620636063cc4@scholaradar
-DTSTAMP:20261013T100832Z
-DTSTART;VALUE=DATE:20261110
-DTEND;VALUE=DATE:20261111
-SUMMARY:Deadline: Swiss Government Excellence Scholarships at a Glance
-DESCRIPTION:Eligible. Switzerland master\, phd\, research. Швейца
- рын засгийн газрын схем нь судалгаа бо
- лон урлагийн чиглэлээр суралцах\, маги
- стр эсвэл PhD зэрэг хамгаалахаар төлөвл
- өж буй гадаад оюутнуудыг зориулагдсан.
-  Сонгогчдод амьжиргааны зардал\, эрүүл 
- мэндийн даатгал\, түрээсийн барьцаа бо
- лон буцах нислэгт туслах тэтгэмж олгон
- о. https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarshi
- ps-at-a-glance
-URL:https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarship
- s-at-a-glance
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Swiss Government Excellence Scholarships at a
-  Glance
+ rogram at University of Toronto 202
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8e2ffa3c0bcc6214bdecc69f573fba3626b64ede@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Deadline: [Japan] Kyoto University – Asian Future Leaders Scho
  larship Program (AFLSP) for 
 DESCRIPTION:Unclear. Japan master. Мастерын түвшинд су
- ралцах горилоотой\, BXAl зуны хөтөлбөрт о
- ролцох эрмэлзэлтэй\, англи хэлний өндө
- р түвшний мэдлэгтэй\, хувь хүний шударг
- а ёс болон олон улсын соёл хоорондын ой
- лголцолд сонирхолтой байх шаардлагата
- й. https://www.aflsp.kyoto-u.ac.jp/
+ ралцах төлөвлөгөөтэй\, BXAl зуны хөтөлбө
+ рт оролцох эрмэлзэлтэй\, англи хэлний ө
+ ндөр түвшний мэдлэгтэй\, олон улсын бол
+ он соёл хоорондын ойлголцолд сонирхол
+ той байх шаардлагатай. https://www.aflsp.kyoto-u.ac.
+ jp/
 URL:https://www.aflsp.kyoto-u.ac.jp/
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -233,19 +336,20 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:dd63bcf83a0ba410a9173ed74b2682fd58b3ade8@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261115
 DTEND;VALUE=DATE:20261116
 SUMMARY:Deadline: International Scholars Program at University of Britis
  h Columbia 2026-2027
 DESCRIPTION:Eligible. Canada bachelor. Олон улсын оюутну
  уд (Canada-д суралцах суралцагчийн визтэй)
-  байх ёстой. Тэрээр ахлах сургуулиа төг
- ссөн\, эхний удаа бакалаврын зэрэгт сур
- алцах гэж байгаа\, академик дэвшил сайт
- ай бөгөөд санхүүгийн хүндрэлтэй байх ш
- аардлагатай. http://you.ubc.ca/financial-planning/scholarshi
- ps-awards-international-students/international-scholars/
+  горилогч байх шаардлагатай. Түүнчлэн: 
+ ахлах сургуулиа төгссөн байх\, анхны ба
+ калаврын зэрэгт суралцах гэж байгаа ба
+ йх\, академик амжилттай байх болон санх
+ үүгийн хүндрэлтэй байх шаардлагатай. ht
+ tp://you.ubc.ca/financial-planning/scholarships-awards-international-st
+ udents/international-scholars/
 URL:http://you.ubc.ca/financial-planning/scholarships-awards-internation
  al-students/international-scholars/
 BEGIN:VALARM
@@ -257,16 +361,15 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:9fc9efc60210df5130f1fd57839e50c0b88f21e5@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261115
 DTEND;VALUE=DATE:20261116
 SUMMARY:Deadline: ISQOLS Developing Country Fellowship
-DESCRIPTION:Eligible.  research. Эртний шатны судлаач 
- байх ёстой бөгөөд хөгжиж буй орнуудад 
- оршин суудаг\, амьдралын чанар\, аз жарг
- ал болон сайн сайхан байдлын судалгаа 
- хийж буй эртний шатны судлаач байх шаа
- рдлагатай. https://isqols.org/VMFellow
+DESCRIPTION:Eligible.  research. Хөгжиж буй улсад орши
+ н суудаг\, амьдралын чанар\, аз жаргал б
+ олон сайн сайхан байдлын судалгаа хийж
+  буй карьер эхэн эрдэмтэн байх шаардла
+ гатай. https://isqols.org/VMFellow
 URL:https://isqols.org/VMFellow
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -275,21 +378,72 @@ DESCRIPTION:One week left: ISQOLS Developing Country Fellowship
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:1ef6da87c7f965f66e0770d09f4d8e426bfc5d5c@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:Deadline: Africa-China Post-Doctoral Fellowship 2027-2028 (Funde
+ d)
+DESCRIPTION:Unclear. United States postdoc. PhDEr төгсөгчид (te
+ nured эсвэл non-tenured) тус програмт оролцох б
+ оломжтой бөгөөд Африка-Хятадын харилц
+ аатай холбоотой судалгааны туршлагата
+ й\, түүх\, улс төр\, олон улсын харилцаа\, 
+ эдийн засаг зэрэг салбарын эрдэмтдийг 
+ авч үзнэ. https://opportunitydesk.org/2026/10/12/africa-china-po
+ st-doctoral-fellowship-2027-2028/
+URL:https://opportunitydesk.org/2026/10/12/africa-china-post-doctoral-fe
+ llowship-2027-2028/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Africa-China Post-Doctoral Fellowship 2027-20
+ 28 (Funded)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3277c4e326d7fc5701b69a28dcd827cdd25546f5@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:Deadline: Royal Society Career Development Fellowship 2027
+DESCRIPTION:Eligible. United Kingdom postdoc. Харьцаатай (Blac
+ k heritage) гаралтай\, STEM салбарын эрт үеийн 
+ судлаач нар (PhD төгссөн эсвэл төгсөх гэ
+ ж буй\, постдок туршлага 24 сараас багат
+ ай) мэдүүлэг гаргах боломжтой. Өргөдөл 
+ гаргагч нь ямар ч үндэстэн байж болох ч
+  Их Британитай холбоотой (Британийн ир
+ гэн\, тус улсад боловсрол эзэмшсэн эсвэ
+ л постдок ажиллаж байсан) байх шаардла
+ гатай. https://opportunitiesforyouth.org/2026/09/25/royal-society-
+ career-development-fellowship-2027-up-to-703800-for-early-career-black-
+ researchers-in-stem/
+URL:https://opportunitiesforyouth.org/2026/09/25/royal-society-career-de
+ velopment-fellowship-2027-up-to-703800-for-early-career-black-researche
+ rs-in-stem/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Royal Society Career Development Fellowship 2
+ 027
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:80f0c1897b367a01e1bf9a1a93d239623a4e15b4@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261125
 DTEND;VALUE=DATE:20261126
 SUMMARY:Deadline: Master's Degree Program | Mongolia | JDS
 DESCRIPTION:Eligible. Japan master. Монгол Улсын иргэн 
  байх ёстой. Нас 25-аас 45 хүртэл байх (2027 о
- ны 4-р сарын 1-ний байдлаар). Төгсөлтийн 
- зэрэг (Bachelor's Degree) эзэмшсэн\, төрийн алба
- н хаагч эсвэл Монгол Банк\, Хөрөнгө ору
- улалтын банкны ажилтан байх шаардлага
- тай. Мөн холбогдох байгууллагадаа 2-оос
-  доошгүй жил бүрэн цагаар ажилласан ту
- ршлагатай байх ёстой. https://jds-scholarship.org/cou
- ntry/mongolia/apply_masters.html
+ ны 4-р сарын 1-ний байдлаар). Бакалаврын 
+ зэрэгтэй\, төрийн албан хаагч эсвэл Мон
+ гол Банк\, Хөрөнгө оруулалтын банкны аж
+ илтан байх шаардлагатай. Мөн холбогдох
+  байгууллагадаа 2-оос доошгүй жил бүрэн
+  цагаар ажилласан туршлагатай байх ёст
+ ой. https://jds-scholarship.org/country/mongolia/apply_masters.html
 URL:https://jds-scholarship.org/country/mongolia/apply_masters.html
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -299,7 +453,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:18a7f7880a9e9846c46666a97d485b87a32a9d73@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
 SUMMARY:Deadline: Justus & Louise van Effen Excellence Scholarships for 
@@ -308,9 +462,10 @@ DESCRIPTION:Eligible. Netherlands master. TU Delft-ийн 2 жилийн
   ердийн магистрын хөтөлбөрт (Joint Education Pr
  ogramme биш) урьдчилсан нөхцөлтэйгөөр элс
  эх эрх авсан\, өмнөх сурлагадаа шилдэг 1
- 0%-ийн дотор багтсан гадаад оюутнууд. http
- s://www.tudelft.nl/onderwijs/studievoorlichting/praktische-zaken/schola
- rships/justus-louise-van-effen-excellence-scholarships
+ 0%-ийн дотор багтсан гадаад оюутнууд го
+ рилох боломжтой. https://www.tudelft.nl/onderwijs/studiev
+ oorlichting/praktische-zaken/scholarships/justus-louise-van-effen-excel
+ lence-scholarships
 URL:https://www.tudelft.nl/onderwijs/studievoorlichting/praktische-zaken
  /scholarships/justus-louise-van-effen-excellence-scholarships
 BEGIN:VALARM
@@ -322,20 +477,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:819125dcae827bcbef403038423b7ee06e23cb31@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
 SUMMARY:Deadline: Asian Development Bank–Japan Scholarship Program 202
  6 (Fully Funded) - OYA Oppor
 DESCRIPTION:Eligible. Asia and the Pacific master. Азийн хөгжл
  ийн банкны (АХБ) гишүүн хөгжиж буй орну
- удын иргэд\, бакалаврын зэрэгтэй\, сург
- ууль төгссөнөөс хойш хоёр жил ажилласа
- н туршлагатай\, 35 хүртэлх насны эрүүл м
- энд сайн\, англи хэлний шаардлага ханга
- сан мэргэжилтнүүдийг шалгаруулна. https:/
- /oyaop.com/opportunity/scholarships-and-fellowships/asian-development-b
- ank-japan-scholarship-program-2026-fully-funded/
+ удын иргэд\, бакалаврын зэрэгтэй\, хоёр 
+ буюу түүнээс дээш жил мэргэжлийн ажил 
+ хийсэн\, 35 хүртэлх насны эрүүл байх шаа
+ рдлагатай. https://oyaop.com/opportunity/scholarships-and-fell
+ owships/asian-development-bank-japan-scholarship-program-2026-fully-fun
+ ded/
 URL:https://oyaop.com/opportunity/scholarships-and-fellowships/asian-dev
  elopment-bank-japan-scholarship-program-2026-fully-funded/
 BEGIN:VALARM
@@ -347,7 +501,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:5dfc0b9f3450921c062a7ac012400ead9ae587ae@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261202
 DTEND;VALUE=DATE:20261203
 SUMMARY:Deadline: Yale Maurice R. Greenberg World Fellows Programme 2027
@@ -355,11 +509,11 @@ SUMMARY:Deadline: Yale Maurice R. Greenberg World Fellows Programme 2027
 DESCRIPTION:Eligible. United States . Мэргэжлийн карьер
  ынхаа 5-аас 25 хүртэлх жилд байгаа\, орон 
  нутгийн\, үндэсний эсвэл олон улсын түв
- шинд тодорхой ололт амжилт гаргасан\, А
- НУ-аас бусад улсын иргэн байх ёстой. Ан
- гли хэлээр чөлөөтэй ярьдаг байх шаардл
- агатай. https://opportunitydesk.org/2026/10/05/yale-maurice-r-gre
- enberg-world-fellows-programme-2027/
+ шинд мэдэгдэхүйц ололт амжилт гаргаса
+ н\, АНУ-аас бусад улсын иргэн байх ёстой
+ . Англи хэлээр чөлөөтэй ярьдаг байх шаа
+ рдлагатай. https://opportunitydesk.org/2026/10/05/yale-maurice
+ -r-greenberg-world-fellows-programme-2027/
 URL:https://opportunitydesk.org/2026/10/05/yale-maurice-r-greenberg-worl
  d-fellows-programme-2027/
 BEGIN:VALARM
@@ -371,19 +525,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:debadfca49e3ee36c452bb361e1d59b8fd73cb90@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261215
 DTEND;VALUE=DATE:20261216
 SUMMARY:Deadline: MOPGA 2027: Visiting Fellowship Program for Early Care
  er Researchers
 DESCRIPTION:Eligible. France postdoc. Докторын зэрэг хам
- гаалаад 5 жил хүрээгүй\, Франц улсын гра
- ждантай бус\, олон улсын судалгааны хөд
- өлгөөний зорилготой\, Франц улсад орши
- н суудаггүй\, өмнө нь MOPGA тэтгэлэг авч б
- айгаагүй залуу судлаач нар мэдүүлэг га
- ргах боломжтой. https://campusfrance.smapply.io/prog/mopga
- _2027/
+ гаалснаас хойш 5 хүрэхгүй жил болсон\, Ф
+ ранц улсын иргэн бус\, олон улсын судла
+ ач нар мэдүүлэг гаргах боломжтой. Суда
+ лгааны төсөл нь MOPGA-ийн тодорхойлсон су
+ далгааны чиглэлүүдэд нийцсэн байх ёст
+ ой. https://campusfrance.smapply.io/prog/mopga_2027/
 URL:https://campusfrance.smapply.io/prog/mopga_2027/
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -394,19 +547,21 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6787e97c9d3653b54674358f2ba2f20adb533418@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261215
 DTEND;VALUE=DATE:20261216
 SUMMARY:Deadline: MOPGA 2027 Visiting Fellowship in France (Fully Funded
  ) - OYA Opportunities
-DESCRIPTION:Eligible. France postdoc. Францын үндэстэни
- й бус\, дэлхийн бусад бүх улсын судалга
- а шинжилгээний эрдэмтдийг (PhD зэрэг хам
- гаалсан байх шаардлагатай) хүлээн авна
- . Франц улсад оршин суудаггүй\, мэргэжл
- ийн үйл ажиллагаа явуулдаггүй байх ёст
- ой. https://oyaop.com/opportunity/scholarships-and-fellowships/mopga-
- 2027-visiting-fellowship-in-france-fully-funded/
+DESCRIPTION:Eligible. France postdoc. Францын үндэсний и
+ ргэнээс бусад бүх үндэсний иргэд (олон 
+ улсын судлаачид) хүсэлт гаргах боломжт
+ ой. Тухайн судлаач PhD зэрэг хамгаалсан 
+ байх ёстой (2021 оны 12-р сараас 2026 оны 12-р 
+ сар хооронд) бөгөөд Франц улсад оршин с
+ уугаа\, мэргэжлийн үйл ажиллагаа явуул
+ ж буй байх ёсгүй. https://oyaop.com/opportunity/scholarshi
+ ps-and-fellowships/mopga-2027-visiting-fellowship-in-france-fully-funde
+ d/
 URL:https://oyaop.com/opportunity/scholarships-and-fellowships/mopga-202
  7-visiting-fellowship-in-france-fully-funded/
 BEGIN:VALARM
@@ -418,19 +573,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:5db020ac1319a619ec5ce891721b64515e1a1b3b@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20261215
 DTEND;VALUE=DATE:20261216
 SUMMARY:Deadline: ENS International Selection Scholarships 2026-2027
-DESCRIPTION:Eligible. France master. 26 насны өглөө гэхэд
-  нас хүрээгүй байх\, өмнө нь энэхүү тэн T
- sгэлд ороогүй байх\, Франц улсад академ
- ик жилийн хугацаанд 10 сараас дээш хуга
- цаагаар амьдарч байгаагүй байх\, гадаа
- д улсын их сургуульд доод боловсролын 
- дор доор нь нэг жил суралцсан байх шаар
- длагатай. http://www.ens.fr/en/academics/admissions/internation
- al-selection
+DESCRIPTION:Eligible. France master. Олон улсын оюутнуу
+ д (Science эсвэл Arts & Humanities чиглэлээр) горил
+  නэр дэвшүүлэх боломжтой. Нэр дэвшэгч 1
+ 2-р сарын 1-нд 26 нас хүрээгүй байх ёстой. 
+ Франц улсад хугацаа хэтрүүлэн амьдарс
+ ан байхгүй\, гадаад улсын их сургуульд 
+ доод боловсролын дор хаяж нэг жил суلس
+ ныг шаардана. http://www.ens.fr/en/academics/admissions/inte
+ rnational-selection
 URL:http://www.ens.fr/en/academics/admissions/international-selection
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -440,64 +595,87 @@ DESCRIPTION:One week left: ENS International Selection Scholarships 2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:64eb36c7c388146ecf9ca480f9d3e76743a8b55c@scholaradar
-DTSTAMP:20261013T100832Z
-DTSTART;VALUE=DATE:20261231
-DTEND;VALUE=DATE:20270101
-SUMMARY:Deadline: Oxford-Weidenfeld and Hoffmann Scholarship and Leaders
- hip Programme 2026-2027
-DESCRIPTION:Eligible. United Kingdom master. Африк\, Ази бол
- он Өмнөд Америк дахь шилжилтийн үе шат
- анд орсон болон хөгжиж буй орнуудын ши
- лдэг оюутнуудад зориулсан тэтгэлэг бө
- гөөд Оксфордын их сургуульд магистрын 
- зэрэг эзэмших боломжийг олгоно. https://www.
- ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholars
- hip-search/weidenfeld-hoffmann-scholarships-and-leadership-programme
-URL:https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-fundi
- ng-and-scholarship-search/weidenfeld-hoffmann-scholarships-and-leadersh
- ip-programme
+UID:8ba136cb2ae57972160711470dc09969373dd800@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20261217
+DTEND;VALUE=DATE:20261218
+SUMMARY:Deadline: 国際社会科学府経営学専攻（博士課程後
+ 期）国費等外国人留学生特別入試（一般）
+DESCRIPTION:Unclear. Japan master\, phd. Тусгайлан шаардл
+ агатай гадаад оюутнууд (Япон улсын төр
+ ийн тэтгэлэг эсвэл гадаад улсын засгий
+ н газрын тэтгэлэгтэй оюутнууд) болон б
+ усад гадаад оюутнууд горилогдож болно.
+  Магистрын зэрэгтэй эсвэл магистрын зэ
+ рэг авахаар болсон байх шаардлагатай. h
+ ttps://e-apply.jp/e/ynu/
+URL:https://e-apply.jp/e/ynu/
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
-DESCRIPTION:One week left: Oxford-Weidenfeld and Hoffmann Scholarship an
- d Leadership Programme 2026-2027
+DESCRIPTION:One week left: 国際社会科学府経営学専攻（博士
+ 課程後期）国費等外国人留学生特別入試（一般）
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9a1ca3d136303eebcf0d54f11ef7651f7da26125@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20270101
+DTEND;VALUE=DATE:20270102
+SUMMARY:Deadline: Who Can Apply - Australia Awards - Mongolia
+DESCRIPTION:Eligible. Australia master. Монгол улсын иргэ
+ д дараах шаардлагыг хангасан байх ёсто
+ й: бакалаврын зэрэг (GPA 3.0+)\, IELTS 6.0 (ямар н
+ эг хэсэг нь 5.5-аас бага биш) эсвэл түүнт
+ эй дүйцэхүйц TOEFL оноо\, Монголд 2 жил тас
+ ралтгүй ажилласан туршлагатай байх (хө
+ гжлийн бэрхэмжлэлтэй хүмүүс ажилласан
+  туршлага шаардахгүй). Мөн төрийн тэтгэ
+ лгээр магистр төгсөөгүй\, PhD зэрэгтэй б
+ иш байх шаардлагатай. https://www.australiaawardsmong
+ olia.org/scholarships/who-can-apply/
+URL:https://www.australiaawardsmongolia.org/scholarships/who-can-apply/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Who Can Apply - Australia Awards - Mongolia
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:90b1f9a8de66907620e42b2de0314b3f760bbc8f@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270101
 DTEND;VALUE=DATE:20270102
-SUMMARY:Deadline: Clarendon Fund Scholarships at University of Oxford
+SUMMARY:Deadline: Clarendon Fund Scholarships at University of Oxford 20
+ 26-2027 | Scholars4Dev
 DESCRIPTION:Eligible. United Kingdom master\, phd. Дэлхийн өнц
- өг булан бүрээс горилогчдыг академик д
- ээрдэлт болон ирээдүйн боломж дээр үнд
- эслэн сонгож\, бүх мэргэжлээр суралцах 
- боломжийг олгодог. https://www.ox.ac.uk/clarendon
+ өг булан бүрээс горилогчдыг академик ч
+ адвар\, ирээдүйн боломжид нь үндэслэн б
+ үх мэргэжлээр суралцах боломжийг олго
+ дог. https://www.ox.ac.uk/clarendon
 URL:https://www.ox.ac.uk/clarendon
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
 DESCRIPTION:One week left: Clarendon Fund Scholarships at University of 
- Oxford
+ Oxford 2026-2027 | Scholars4Dev
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:6d3678137cbc952547242c2e322de8dc5523c779@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270106
 DTEND;VALUE=DATE:20270107
 SUMMARY:Deadline: Skoll Scholarship 2027 at Oxford University (Fully Fun
  ded) - OYA Opportunities
 DESCRIPTION:Eligible. United Kingdom postdoc\, master. Нийгмийн 
  бизнес эрхлэгч\, инноватор\, манлайлагч
-  нар бөгөөд нийгэм\, байгаль орчны асуу
- длыг шийдвэрлэх зорилготой\, Oxford MBA хөт
- өлбөрт суралцах хүсэлтэй бүх үндэстэн
- гийн хүмүүс горилогдоно. https://oyaop.com/opportu
- nity/scholarships-and-fellowships/skoll-scholarship-2027-at-oxford-univ
- ersity-fully-funded/
+  нар бөгөөд нийгмийн болон байгаль орч
+ ны томоохон асуудлуудыг шийдвэрлэх зо
+ рилготой\, Oxford MBA хөтөлбөрт суралцах хү
+ сэлтэй бүх үндэстэн хүмүүс горилоход н
+ ээлттэй. https://oyaop.com/opportunity/scholarships-and-fellowsh
+ ips/skoll-scholarship-2027-at-oxford-university-fully-funded/
 URL:https://oyaop.com/opportunity/scholarships-and-fellowships/skoll-sch
  olarship-2027-at-oxford-university-fully-funded/
 BEGIN:VALARM
@@ -508,19 +686,89 @@ DESCRIPTION:One week left: Skoll Scholarship 2027 at Oxford University (
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:636ec3264308d88775c6677856a4446d29f4ba35@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20270107
+DTEND;VALUE=DATE:20270108
+SUMMARY:Deadline: Erasmus Mundus MESPOM Scholarship 2027(Fully Funded) -
+  OYA Opportunities
+DESCRIPTION:Eligible. Austria\, Sweden\, UK\, Greece master. Олон у
+ лсын оюутнууд (бүх үндэстний) хүсэлт га
+ ргах боломжтой. https://oyaop.com/opportunity/scholarships
+ -and-fellowships/erasmus-mundus-mespom-scholarship-2027fully-funded/
+URL:https://oyaop.com/opportunity/scholarships-and-fellowships/erasmus-m
+ undus-mespom-scholarship-2027fully-funded/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Erasmus Mundus MESPOM Scholarship 2027(Fully 
+ Funded) - OYA Opportunities
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:3edcd3bf145f6f1ea9d680eadb3df447d97b66a1@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20270110
+DTEND;VALUE=DATE:20270111
+SUMMARY:Deadline: Heinz Heinen Fellowship Program 2026/2027 in Germany 
+ – Fully Funded
+DESCRIPTION:Eligible. Germany research\, postdoc\, phd. Докторын
+  зэрэгт горилогчид\, постдок судлаачид\
+ , ахлах судлаачид болон урлаг\, соёлын с
+ албарын мэргэжилтнүүд (сэтгүүлч\, уран 
+ бүтээлч гэх мэт) энэхүү тэтгэлэгт хамр
+ агдах боломжтой. https://oyaop.com/opportunity/scholarshi
+ ps-and-fellowships/heinz-heinen-fellowship-program-2026-2027-in-germany
+ -fully-funded/
+URL:https://oyaop.com/opportunity/scholarships-and-fellowships/heinz-hei
+ nen-fellowship-program-2026-2027-in-germany-fully-funded/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Heinz Heinen Fellowship Program 2026/2027 in 
+ Germany – Fully Funded
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:19fcc3ed025eec395a9f8e239495637dea87eefe@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20270111
+DTEND;VALUE=DATE:20270112
+SUMMARY:Deadline: Atlantic Fellows 2027–28 in the UK | Fully Funded Fe
+ llowship - OYA Opportunities
+DESCRIPTION:Eligible. United Kingdom postdoc\, master. Нийт 7 жил
+  буюу түүнээс дээш хугацаанд нийгэм\, э
+ дийн засгийн тэгш бус байдлыг арилгах 
+ чиглэлээр ажилласан туршлагатай\, дунд
+  шатны мэргэжилтнүүдийг авч үзнэ. Англ
+ и хэлний шаардлага хангасан байх ёстой
+ . https://oyaop.com/opportunity/scholarships-and-fellowships/atlantic-f
+ ellows-2027-28-in-the-uk-fully-funded-fellowship/
+URL:https://oyaop.com/opportunity/scholarships-and-fellowships/atlantic-
+ fellows-2027-28-in-the-uk-fully-funded-fellowship/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Atlantic Fellows 2027–28 in the UK | Fully 
+ Funded Fellowship - OYA Opportunities
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:b103b158c40b56013fd718f7d156710e5153e540@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270114
 DTEND;VALUE=DATE:20270115
 SUMMARY:Deadline: GLOCAL Erasmus Mundus Scholarship 2027(Fully Funded) -
   OYA Opportunities
-DESCRIPTION:Eligible. United Kingdom master. Олон улсын оюу
- тнууд энэхүү хоёр жилийн магистрын хөт
- өлбөрт хамрагдах боломжтой бөгөөд анг
- ли хэлний мэдлэг болон холбогдох мэргэ
- жлийн зэрэг шаардлагатай. https://oyaop.com/oppor
- tunity/scholarships-and-fellowships/glocal-erasmus-mundus-scholarship-2
- 027fully-funded/
+DESCRIPTION:Eligible. Multiple master. Олон улсын оюутну
+ удад зориулсан энэхүү тэтгэлэг нь дэлх
+ ийн зах зээл\, бүтээлч байдал\, бизнес б
+ олон эдийн засгийн хөгжлийн чиглэлээр 
+ хоёр жилийн магистрын зэрэг эзэмших бо
+ ломжийг олгоно. Өмчлөгч нь бүх үндэстн
+ ий оюутнуудад нээлттэй. https://oyaop.com/opportuni
+ ty/scholarships-and-fellowships/glocal-erasmus-mundus-scholarship-2027f
+ ully-funded/
 URL:https://oyaop.com/opportunity/scholarships-and-fellowships/glocal-er
  asmus-mundus-scholarship-2027fully-funded/
 BEGIN:VALARM
@@ -532,18 +780,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:9d503e60749efcbeebeece5cf1ff31e90282b513@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270115
 DTEND;VALUE=DATE:20270116
 SUMMARY:Deadline: Stipendium Hungaricum
-DESCRIPTION:Eligible. Hungary bachelor\, master\, phd\, postdoc\, short_
- course. Өндөр сурлагатай олон улсын оюутн
- уудад зориулсан энэхүү тэтгэлэг нь сур
- алцагчдын сургуулийн төлбөрийг бүрэн 
- чөлөөлөх\, сар бүр амьжиргааны мөнгө ол
- гох\, байрны нэмэгдэл болон эрүүл мэнди
- йн даатгал олгох боломжтой. https://stipendiumhu
- ngaricum.hu/about/
+DESCRIPTION:Eligible. Hungary bachelor\, master\, phd\, other. Өндө
+ р сургуулийн сургалтын тэтгэлэг нь дэл
+ хийн өнцөг булан бүрээс ирж буй өндөр а
+ мжилттай олон улсын оюутнуудад зориул
+ агдсан бөгөөд түүний хүрээ нь Холбогдо
+ х улс орнуудын хоёр талт боловсролын х
+ элэлцээрт үндэслэдэг. https://stipendiumhungaricum.h
+ u/about/
 URL:https://stipendiumhungaricum.hu/about/
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -552,18 +800,43 @@ DESCRIPTION:One week left: Stipendium Hungaricum
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:e77952d732965bd498f2b0a9044b3ebe4df9e6aa@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270116
+SUMMARY:Deadline: Стипендии в Швеции для иностр
+ анных студентов в 2027 году
+DESCRIPTION:Unclear. Sweden master\, bachelor. SI Scholarship нь зө
+ вхөн 34 тодорхой улсын иргэд (Монгол улс
+  энэ жагсаалтад ороогүй) болон STEM салба
+ рын эмэгтэйчүүдэд зориулагдсан. Харин 
+ KTH\, Лунд\, Уппсала зэрэг их сургуулиуды
+ н стипендийг Европын холбооны бус орны
+  бүх иргэд (Монгол улс оролцох боломжто
+ й) авах боломжтой. https://www.studyu.org/blog-stipendii-
+ v-shvetsii
+URL:https://www.studyu.org/blog-stipendii-v-shvetsii
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Стипендии в Швеции для и
+ ностранных студентов в 2027 году
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:043af7dda6f7f9b291536f50e4917fd2637efc37@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270115
 DTEND;VALUE=DATE:20270116
 SUMMARY:Deadline: AU Emerging Global Leader Scholarship 2027 in USA | Fu
  lly Funded
 DESCRIPTION:Eligible. United States bachelor. Олон улсын оюу
- тнууд\, АНУ-ын оюутан виз (F-1 эсвэл J-1) ав
- ах эрхтэй\, АНУ-ын иргэн биш\, мөн анхны 
- курсын бакалаврын оюутан байх шаардла
- гатай. https://oyaop.com/opportunity/scholarships-and-fellowships/
- au-emerging-global-leader-scholarship-2027-in-usa-fully-funded/
+ тнууд\, АНУ-ын оюутан виз авах эрхтэй бө
+ гөөд АНУ-ын иргэн\, тогтмол оршин суугч 
+ биш байх ёстой. Мөн бакалаврын 1-р курсы
+ н оюутан байх шаардлагатай. https://oyaop.com/op
+ portunity/scholarships-and-fellowships/au-emerging-global-leader-schola
+ rship-2027-in-usa-fully-funded/
 URL:https://oyaop.com/opportunity/scholarships-and-fellowships/au-emergi
  ng-global-leader-scholarship-2027-in-usa-fully-funded/
 BEGIN:VALARM
@@ -575,84 +848,113 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e21152236b5f68d41018049909171a35f768a422@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270115
 DTEND;VALUE=DATE:20270116
 SUMMARY:Deadline: Adlerbert Study Scholarships at Chalmers University of
-  Technology 2026-2027
+  Technology 2026-2027 | Sc
 DESCRIPTION:Eligible. Sweden master. Мастерын хөтөлбөрт
   элсэгчдийн дунд 143 хөгжиж буй орны ирг
  эдийг сонгоно. Сонголт нь академик амж
- илт\, сургуулийн нэр хүнд дээр үндэслэг
- дэнэ. https://www.chalmers.se/en/education/application-and-admissio
- n/scholarships-for-fee-paying-students/
+ илт\, сургуулийн эрэмбэ болон мэдүүлги
+ йн дарааллаас хамаарна. https://www.chalmers.se/en/
+ education/application-and-admission/scholarships-for-fee-paying-student
+ s/
 URL:https://www.chalmers.se/en/education/application-and-admission/schol
  arships-for-fee-paying-students/
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
 DESCRIPTION:One week left: Adlerbert Study Scholarships at Chalmers Univ
- ersity of Technology 2026-2027
+ ersity of Technology 2026-2027 | Sc
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b82dd3bb8796661718bc83246649e5455096d582@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270116
+SUMMARY:Deadline: Branco Weiss Fellowship – Society in Science 2027 (u
+ p to CHF600\,000)
+DESCRIPTION:Unclear. Switzerland postdoc. PhD зэрэгтэй\, PhD х
+ амгаалалтаа авснаас хойш 5 хүртэлх жил
+ ийн турш судалгаа хийж буй\, багш нарын 
+ албан тушаал эзэмшээгүй\, судалгааны т
+ өслөө үндсэн урсгалаас гадуур хийх сон
+ ирхолтой\, шинжлэх ухааны гавьяа бүтэл
+ тэй залуу эрдэмтэн байх шаардлагатай. h
+ ttps://opportunitydesk.org/2026/10/12/branco-weiss-fellowship-society-i
+ n-science-2027/
+URL:https://opportunitydesk.org/2026/10/12/branco-weiss-fellowship-socie
+ ty-in-science-2027/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: Branco Weiss Fellowship – Society in Scienc
+ e 2027 (up to CHF600\,000)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:38d717425fe07b5d7ac258a516629adf2a8e74c1@scholaradar
+DTSTAMP:20261013T105304Z
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+SUMMARY:Deadline: 2027年中国政府奖学金（B类）高水平研究
+ 生项目招生简章
+DESCRIPTION:Eligible. China master\, phd. Бурхан болзолгү
+ й\, Хятадын бус иргэн байх ёстой. Магист
+ рст горилогчид 35 хүртэлх насны\, бакала
+ врын зэрэгтэй байх шаардлагатай. Докто
+ рт болон магистрст горилогчид 40 хүртэл
+ х насны\, магистрын зэрэгтэй байх шаард
+ лагатай. Эрүүл мэнд сайтай байх шаардл
+ агатай. https://nju.17gz.org/
+URL:https://nju.17gz.org/
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:One week left: 2027年中国政府奖学金（B类）高水
+ 平研究生项目招生简章
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:622d83a8c5b5db9b2bb14da5bc4ee557a8e66e74@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270126
 DTEND;VALUE=DATE:20270127
 SUMMARY:Deadline: Reach Oxford Scholarships for Developing Country Stude
- nts 2026-2027 | Scholars4D
-DESCRIPTION:Eligible. United Kingdom bachelor. Хөгжиж буй ор
- нуудын иргэд (OECD DAC-ийн туслалцаа авдаг 
- улс) суралцах эрх авсан\, өндөр академи
- к чадвартай\, санхүүгийн хүндрэлтэй\, н
- ийгмийн үйл хэрэгт оролцдог байх шаард
- лагатай. Суралцаж дууссаны дараа эх ор
- ноороо буцаж очих зорилготой байх ёсто
- й. http://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxfor
- d-support/reach-oxford-scholarship
+ nts 2026-2027
+DESCRIPTION:Eligible. United Kingdom bachelor. OECD DAC-ийн алба
+ н ёсны хөгжлийн тусламж хүлээн авдаг о
+ рны иргэд байх шаардлагатай. Өндөр ака
+ демик чадвартай\, санхүүгийн хүндрэлтэ
+ й\, нийгмийн үйл хэрэгт оролцдог байх ё
+ стой бөгөөд сургуулиа төгсөөд эх орноо
+  буцах зорилготой байх шаардлагатай. htt
+ p://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-suppo
+ rt/reach-oxford-scholarship
 URL:http://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford
  -support/reach-oxford-scholarship
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
 DESCRIPTION:One week left: Reach Oxford Scholarships for Developing Coun
- try Students 2026-2027 | Scholars4D
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:8c29ba705d9e408766d46571ea8814c7b0755f27@scholaradar
-DTSTAMP:20261013T100832Z
-DTSTART;VALUE=DATE:20270131
-DTEND;VALUE=DATE:20270201
-SUMMARY:Deadline: Стипендия Erasmus Mundus 2027: сумма и 
- условия
-DESCRIPTION:Eligible. European Union master. Бакалаврын төг
- сөлсөн эсвэл сүүлчийн курсын оюутан ба
- йх шаардлагатай. Дэлхийн өнцөг булан б
- үрээс оюутан горилох боломжтой (стипен
- дийг дэлхийн өнцөг булан бүрээс оюутан
-  авч болно). https://www.studyu.org/blog-stipendiya-erasmus-mun
- dus
-URL:https://www.studyu.org/blog-stipendiya-erasmus-mundus
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:One week left: Стипендия Erasmus Mundus 2027: су
- мма и условия
+ try Students 2026-2027
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:555898922012f8ed6e3308e1c4e63b15c826e7c4@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270201
 DTEND;VALUE=DATE:20270202
 SUMMARY:Deadline: Стипендии Маастрихтского уни
  верситета 2027 в Нидерландах — полное фи
  нансирование
 DESCRIPTION:Eligible. Netherlands bachelor\, master. ЕХ ЕС/ЕЭЗ-э
- эс бус улсын оюутан байх https://dreamhigh.info/lis
- tings/maastricht-university-scholarship-8125/
+ эс бусгүй орны иргэд (бакалавр болон ма
+ гистрын түвшинд) хүсэлт гаргах боломжт
+ ой. https://dreamhigh.info/listings/maastricht-university-scholarship
+ -8125/
 URL:https://dreamhigh.info/listings/maastricht-university-scholarship-81
  25/
 BEGIN:VALARM
@@ -665,20 +967,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:e190ab166032ef042bbfaad5177e672931e4a64c@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270201
 DTEND;VALUE=DATE:20270202
 SUMMARY:Deadline: Hamad Bin Khalifa University Scholarship in Qatar (Ful
  ly Funded) - OYA Opportuni
 DESCRIPTION:Eligible. Qatar bachelor\, master\, phd. Оюутны бол
  он магистр\, докторын түвшний оюутнууд 
- горил නэр дэвшүүлэх боломжтой. Оюутну
- уд хүлээн зөвшөөрөгдсөн сургуулийн ди
- пломтой\, өндөр эрдэм шинжилгээний амж
- илттай\, англи хэлний мэдлэгтэй (IELTS/TOEFL)
-  байх шаардлагатай. https://oyaop.com/opportunity/schol
- arships-and-fellowships/hamad-bin-khalifa-university-scholarship-in-qat
- ar-fully-funded/
+ хамрагдана. Оюутнууд хүлээн зөвшөөрөг
+ дсөн сургуулийн дипломоос гадна өндөр 
+ эрдэм шинжилгээний амжилттай байх шаа
+ рдлагатай. https://oyaop.com/opportunity/scholarships-and-fell
+ owships/hamad-bin-khalifa-university-scholarship-in-qatar-fully-funded/
 URL:https://oyaop.com/opportunity/scholarships-and-fellowships/hamad-bin
  -khalifa-university-scholarship-in-qatar-fully-funded/
 BEGIN:VALARM
@@ -690,7 +990,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ce967db20bad7650e6c638d26d07b5348a9dc633@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270201
 DTEND;VALUE=DATE:20270202
 SUMMARY:Deadline: Maastricht University NL-High Potential Scholarships f
@@ -715,7 +1015,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:0e1fa16b5e7e2b217b572b412f992f4809ef219f@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270226
 DTEND;VALUE=DATE:20270227
 SUMMARY:Deadline: World Bank Scholarships Program - JJ/WBGSP
@@ -724,8 +1024,8 @@ DESCRIPTION:Eligible. United States master. Хөгжлийн орнуу
  н туршлагатай\, тус улсынхаа хөгжилд ху
  вь нэмэр оруулж ирсэн туршлагатай\, хөг
  жлийн чиглэлээр магистрын хөтөлбөрт с
- уралцах горимд гориллож буй хүмүүс. https
- ://www.worldbank.org/en/programs/scholarships/jj-wbgsp
+ уралцах горимд горилогчид зориулагдса
+ н. https://www.worldbank.org/en/programs/scholarships/jj-wbgsp
 URL:https://www.worldbank.org/en/programs/scholarships/jj-wbgsp
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -735,7 +1035,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:7ade5a1627b02ede535d1c69882860d4e1b7c230@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270315
 DTEND;VALUE=DATE:20270316
 SUMMARY:Deadline: Apply Now
@@ -752,18 +1052,21 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:338c1de54595cec08e9ddd6c3c678afb51ae1b64@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270831
 DTEND;VALUE=DATE:20270901
 SUMMARY:Deadline: Weiss Fund Fellowship for Junior Researchers 2027
-DESCRIPTION:Unclear.  phd. Эдийн засгийн ухааны PhD з
- эрэгтэй\, хөгжиж буй орнуудад эрдэм шин
- жилгээний ажил хийх сонирхолтой залуу 
- судлаач нарт зориулсан тэтгэлэг. Өргөд
- өл гаргагч нь 2027 оны 7 дугаар сарын 1-ний
-  өмнө PhD зэрэг хамгаалсан эсвэл хамгаал
- ахаар байгаа байх ёстой. https://www.globalsouthopp
- ortunities.com/2026/10/02/weiss/
+DESCRIPTION:Eligible. Developing countries phd. Эдийн засгий
+ н ухааны PhD зэрэгтэй\, хөгжиж буй орнууд
+ ад эрдэм шинжилгээний ажил хийх сонирх
+ олтой залуу судлаач нарт зориулсан тэт
+ гэлэг. Өргөдөл гаргагч нь 2027 оны 7 дугаа
+ р сарын 1-ний өмнө PhD зэрэгтэй болсон эс
+ вэл болж буй байх ёстой. Тэтгэлэг нь ту
+ с орны эдийн засгийн хөгжилд хувь нэмэ
+ р оруулж чадах судалгааны чиглэлтэй ба
+ йх шаардлагатай. https://www.globalsouthopportunities.com
+ /2026/10/02/weiss/
 URL:https://www.globalsouthopportunities.com/2026/10/02/weiss/
 BEGIN:VALARM
 TRIGGER:-P7D
@@ -774,21 +1077,20 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20881e66857b17365291b3527021f0716196103b@scholaradar
-DTSTAMP:20261013T100832Z
+DTSTAMP:20261013T105304Z
 DTSTART;VALUE=DATE:20270930
 DTEND;VALUE=DATE:20271001
-SUMMARY:Deadline: Schwarzman Scholars
-DESCRIPTION:Eligible. China master. Бүх мэргэжлээр сура
- лцаж болох бөгөөд нэр дэвшүүлэгч нь 18-а
- ас 29 хүртэлх насны\, англи хэлний мэдлэ
- г сайтай\, манлайлах чадвартай дэлхийн 
- ямар ч бүс нутгийн иргэн байх шаардлаг
- атай. https://www.schwarzmanscholars.org/admissions/
+SUMMARY:Deadline: Admissions - Schwarzman Scholars
+DESCRIPTION:Eligible. China master. Бүх мэргэжлийн оюут
+ нууд горилогдоно. Өргөдөл гаргагч нь 18-
+ аас 29 хүртэл насны байх ёстой бөгөөд ан
+ гли хэлний мэдлэг сайн байх шаардлагат
+ ай. https://www.schwarzmanscholars.org/admissions/
 URL:https://www.schwarzmanscholars.org/admissions/
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
-DESCRIPTION:One week left: Schwarzman Scholars
+DESCRIPTION:One week left: Admissions - Schwarzman Scholars
 END:VALARM
 END:VEVENT
 END:VCALENDAR
