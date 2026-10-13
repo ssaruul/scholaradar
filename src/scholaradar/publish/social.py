@@ -30,13 +30,24 @@ STRINGS = {
 TARGET_NAMES_MN = {"Mongolia": "Монгол"}
 
 
-def format_digest(rows: list[dict], target: str, today: date, pages_url: str, max_items: int, lang: str = "en") -> tuple[str, list[int]]:
+def format_digest(
+    rows: list[dict],
+    target: str,
+    today: date,
+    pages_url: str,
+    max_items: int,
+    lang: str = "en",
+) -> tuple[str, list[int]]:
     strings = STRINGS.get(lang, STRINGS["en"])
     target_name = TARGET_NAMES_MN.get(target, target) if lang == "mn" else target
     shown = rows[:max_items]
     lines = [strings["title"].format(target=target_name, today=today.isoformat()), ""]
     for row in shown:
-        deadline = strings["deadline"].format(deadline=row["deadline"]) if row["deadline"] else strings["no_deadline"]
+        deadline = (
+            strings["deadline"].format(deadline=row["deadline"])
+            if row["deadline"]
+            else strings["no_deadline"]
+        )
         where = f", {row['host_country']}" if row["host_country"] else ""
         levels = f" ({', '.join(row['degree_levels'])})" if row["degree_levels"] else ""
         lines.append(f"• {row['title'][:110]}{where}{levels}, {deadline}")
@@ -70,12 +81,24 @@ class FacebookPage:
         if link:
             payload["link"] = link
         try:
-            response = httpx.post(f"https://graph.facebook.com/{self.graph_version}/{self.page_id}/feed", data=payload, timeout=30)
+            response = httpx.post(
+                f"https://graph.facebook.com/{self.graph_version}/{self.page_id}/feed",
+                data=payload,
+                timeout=30,
+            )
         except httpx.HTTPError as exc:
             return PostResult(False, None, f"http_error:{type(exc).__name__}")
-        body = response.json() if response.headers.get("content-type", "").startswith("application/json") else {}
+        body = (
+            response.json()
+            if response.headers.get("content-type", "").startswith("application/json")
+            else {}
+        )
         if response.status_code != 200:
-            return PostResult(False, None, str(body.get("error", {}).get("message") or response.text[:200]))
+            return PostResult(
+                False,
+                None,
+                str(body.get("error", {}).get("message") or response.text[:200]),
+            )
         return PostResult(True, body.get("id"))
 
 
@@ -85,12 +108,22 @@ class TelegramChannel:
     chat_id: str
 
     def post(self, message: str, link: str | None = None) -> PostResult:
-        payload = {"chat_id": self.chat_id, "text": message[:4000], "disable_web_page_preview": True}
+        payload = {
+            "chat_id": self.chat_id,
+            "text": message[:4000],
+            "disable_web_page_preview": True,
+        }
         try:
-            response = httpx.post(f"https://api.telegram.org/bot{self.bot_token}/sendMessage", json=payload, timeout=30)
+            response = httpx.post(
+                f"https://api.telegram.org/bot{self.bot_token}/sendMessage",
+                json=payload,
+                timeout=30,
+            )
         except httpx.HTTPError as exc:
             return PostResult(False, None, f"http_error:{type(exc).__name__}")
         body = response.json()
         if not body.get("ok"):
-            return PostResult(False, None, str(body.get("description") or response.text[:200]))
+            return PostResult(
+                False, None, str(body.get("description") or response.text[:200])
+            )
         return PostResult(True, str(body["result"]["message_id"]))

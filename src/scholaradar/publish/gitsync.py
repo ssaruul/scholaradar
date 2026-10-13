@@ -8,10 +8,14 @@ log = logging.getLogger(__name__)
 
 
 def _git(root: Path, *args: str) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(["git", *args], cwd=root, capture_output=True, text=True)
+    return subprocess.run(
+        ["git", *args], cwd=root, capture_output=True, text=True, check=False
+    )
 
 
-def sync_outputs(root: Path, paths: list[Path], message: str, remote: str, branch: str, push: bool) -> bool:
+def sync_outputs(
+    root: Path, paths: list[Path], message: str, remote: str, branch: str, push: bool
+) -> bool:
     relative = [str(path.relative_to(root)) for path in paths if path.exists()]
     if not relative:
         return False
@@ -31,7 +35,9 @@ def sync_outputs(root: Path, paths: list[Path], message: str, remote: str, branc
         return True
     pulled = _git(root, "pull", "--rebase", "--autostash", remote, branch)
     if pulled.returncode != 0:
-        log.warning("git pull --rebase failed, not pushing: %s", pulled.stderr.strip()[-300:])
+        log.warning(
+            "git pull --rebase failed, not pushing: %s", pulled.stderr.strip()[-300:]
+        )
         return True
     pushed = _git(root, "push", remote, branch)
     if pushed.returncode != 0:

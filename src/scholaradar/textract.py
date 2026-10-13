@@ -59,18 +59,27 @@ def extract_html(html: bytes, url: str) -> Extracted | None:
     if doc is None or not doc.text or len(doc.text.strip()) < 80:
         return None
     text = doc.text.strip()
-    return Extracted(text=text, title=(doc.title or "").strip(), date=doc.date, lang=guess_language(text))
+    return Extracted(
+        text=text,
+        title=(doc.title or "").strip(),
+        date=doc.date,
+        lang=guess_language(text),
+    )
 
 
 def extract_pdf(data: bytes) -> Extracted | None:
     try:
         reader = PdfReader(io.BytesIO(data))
         pages = [page.extract_text() or "" for page in reader.pages[:40]]
-        metadata_title = reader.metadata.title if reader.metadata and reader.metadata.title else ""
+        metadata_title = (
+            reader.metadata.title if reader.metadata and reader.metadata.title else ""
+        )
     except (PdfReadError, ValueError, KeyError, TypeError):
         return None
     text = re.sub(r"[ \t]+", " ", "\n".join(pages)).strip()
     if len(text) < 80:
         return None
     title = metadata_title or text.splitlines()[0][:200]
-    return Extracted(text=text, title=title.strip(), date=None, lang=guess_language(text))
+    return Extracted(
+        text=text, title=title.strip(), date=None, lang=guess_language(text)
+    )

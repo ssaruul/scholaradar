@@ -12,27 +12,54 @@ from pydantic import ValidationError
 
 from .. import db
 from ..config import Settings
+from ..urls import host_of
 from .client import Completion, LlmClient
 from .prompts import system_prompt, user_prompt
 from .schema import Opportunity, opportunity_json_schema
 from .verify import verify
-from ..urls import host_of
 
 log = logging.getLogger(__name__)
 
 COUNTRY_ALIASES = {
-    "usa": "United States", "u.s.": "United States", "u.s.a.": "United States", "us": "United States", "united states of america": "United States", "america": "United States",
-    "uk": "United Kingdom", "u.k.": "United Kingdom", "britain": "United Kingdom", "great britain": "United Kingdom", "england": "United Kingdom",
-    "korea": "South Korea", "republic of korea": "South Korea", "korea, republic of": "South Korea",
-    "turkey": "Türkiye", "turkiye": "Türkiye",
-    "people's republic of china": "China", "prc": "China", "mainland china": "China",
-    "russian federation": "Russia", "the netherlands": "Netherlands", "holland": "Netherlands",
-    "czechia": "Czech Republic", "uae": "United Arab Emirates", "taiwan (roc)": "Taiwan", "republic of china (taiwan)": "Taiwan",
-    "unknown": "", "n/a": "", "not specified": "", "unclear": "", "none": "", "not stated": "", "multiple": "Multiple", "various": "Multiple", "online": "Remote",
+    "usa": "United States",
+    "u.s.": "United States",
+    "u.s.a.": "United States",
+    "us": "United States",
+    "united states of america": "United States",
+    "america": "United States",
+    "uk": "United Kingdom",
+    "u.k.": "United Kingdom",
+    "britain": "United Kingdom",
+    "great britain": "United Kingdom",
+    "england": "United Kingdom",
+    "korea": "South Korea",
+    "republic of korea": "South Korea",
+    "korea, republic of": "South Korea",
+    "turkey": "Türkiye",
+    "turkiye": "Türkiye",
+    "people's republic of china": "China",
+    "prc": "China",
+    "mainland china": "China",
+    "russian federation": "Russia",
+    "the netherlands": "Netherlands",
+    "holland": "Netherlands",
+    "czechia": "Czech Republic",
+    "uae": "United Arab Emirates",
+    "taiwan (roc)": "Taiwan",
+    "republic of china (taiwan)": "Taiwan",
+    "unknown": "",
+    "n/a": "",
+    "not specified": "",
+    "unclear": "",
+    "none": "",
+    "not stated": "",
+    "multiple": "Multiple",
+    "various": "Multiple",
+    "online": "Remote",
 }
 
 
-URL_HOST = re.compile(r"^[\w.-]+\.[a-z]{2,}(?:[/?#].*)?$", re.I)
+URL_HOST = re.compile(r"^[\w.-]+\.[a-z]{2,}(?:[/?#].*)?$", re.IGNORECASE)
 
 
 def clean_apply_url(url: str, page_url: str, text: str) -> str:
@@ -46,7 +73,7 @@ def clean_apply_url(url: str, page_url: str, text: str) -> str:
     host = host_of(candidate)
     if not host or "." not in host:
         return page_url
-    bare = host[4:] if host.startswith("www.") else host
+    bare = host.removeprefix("www.")
     if bare not in text and bare not in host_of(page_url):
         return page_url
     return candidate
@@ -91,26 +118,50 @@ def _clip(text: str, max_chars: int, lang: str | None = None) -> str:
     return f"{text[:head]}\n[...]\n{text[-tail:]}"
 
 
-def extract_one(client: LlmClient, settings: Settings, page: db.PageRow, text: str, today: date, schema: dict) -> ExtractionOutcome:
-    system = system_prompt(settings.target.name, settings.target.all_names(), today, settings.llm.summary_language)
-    user = user_prompt(page.url, page.title or "", _clip(text, settings.llm.max_input_chars, page.lang))
+def extract_one(
+    client: LlmClient,
+    settings: Settings,
+    page: db.PageRow,
+    text: str,
+    today: date,
+    schema: dict,
+) -> ExtractionOutcome:
+    system = system_prompt(
+        settings.target.name,
+        settings.target.all_names(),
+        today,
+        settings.llm.summary_language,
+    )
+    user = user_prompt(
+        page.url, page.title or "", _clip(text, settings.llm.max_input_chars, page.lang)
+    )
     completion = client.complete_json(system, user, schema)
     if completion.error or completion.data is None:
-        return ExtractionOutcome(page, completion, None, False, completion.error or "empty", text)
+        return ExtractionOutcome(
+            page, completion, None, False, completion.error or "empty", text
+        )
     try:
         opp = Opportunity.model_validate(completion.data)
     except ValidationError as exc:
-        return ExtractionOutcome(page, completion, None, False, f"schema:{exc.error_count()}", text)
+        return ExtractionOutcome(
+            page, completion, None, False, f"schema:{exc.error_count()}", text
+        )
     opp, verified = verify(opp, text, settings.target.all_names())
     return ExtractionOutcome(page, completion, opp, verified, None, text)
 
 
-def to_record(page: db.PageRow, opp: Opportunity, verified: bool, model: str, text: str = "") -> db.OpportunityRecord:
+def to_record(
+    page: db.PageRow, opp: Opportunity, verified: bool, model: str, text: str = ""
+) -> db.OpportunityRecord:
     return db.OpportunityRecord(
         page_id=page.id,
         title=opp.title.strip() or (page.title or page.url),
         provider=opp.provider.strip(),
         canonical_name=opp.canonical_name.strip(),
+        required_documents=[d.strip() for d in opp.required_documents if d.strip()],
+        language_requirements=opp.language_requirements.strip(),
+        application_route=opp.application_route,
+        supervisor_required=opp.supervisor_required,
         host_country=normalize_country(opp.host_country),
         degree_levels=list(dict.fromkeys(opp.degree_levels)),
         fields_of_study=opp.fields_of_study,
@@ -128,7 +179,13 @@ def to_record(page: db.PageRow, opp: Opportunity, verified: bool, model: str, te
     )
 
 
-def extract_pages(conn: sqlite3.Connection, settings: Settings, client: LlmClient, limit: int, today: date) -> ExtractStats:
+def extract_pages(
+    conn: sqlite3.Connection,
+    settings: Settings,
+    client: LlmClient,
+    limit: int,
+    today: date,
+) -> ExtractStats:
     stats = ExtractStats()
     db.requeue_llm_errors(conn)
     pages = db.pages_with_status(conn, "fetched", limit)
@@ -136,7 +193,9 @@ def extract_pages(conn: sqlite3.Connection, settings: Settings, client: LlmClien
     model_name = client.model or settings.llm.model
 
     def work(page: db.PageRow) -> ExtractionOutcome:
-        text = Path(page.text_path).read_text(encoding="utf-8") if page.text_path else ""
+        text = (
+            Path(page.text_path).read_text(encoding="utf-8") if page.text_path else ""
+        )
         return extract_one(client, settings, page, text, today, schema)
 
     with ThreadPoolExecutor(max_workers=settings.llm.concurrency) as pool:
@@ -146,15 +205,27 @@ def extract_pages(conn: sqlite3.Connection, settings: Settings, client: LlmClien
             stats.seconds += outcome.completion.seconds
             if outcome.error or outcome.opportunity is None:
                 stats.errors += 1
-                stats.by_error[outcome.error or "empty"] = stats.by_error.get(outcome.error or "empty", 0) + 1
-                db.set_page_status(conn, outcome.page.id, "error", f"llm:{outcome.error}")
+                stats.by_error[outcome.error or "empty"] = (
+                    stats.by_error.get(outcome.error or "empty", 0) + 1
+                )
+                db.set_page_status(
+                    conn, outcome.page.id, "error", f"llm:{outcome.error}"
+                )
             elif not outcome.opportunity.is_opportunity:
                 stats.not_opportunity += 1
                 db.set_page_status(conn, outcome.page.id, "not_opportunity")
             else:
                 stats.extracted += 1
-                record = to_record(outcome.page, outcome.opportunity, outcome.verified, model_name, outcome.text)
-                source_name = db.source_implying_eligibility(conn, outcome.page.source_id)
+                record = to_record(
+                    outcome.page,
+                    outcome.opportunity,
+                    outcome.verified,
+                    model_name,
+                    outcome.text,
+                )
+                source_name = db.source_implying_eligibility(
+                    conn, outcome.page.source_id
+                )
                 if source_name and record.target_eligible == "unclear":
                     record.target_eligible = "yes"
                     record.evidence_quote = f"Published by {source_name}"

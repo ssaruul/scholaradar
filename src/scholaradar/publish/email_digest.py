@@ -10,10 +10,16 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from ..config import Secrets
 
 
-def render_digest(templates_dir: Path, rows: list[dict], target_name: str, today: date) -> tuple[str, str]:
-    env = Environment(loader=FileSystemLoader(templates_dir), autoescape=select_autoescape(["html"]))
+def render_digest(
+    templates_dir: Path, rows: list[dict], target_name: str, today: date
+) -> tuple[str, str]:
+    env = Environment(
+        loader=FileSystemLoader(templates_dir), autoescape=select_autoescape(["html"])
+    )
     context = {"rows": rows, "target_name": target_name, "today": today.isoformat()}
-    return env.get_template("digest.html.j2").render(**context), env.get_template("digest.txt.j2").render(**context)
+    return env.get_template("digest.html.j2").render(**context), env.get_template(
+        "digest.txt.j2"
+    ).render(**context)
 
 
 def send_digest(secrets: Secrets, subject: str, html: str, text: str) -> None:

@@ -37,13 +37,22 @@ def apply_overrides(rows: list[dict], overrides: dict[str, dict]) -> list[dict]:
         if match.get("dismiss"):
             continue
         fixed = dict(row)
-        for field in ("target_eligible", "deadline", "title", "host_country", "provider", "funding_type"):
+        for field in (
+            "target_eligible",
+            "deadline",
+            "title",
+            "host_country",
+            "provider",
+            "funding_type",
+        ):
             if field in match and match[field] is not None:
                 fixed[field] = str(match[field])
         if "degree_levels" in match:
             fixed["degree_levels"] = list(match["degree_levels"])
         if "target_eligible" in match or "deadline" in match:
-            fixed["evidence_quote"] = f"Manual correction: {match.get('note', 'see config/overrides.yaml')}"
+            fixed["evidence_quote"] = (
+                f"Manual correction: {match.get('note', 'see config/overrides.yaml')}"
+            )
             fixed["evidence_verified"] = True
         result.append(fixed)
     return result

@@ -4,6 +4,8 @@ from collections import Counter
 from datetime import date, timedelta
 from pathlib import Path
 
+from ..outreach import follow_up_due, render_outreach
+
 STRINGS = {
     "en": {
         "title": "Scholaradar report, {today}",
@@ -14,19 +16,54 @@ STRINGS = {
         "open": "All open opportunities ({n})",
         "open_note": "Eligible or unclear, fully funded, sorted by deadline; opportunities without a stated deadline are listed last.",
         "changed": "Changed since the previous run ({n})",
+        "outreach": "Professor outreach ({n} tracked, {due} follow-ups due)",
         "coverage": "Coverage",
         "by_language": "Pages by language",
         "top_hosts": "Top host countries",
         "footer": "Verdicts come from a local language model and are checked against a verbatim quote from the page; `unverified` means no supporting quote was found. Always confirm eligibility and deadlines on the official page before applying.",
         "none": "_None._",
-        "headers": ("Deadline", "Days left", "Opportunity", "Host country", "Level", "Funding", "Verdict"),
+        "headers": (
+            "Deadline",
+            "Days left",
+            "Opportunity",
+            "Host country",
+            "Level",
+            "Funding",
+            "Verdict",
+        ),
         "change_headers": ("Opportunity", "What changed", "Before", "After"),
         "verdict": {"yes": "Eligible", "no": "Not eligible", "unclear": "Unclear"},
         "unverified": " (unverified)",
-        "today": "today", "tomorrow": "tomorrow", "days": "{n}", "no_deadline": "not stated", "more": "... and {n} more on the dashboard.",
-        "funding": {"full": "fully funded ", "partial": "partially funded ", "stipend_only": "stipend-only ", "tuition_only": "tuition-only ", "unknown": ""},
-        "levels": {"bachelor": "bachelor", "master": "master", "phd": "PhD", "postdoc": "postdoc", "research": "research", "exchange": "exchange", "short_course": "short course", "language": "language", "other": "other"},
-        "funding_cell": {"full": "full", "partial": "partial", "tuition_only": "tuition only", "stipend_only": "stipend only", "unknown": "unknown"},
+        "today": "today",
+        "tomorrow": "tomorrow",
+        "days": "{n}",
+        "no_deadline": "not stated",
+        "more": "... and {n} more on the dashboard.",
+        "funding": {
+            "full": "fully funded ",
+            "partial": "partially funded ",
+            "stipend_only": "stipend-only ",
+            "tuition_only": "tuition-only ",
+            "unknown": "",
+        },
+        "levels": {
+            "bachelor": "bachelor",
+            "master": "master",
+            "phd": "PhD",
+            "postdoc": "postdoc",
+            "research": "research",
+            "exchange": "exchange",
+            "short_course": "short course",
+            "language": "language",
+            "other": "other",
+        },
+        "funding_cell": {
+            "full": "full",
+            "partial": "partial",
+            "tuition_only": "tuition only",
+            "stipend_only": "stipend only",
+            "unknown": "unknown",
+        },
     },
     "mn": {
         "title": "Scholaradar тайлан, {today}",
@@ -37,19 +74,54 @@ STRINGS = {
         "open": "Одоо нээлттэй бүх тэтгэлэг ({n})",
         "open_note": "Хамаарах эсвэл тодорхойгүй, бүрэн санхүүжилттэй, хугацаагаар эрэмбэлсэн; хугацаа заагаагүй тэтгэлгүүд хамгийн сүүлд.",
         "changed": "Өмнөх ажиллагаанаас хойш өөрчлөгдсөн ({n})",
+        "outreach": "Профессоруудтай холбогдсон байдал ({n} бүртгэлтэй, {due} дахин холбогдох)",
         "coverage": "Хамрах хүрээ",
         "by_language": "Хуудсууд хэлээр",
         "top_hosts": "Суралцах улсууд",
         "footer": "Дүгнэлтийг локал хэлний загвар гаргаж, хуудасны үгчилсэн ишлэлээр шалгасан; `баталгаажаагүй` гэдэг нь нотлох өгүүлбэр олдоогүй гэсэн үг. Өргөдөл гаргахын өмнө албан ёсны хуудаснаас хамаарах эсэх, хугацааг заавал баталгаажуулна уу.",
         "none": "_Байхгүй._",
-        "headers": ("Хугацаа", "Үлдсэн хоног", "Тэтгэлэг", "Суралцах улс", "Түвшин", "Санхүүжилт", "Хамаарах эсэх"),
+        "headers": (
+            "Хугацаа",
+            "Үлдсэн хоног",
+            "Тэтгэлэг",
+            "Суралцах улс",
+            "Түвшин",
+            "Санхүүжилт",
+            "Хамаарах эсэх",
+        ),
         "change_headers": ("Тэтгэлэг", "Юу өөрчлөгдсөн", "Өмнө", "Дараа"),
         "verdict": {"yes": "Хамаарна", "no": "Хамаарахгүй", "unclear": "Тодорхойгүй"},
         "unverified": " (баталгаажаагүй)",
-        "today": "өнөөдөр", "tomorrow": "маргааш", "days": "{n}", "no_deadline": "заагаагүй", "more": "... мөн {n} тэтгэлэг самбар дээр.",
-        "funding": {"full": "бүрэн санхүүжилттэй ", "partial": "хэсэгчилсэн санхүүжилттэй ", "stipend_only": "зөвхөн тэтгэмжтэй ", "tuition_only": "зөвхөн төлбөртэй ", "unknown": ""},
-        "levels": {"bachelor": "бакалавр", "master": "магистр", "phd": "доктор", "postdoc": "постдок", "research": "судалгаа", "exchange": "солилцоо", "short_course": "богино хугацааны", "language": "хэлний", "other": "бусад"},
-        "funding_cell": {"full": "бүрэн", "partial": "хэсэгчилсэн", "tuition_only": "зөвхөн төлбөр", "stipend_only": "зөвхөн тэтгэмж", "unknown": "тодорхойгүй"},
+        "today": "өнөөдөр",
+        "tomorrow": "маргааш",
+        "days": "{n}",
+        "no_deadline": "заагаагүй",
+        "more": "... мөн {n} тэтгэлэг самбар дээр.",
+        "funding": {
+            "full": "бүрэн санхүүжилттэй ",
+            "partial": "хэсэгчилсэн санхүүжилттэй ",
+            "stipend_only": "зөвхөн тэтгэмжтэй ",
+            "tuition_only": "зөвхөн төлбөртэй ",
+            "unknown": "",
+        },
+        "levels": {
+            "bachelor": "бакалавр",
+            "master": "магистр",
+            "phd": "доктор",
+            "postdoc": "постдок",
+            "research": "судалгаа",
+            "exchange": "солилцоо",
+            "short_course": "богино хугацааны",
+            "language": "хэлний",
+            "other": "бусад",
+        },
+        "funding_cell": {
+            "full": "бүрэн",
+            "partial": "хэсэгчилсэн",
+            "tuition_only": "зөвхөн төлбөр",
+            "stipend_only": "зөвхөн тэтгэмж",
+            "unknown": "тодорхойгүй",
+        },
     },
 }
 
@@ -75,7 +147,11 @@ def _row(item: dict, today: date, s: dict) -> str:
     verdict = s["verdict"].get(item["target_eligible"], item["target_eligible"])
     if not item["evidence_verified"]:
         verdict += s["unverified"]
-    apply_link = f" ([apply]({item['apply_url']}))" if item["apply_url"] and item["apply_url"] != item["page_url"] else ""
+    apply_link = (
+        f" ([apply]({item['apply_url']}))"
+        if item["apply_url"] and item["apply_url"] != item["page_url"]
+        else ""
+    )
     return (
         f"| {item['deadline'] or ''} | {_days_left(item['deadline'], today, s)} | [{title}]({item['page_url']}){apply_link} | "
         f"{_cell(item['host_country'])} | {_cell(levels)} | {s['funding_cell'].get(item['funding_type'], item['funding_type'])} | {verdict} |"
@@ -85,7 +161,9 @@ def _row(item: dict, today: date, s: dict) -> str:
 def _table(items: list[dict], today: date, s: dict, limit: int | None = None) -> str:
     if not items:
         return s["none"] + "\n"
-    header = "| " + " | ".join(s["headers"]) + " |\n|" + "---|" * len(s["headers"]) + "\n"
+    header = (
+        "| " + " | ".join(s["headers"]) + " |\n|" + "---|" * len(s["headers"]) + "\n"
+    )
     shown = items[:limit] if limit else items
     body = header + "\n".join(_row(item, today, s) for item in shown) + "\n"
     if limit and len(items) > limit:
@@ -98,23 +176,47 @@ def _changes_table(changes: list[dict], s: dict) -> str:
         return s["none"] + "\n"
     header = "| " + " | ".join(s["change_headers"]) + " |\n|---|---|---|---|\n"
     body = "\n".join(
-        f"| [{_cell(c['title'])[:80]}]({c['page_url'] or c['apply_url']}) | {_cell(c['field'])} | {_cell(c['old_value'])} | {_cell(c['new_value'])} |" for c in changes
+        f"| [{_cell(c['title'])[:80]}]({c['page_url'] or c['apply_url']}) | {_cell(c['field'])} | {_cell(c['old_value'])} | {_cell(c['new_value'])} |"
+        for c in changes
     )
     return header + body + "\n"
 
 
 def render_report(
-    rows: list[dict], new_rows: list[dict], target_name: str, today: date, pages_url: str, window_days: int = 90,
-    changes: list[dict] | None = None, funding: list[str] | None = None, language: str = "en", max_open: int = 80,
+    rows: list[dict],
+    new_rows: list[dict],
+    target_name: str,
+    today: date,
+    pages_url: str,
+    window_days: int = 90,
+    changes: list[dict] | None = None,
+    funding: list[str] | None = None,
+    language: str = "en",
+    max_open: int = 80,
+    outreach: list[dict] | None = None,
 ) -> str:
     s = STRINGS.get(language, STRINGS["en"])
     cutoff = today.isoformat()
     horizon = (today + timedelta(days=window_days)).isoformat()
-    open_rows = [r for r in rows if r["target_eligible"] != "no" and (not r["deadline"] or r["deadline"] >= cutoff)]
-    open_rows.sort(key=lambda r: (r["deadline"] is None, r["deadline"] or "", r["title"]))
+    open_rows = [
+        r
+        for r in rows
+        if r["target_eligible"] != "no"
+        and (not r["deadline"] or r["deadline"] >= cutoff)
+    ]
+    open_rows.sort(
+        key=lambda r: (r["deadline"] is None, r["deadline"] or "", r["title"])
+    )
     upcoming = [r for r in open_rows if r["deadline"] and r["deadline"] <= horizon]
-    new_visible = [r for r in new_rows if r["target_eligible"] != "no" and (not r["deadline"] or r["deadline"] >= cutoff)]
-    new_visible.sort(key=lambda r: (r["deadline"] is None, r["deadline"] or "", r["title"]))
+    new_visible = [
+        r
+        for r in new_rows
+        if r["target_eligible"] != "no"
+        and (not r["deadline"] or r["deadline"] >= cutoff)
+    ]
+    new_visible.sort(
+        key=lambda r: (r["deadline"] is None, r["deadline"] or "", r["title"])
+    )
     verdicts = Counter(r["target_eligible"] for r in rows)
     languages = Counter(r["lang"] for r in rows)
     countries = Counter(r["host_country"] for r in rows if r["host_country"])
@@ -122,7 +224,14 @@ def render_report(
     lines = [
         "# " + s["title"].format(today=today.isoformat()),
         "",
-        s["intro"].format(n=len(rows), funding=funding_label, target=target_name, yes=verdicts.get("yes", 0), unclear=verdicts.get("unclear", 0), no=verdicts.get("no", 0)),
+        s["intro"].format(
+            n=len(rows),
+            funding=funding_label,
+            target=target_name,
+            yes=verdicts.get("yes", 0),
+            unclear=verdicts.get("unclear", 0),
+            no=verdicts.get("no", 0),
+        ),
         s["links"].format(url=pages_url),
         "",
         "## " + s["new"].format(n=len(new_visible)),
@@ -139,11 +248,31 @@ def render_report(
         "## " + s["changed"].format(n=len(changes or [])),
         "",
         _changes_table(changes or [], s),
+    ]
+    if outreach:
+        lines += [
+            "## "
+            + s["outreach"].format(
+                n=len(outreach),
+                due=sum(1 for row in outreach if follow_up_due(row, today)),
+            ),
+            "",
+            render_outreach(outreach, today, language),
+        ]
+    lines += [
         "## " + s["coverage"],
         "",
-        s["by_language"] + ": " + ", ".join(f"{lang} {count}" for lang, count in languages.most_common()) + ".",
+        s["by_language"]
+        + ": "
+        + ", ".join(f"{lang} {count}" for lang, count in languages.most_common())
+        + ".",
         "",
-        s["top_hosts"] + ": " + ", ".join(f"{country} {count}" for country, count in countries.most_common(10)) + ".",
+        s["top_hosts"]
+        + ": "
+        + ", ".join(
+            f"{country} {count}" for country, count in countries.most_common(10)
+        )
+        + ".",
         "",
         s["footer"],
         "",
@@ -156,8 +285,15 @@ def write_report(reports_dir: Path, content: str, today: date) -> Path:
     dated = reports_dir / f"{today.isoformat()}.md"
     dated.write_text(content, encoding="utf-8")
     (reports_dir / "latest.md").write_text(content, encoding="utf-8")
-    index_lines = ["# Reports", "", "Newest first. `latest.md` always mirrors the most recent run.", ""]
+    index_lines = [
+        "# Reports",
+        "",
+        "Newest first. `latest.md` always mirrors the most recent run.",
+        "",
+    ]
     for path in sorted(reports_dir.glob("20??-??-??.md"), reverse=True):
         index_lines.append(f"- [{path.stem}]({path.name})")
-    (reports_dir / "README.md").write_text("\n".join(index_lines) + "\n", encoding="utf-8")
+    (reports_dir / "README.md").write_text(
+        "\n".join(index_lines) + "\n", encoding="utf-8"
+    )
     return dated

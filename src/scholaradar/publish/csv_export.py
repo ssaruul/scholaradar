@@ -4,9 +4,31 @@ import csv
 from pathlib import Path
 
 COLUMNS = [
-    "id", "title", "canonical_name", "provider", "host_country", "degree_levels", "fields_of_study", "funding_type", "deadline", "deadline_text",
-    "target_eligible", "evidence_verified", "nationality_mode", "eligibility_summary", "evidence_quote", "apply_url", "page_url",
-    "lang", "first_seen", "extracted_at", "model",
+    "id",
+    "title",
+    "canonical_name",
+    "provider",
+    "host_country",
+    "degree_levels",
+    "fields_of_study",
+    "funding_type",
+    "deadline",
+    "deadline_text",
+    "target_eligible",
+    "evidence_verified",
+    "nationality_mode",
+    "eligibility_summary",
+    "evidence_quote",
+    "apply_url",
+    "page_url",
+    "required_documents",
+    "language_requirements",
+    "application_route",
+    "supervisor_required",
+    "lang",
+    "first_seen",
+    "extracted_at",
+    "model",
 ]
 
 
@@ -19,6 +41,7 @@ def write_csv(path: Path, rows: list[dict]) -> int:
             flat = dict(row)
             flat["degree_levels"] = ";".join(row["degree_levels"])
             flat["fields_of_study"] = ";".join(row["fields_of_study"])
+            flat["required_documents"] = ";".join(row.get("required_documents") or [])
             flat["evidence_verified"] = int(row["evidence_verified"])
             writer.writerow(flat)
     return len(rows)

@@ -14,9 +14,14 @@ def browser_available() -> bool:
     return True
 
 
-def render_page(url: str, user_agent: str, timeout_seconds: float = 30.0, wait_ms: int = 3000) -> bytes | None:
+def render_page(
+    url: str, user_agent: str, timeout_seconds: float = 30.0, wait_ms: int = 3000
+) -> bytes | None:
     if not browser_available():
-        log.warning("render requested for %s but playwright is not installed (uv sync --extra browser; playwright install chromium)", url)
+        log.warning(
+            "render requested for %s but playwright is not installed (uv sync --extra browser; playwright install chromium)",
+            url,
+        )
         return None
     sync_api = importlib.import_module("playwright.sync_api")
     with sync_api.sync_playwright() as playwright:
@@ -24,11 +29,21 @@ def render_page(url: str, user_agent: str, timeout_seconds: float = 30.0, wait_m
         try:
             page = browser.new_page(user_agent=user_agent)
             try:
-                page.goto(url, wait_until="domcontentloaded", timeout=int(timeout_seconds * 1000))
+                page.goto(
+                    url,
+                    wait_until="domcontentloaded",
+                    timeout=int(timeout_seconds * 1000),
+                )
             except sync_api.TimeoutError:
-                log.info("render: %s did not finish loading in %.0fs, using what rendered so far", url, timeout_seconds)
+                log.info(
+                    "render: %s did not finish loading in %.0fs, using what rendered so far",
+                    url,
+                    timeout_seconds,
+                )
             try:
-                page.wait_for_load_state("networkidle", timeout=int(timeout_seconds * 1000 / 2))
+                page.wait_for_load_state(
+                    "networkidle", timeout=int(timeout_seconds * 1000 / 2)
+                )
             except sync_api.TimeoutError:
                 pass
             page.wait_for_timeout(wait_ms)

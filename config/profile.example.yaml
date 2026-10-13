@@ -1,0 +1,29 @@
+name: Your Name
+nationality: Mongolia
+email: you@example.com
+current_status: final-year bachelor student
+education:
+  - degree: BSc Computer Science
+    institution: National University of Mongolia
+    years: 2023-2027
+    gpa: 3.6/4.0
+target_degree: master
+field: computer science
+research_interests:
+  - machine learning for low-resource languages
+  - speech recognition for Mongolian
+research_experience:
+  - Built an OCR pipeline for Mongolian bank statements (CRAFT + fine-tuned recognizer, 92.8% accuracy)
+publications: []
+work_experience:
+  - role: machine learning engineer intern
+    organisation: Rookie LLC
+    years: 2025-2026
+skills:
+  - Python, PyTorch, Docker
+languages:
+  - Mongolian (native)
+  - English (TOEFL iBT 95)
+  - Japanese (JLPT N3)
+awards: []
+goals: return to Mongolia and work on language technology for Mongolian

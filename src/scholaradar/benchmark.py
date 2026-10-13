@@ -64,7 +64,9 @@ def load_cases(path: Path) -> list[Case]:
     return cases
 
 
-def _cached_text(settings: Settings, fetcher: Fetcher, url: str) -> tuple[str, str] | None:
+def _cached_text(
+    settings: Settings, fetcher: Fetcher, url: str
+) -> tuple[str, str] | None:
     cache_dir = settings.data_dir / "benchmark" / "text"
     cache_dir.mkdir(parents=True, exist_ok=True)
     key = hashlib.sha1(url.encode()).hexdigest()
@@ -74,18 +76,31 @@ def _cached_text(settings: Settings, fetcher: Fetcher, url: str) -> tuple[str, s
         return payload["title"], payload["text"]
     result = fetcher.fetch(url)
     if not result.ok:
-        log.warning("benchmark fetch failed %s: %s %s", url, result.status, result.error)
+        log.warning(
+            "benchmark fetch failed %s: %s %s", url, result.status, result.error
+        )
         return None
-    extracted = extract_pdf(result.body) if result.is_pdf else extract_html(result.body, result.final_url)
+    extracted = (
+        extract_pdf(result.body)
+        if result.is_pdf
+        else extract_html(result.body, result.final_url)
+    )
     if extracted is None:
         log.warning("benchmark no text %s", url)
         return None
-    cached.write_text(json.dumps({"title": extracted.title, "text": extracted.text}, ensure_ascii=False), encoding="utf-8")
+    cached.write_text(
+        json.dumps(
+            {"title": extracted.title, "text": extracted.text}, ensure_ascii=False
+        ),
+        encoding="utf-8",
+    )
     return extracted.title, extracted.text
 
 
 def run_benchmark(settings: Settings, model: str, labels_path: Path, limit: int) -> int:
-    cases = load_cases(labels_path if labels_path.is_absolute() else settings.root_dir / labels_path)
+    cases = load_cases(
+        labels_path if labels_path.is_absolute() else settings.root_dir / labels_path
+    )
     if limit:
         cases = cases[:limit]
     fetcher = Fetcher(settings.fetch)
@@ -106,9 +121,35 @@ def run_benchmark(settings: Settings, model: str, labels_path: Path, limit: int)
     def work(indexed: tuple[int, Case]) -> CaseResult:
         index, case = indexed
         if case.url not in texts:
-            return CaseResult(case.url, case.target_eligible, None, case.deadline, None, case.is_opportunity, None, False, "fetch_failed", 0.0, 0, 0)
+            return CaseResult(
+                case.url,
+                case.target_eligible,
+                None,
+                case.deadline,
+                None,
+                case.is_opportunity,
+                None,
+                False,
+                "fetch_failed",
+                0.0,
+                0,
+                0,
+            )
         title, text = texts[case.url]
-        page = PageRow(index, case.url, case.url, None, "benchmark", None, title, None, [], "fetched", None, None)
+        page = PageRow(
+            index,
+            case.url,
+            case.url,
+            None,
+            "benchmark",
+            None,
+            title,
+            None,
+            [],
+            "fetched",
+            None,
+            None,
+        )
         outcome = extract_one(client, settings, page, text, today, schema)
         opp = outcome.opportunity
         return CaseResult(
@@ -132,25 +173,51 @@ def run_benchmark(settings: Settings, model: str, labels_path: Path, limit: int)
     client.close()
     scored = [r for r in results if r.error is None]
     opportunities = [r for r in scored if r.expected_is_opportunity]
-    eligible_correct = sum(1 for r in opportunities if r.predicted_eligible == r.expected_eligible)
+    eligible_correct = sum(
+        1 for r in opportunities if r.predicted_eligible == r.expected_eligible
+    )
     deadline_cases = [r for r in opportunities if r.expected_deadline]
-    deadline_correct = sum(1 for r in deadline_cases if r.predicted_deadline == r.expected_deadline)
-    opp_correct = sum(1 for r in scored if r.predicted_is_opportunity == r.expected_is_opportunity)
-    false_yes = sum(1 for r in opportunities if r.predicted_eligible == "yes" and r.expected_eligible != "yes")
-    swaps = sum(1 for r in opportunities if {r.predicted_eligible, r.expected_eligible} == {"yes", "no"})
+    deadline_correct = sum(
+        1 for r in deadline_cases if r.predicted_deadline == r.expected_deadline
+    )
+    opp_correct = sum(
+        1 for r in scored if r.predicted_is_opportunity == r.expected_is_opportunity
+    )
+    false_yes = sum(
+        1
+        for r in opportunities
+        if r.predicted_eligible == "yes" and r.expected_eligible != "yes"
+    )
+    swaps = sum(
+        1
+        for r in opportunities
+        if {r.predicted_eligible, r.expected_eligible} == {"yes", "no"}
+    )
     completion_tokens = sum(r.completion_tokens for r in results)
     summary = {
         "model": model,
         "cases": len(cases),
         "scored": len(scored),
         "errors": sorted({r.error for r in results if r.error}),
-        "eligible_accuracy": round(eligible_correct / len(opportunities), 3) if opportunities else 0.0,
-        "safe_accuracy": round(1 - swaps / len(opportunities), 3) if opportunities else 0.0,
+        "eligible_accuracy": round(eligible_correct / len(opportunities), 3)
+        if opportunities
+        else 0.0,
+        "safe_accuracy": round(1 - swaps / len(opportunities), 3)
+        if opportunities
+        else 0.0,
         "false_yes": false_yes,
         "yes_no_swaps": swaps,
-        "deadline_accuracy": round(deadline_correct / len(deadline_cases), 3) if deadline_cases else None,
-        "is_opportunity_accuracy": round(opp_correct / len(scored), 3) if scored else 0.0,
-        "verified_rate": round(sum(1 for r in opportunities if r.verified) / len(opportunities), 3) if opportunities else 0.0,
+        "deadline_accuracy": round(deadline_correct / len(deadline_cases), 3)
+        if deadline_cases
+        else None,
+        "is_opportunity_accuracy": round(opp_correct / len(scored), 3)
+        if scored
+        else 0.0,
+        "verified_rate": round(
+            sum(1 for r in opportunities if r.verified) / len(opportunities), 3
+        )
+        if opportunities
+        else 0.0,
         "wall_seconds": round(wall, 1),
         "gen_tokens_per_second": round(completion_tokens / wall, 1) if wall else 0.0,
         "prompt_tokens": sum(r.prompt_tokens for r in results),
@@ -160,10 +227,17 @@ def run_benchmark(settings: Settings, model: str, labels_path: Path, limit: int)
     out_dir.mkdir(parents=True, exist_ok=True)
     safe_model = model.replace("/", "_")
     (out_dir / f"{safe_model}.json").write_text(
-        json.dumps({"summary": summary, "results": [asdict(r) for r in results]}, ensure_ascii=False, indent=2), encoding="utf-8"
+        json.dumps(
+            {"summary": summary, "results": [asdict(r) for r in results]},
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
     )
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     for r in results:
         flag = "ok " if r.predicted_eligible == r.expected_eligible else "BAD"
-        print(f"{flag} {r.expected_eligible:>7} -> {str(r.predicted_eligible):>7}  dl {str(r.expected_deadline):>10} -> {str(r.predicted_deadline):>10}  {r.url}")
+        print(
+            f"{flag} {r.expected_eligible:>7} -> {r.predicted_eligible!s:>7}  dl {r.expected_deadline!s:>10} -> {r.predicted_deadline!s:>10}  {r.url}"
+        )
     return 0

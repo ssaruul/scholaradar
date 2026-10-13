@@ -149,6 +149,18 @@ Edit `.env` so `MODELS_DIR` points at the folder with the model file and paste t
 
 The nightly job starts the model, runs the pipeline, writes the report and stops the model again so the GPU is free for whatever else you do with it.
 
+## From "found it" to "applied": the application toolkit
+
+Finding the scholarship is half the work. Scholaradar also helps with the other half:
+
+| | |
+|---|---|
+| **Application checklist** | Every card lists the documents the page asks for, the language test required, how to apply (embassy, university, portal) and whether you need a professor's acceptance first, with tick boxes that remember your progress. |
+| **Lab finder** | `scholaradar labs --field "machine learning" --university "Tohoku University"` lists the professors publishing on your topic at that university (from OpenAlex, no key needed) with their recent papers, citation counts and links to researchmap, Google Scholar and the university's researcher database. For MEXT research students this is the step that decides everything. |
+| **Backward timeline** | `scholaradar plan --opportunity "Global Korea" --lang mn` turns a deadline into dated steps: professor outreach, test booking, recommendation letters, translation and apostille in Ulaanbaatar, drafts, submission. Saved as Markdown and as a calendar file you can import. |
+| **Drafting kit** | `scholaradar draft email --professor "..." --opportunity "MEXT" --lang ja` writes a first email to a professor; `research_plan`, `sop` and `cv` produce the other documents from `config/profile.yaml` (copy `profile.example.yaml`). Runs on the local model, so nothing you write leaves your machine; missing facts become `[ADD: ...]` placeholders, never inventions. |
+| **Outreach tracker** | `scholaradar outreach add --professor ... --university ...`, then `sent`, `replied`, `accepted`; `list` shows who is overdue for a follow-up (10 days without reply) and the nightly report repeats it. |
+
 ## Make it yours
 
 **Your country.** Open `config/settings.yaml` and replace the `target` block with your country's names in each language:
@@ -208,6 +220,10 @@ Then swap the country-specific lines in `config/queries.yaml` and add your minis
 | `scholaradar llm install --backend vulkan\|cuda-12.8\|cuda-13.4\|rocm\|cpu` | Download a prebuilt llama.cpp for this OS |
 | `scholaradar llm start / stop / status` | Manage llama-server (native binary or Docker, per `LLAMA_MODE`) |
 | `scholaradar social telegram\|facebook [--dry-run]` | Post the digest of new eligible items (never re-posts an item) |
+| `scholaradar labs --field F --university U [--years 3] [--limit 20] [--min-works 10]` | Rank professors at U publishing on F (OpenAlex) |
+| `scholaradar plan [--opportunity REF] [--deadline YYYY-MM-DD] [--route embassy\|university] [--lang en\|mn]` | Dated application plan as Markdown + .ics in `data/plans/` |
+| `scholaradar draft email\|research_plan\|sop\|cv --profile config/profile.yaml [--opportunity REF] [--professor NAME] [--lang en\|ja\|mn]` | Drafts with the local model into `data/drafts/` |
+| `scholaradar outreach list\|add\|sent\|replied\|accepted\|declined [--id N] ...` | Track professor emails and follow-ups |
 | `scholaradar open` | Open the dashboard in the default browser |
 | `scholaradar serve [--port 8787]` | Serve the dashboard over HTTP and open it |
 | `scholaradar status` | Page and opportunity counts |

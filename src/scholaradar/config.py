@@ -167,7 +167,9 @@ class Settings(BaseModel):
 
 
 class Secrets(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
     smtp_host: str = ""
     smtp_port: int = 587
@@ -206,8 +208,12 @@ def load_settings(root_dir: Path) -> Settings:
     settings.data_dir = _resolve(settings.root_dir, settings.data_dir)
     settings.outputs.site.dir = _resolve(settings.root_dir, settings.outputs.site.dir)
     settings.outputs.csv.path = _resolve(settings.root_dir, settings.outputs.csv.path)
-    settings.outputs.report.dir = _resolve(settings.root_dir, settings.outputs.report.dir)
-    settings.outputs.sheets.credentials_file = _resolve(settings.root_dir, settings.outputs.sheets.credentials_file)
+    settings.outputs.report.dir = _resolve(
+        settings.root_dir, settings.outputs.report.dir
+    )
+    settings.outputs.sheets.credentials_file = _resolve(
+        settings.root_dir, settings.outputs.sheets.credentials_file
+    )
     secrets = Secrets(_env_file=str(root_dir / ".env"))
     if secrets.llm_base_url:
         settings.llm.base_url = secrets.llm_base_url

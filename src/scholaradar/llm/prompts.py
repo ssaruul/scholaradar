@@ -13,11 +13,22 @@ Rules:
 - deadline: resolve to YYYY-MM-DD using today's date {today} when the year is missing; choose the main application deadline when several exist; null when none is given or it has no day.
 - canonical_name: the programme's widely used English name so that the same programme described in different languages gets the same name (e.g. a Russian page about GKS gets "Global Korea Scholarship").
 - fields_of_study: at most 8 short items; empty list when open to all fields.
+- required_documents, language_requirements, application_route, supervisor_required: only what the page states; empty or unclear otherwise.
 - Do not invent values. Use empty strings or empty lists when the page does not say."""
 
 
-def system_prompt(target_name: str, target_names: list[str], today: date, summary_language: str = "English") -> str:
-    return SYSTEM_PROMPT.format(target_name=target_name, target_names=", ".join(target_names), today=today.isoformat(), summary_language=summary_language)
+def system_prompt(
+    target_name: str,
+    target_names: list[str],
+    today: date,
+    summary_language: str = "English",
+) -> str:
+    return SYSTEM_PROMPT.format(
+        target_name=target_name,
+        target_names=", ".join(target_names),
+        today=today.isoformat(),
+        summary_language=summary_language,
+    )
 
 
 def user_prompt(url: str, title: str, text: str) -> str:

@@ -12,7 +12,13 @@ import httpx
 from .config import FetchConfig
 from .urls import host_of
 
-HTML_TYPES = ("text/html", "application/xhtml+xml", "text/plain", "application/xml", "text/xml")
+HTML_TYPES = (
+    "text/html",
+    "application/xhtml+xml",
+    "text/plain",
+    "application/xml",
+    "text/xml",
+)
 
 
 @dataclass(frozen=True)
@@ -29,11 +35,17 @@ class FetchResult:
 
     @property
     def is_pdf(self) -> bool:
-        return "application/pdf" in self.content_type or self.final_url.lower().endswith(".pdf")
+        return (
+            "application/pdf" in self.content_type
+            or self.final_url.lower().endswith(".pdf")
+        )
 
     @property
     def is_html(self) -> bool:
-        return any(kind in self.content_type for kind in HTML_TYPES) or not self.content_type
+        return (
+            any(kind in self.content_type for kind in HTML_TYPES)
+            or not self.content_type
+        )
 
 
 @dataclass
@@ -45,7 +57,10 @@ class Fetcher:
 
     def __post_init__(self) -> None:
         self.client = httpx.Client(
-            headers={"User-Agent": self.config.user_agent, "Accept-Language": "en,mn,ru,ja,ko,zh,de,tr;q=0.8"},
+            headers={
+                "User-Agent": self.config.user_agent,
+                "Accept-Language": "en,mn,ru,ja,ko,zh,de,tr;q=0.8",
+            },
             timeout=self.config.timeout_seconds,
             follow_redirects=True,
             http2=False,
@@ -82,7 +97,13 @@ class Fetcher:
 
     def fetch(self, url: str) -> FetchResult:
         if not self.allowed(url):
-            return FetchResult(status=0, final_url=url, content_type="", body=b"", error="robots_disallow")
+            return FetchResult(
+                status=0,
+                final_url=url,
+                content_type="",
+                body=b"",
+                error="robots_disallow",
+            )
         attempts = 0
         while True:
             attempts += 1
@@ -94,22 +115,37 @@ class Fetcher:
             except httpx.HTTPError as exc:
                 error = f"http_error:{type(exc).__name__}"
             if attempts >= 3:
-                return FetchResult(status=0, final_url=url, content_type="", body=b"", error=error)
+                return FetchResult(
+                    status=0, final_url=url, content_type="", body=b"", error=error
+                )
             time.sleep(2.0 * attempts)
 
     def _get(self, url: str) -> FetchResult:
         with self.client.stream("GET", url) as response:
             content_type = response.headers.get("content-type", "").lower()
             if response.status_code >= 500:
-                raise httpx.HTTPStatusError("server error", request=response.request, response=response)
+                raise httpx.HTTPStatusError(
+                    "server error", request=response.request, response=response
+                )
             chunks = []
             size = 0
             for chunk in response.iter_bytes():
                 chunks.append(chunk)
                 size += len(chunk)
                 if size > self.config.max_bytes:
-                    return FetchResult(status=response.status_code, final_url=str(response.url), content_type=content_type, body=b"", error="too_large")
-            return FetchResult(status=response.status_code, final_url=str(response.url), content_type=content_type, body=b"".join(chunks))
+                    return FetchResult(
+                        status=response.status_code,
+                        final_url=str(response.url),
+                        content_type=content_type,
+                        body=b"",
+                        error="too_large",
+                    )
+            return FetchResult(
+                status=response.status_code,
+                final_url=str(response.url),
+                content_type=content_type,
+                body=b"".join(chunks),
+            )
 
 
 def content_hash(body: bytes) -> str:

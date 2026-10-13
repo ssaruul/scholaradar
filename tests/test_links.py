@@ -18,8 +18,13 @@ HTML = b"""
 
 
 def test_links_match_text_or_same_host_path_only() -> None:
-    links = extract_candidate_links(HTML, "https://www.turkiyeburslari.gov.tr/", KEYWORDS, 20)
-    assert "https://www.turkiyeburslari.gov.tr/announcements/scholarships-2027-applications" in links
+    links = extract_candidate_links(
+        HTML, "https://www.turkiyeburslari.gov.tr/", KEYWORDS, 20
+    )
+    assert (
+        "https://www.turkiyeburslari.gov.tr/announcements/scholarships-2027-applications"
+        in links
+    )
     assert "https://other.example.org/news/1" in links
     assert "https://www.turkiyeburslari.gov.tr/files/guide.pdf" in links
     assert "https://other.example.org/news/2" not in links
@@ -30,7 +35,14 @@ def test_links_match_text_or_same_host_path_only() -> None:
 
 
 def test_links_respect_limit() -> None:
-    assert len(extract_candidate_links(HTML, "https://www.turkiyeburslari.gov.tr/", KEYWORDS, 1)) == 1
+    assert (
+        len(
+            extract_candidate_links(
+                HTML, "https://www.turkiyeburslari.gov.tr/", KEYWORDS, 1
+            )
+        )
+        == 1
+    )
 
 
 def test_parse_feed() -> None:

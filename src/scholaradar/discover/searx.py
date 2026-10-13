@@ -24,7 +24,9 @@ class SearchResult:
 
 
 def build_queries(settings: Settings, today: date) -> list[Query]:
-    years = [str(today.year + offset) for offset in range(settings.search.years_ahead + 1)]
+    years = [
+        str(today.year + offset) for offset in range(settings.search.years_ahead + 1)
+    ]
     queries: list[Query] = []
     for lang in settings.languages:
         templates = settings.query_templates.get(lang, [])
@@ -32,7 +34,12 @@ def build_queries(settings: Settings, today: date) -> list[Query]:
         demonym = settings.target.demonym if lang == "en" else target
         for template in templates:
             for year in years:
-                queries.append(Query(text=template.format(year=year, target=target, demonym=demonym), lang=lang))
+                queries.append(
+                    Query(
+                        text=template.format(year=year, target=target, demonym=demonym),
+                        lang=lang,
+                    )
+                )
     return queries
 
 
@@ -51,10 +58,21 @@ class SearxClient:
     base_url: str
     timeout: float = 30.0
 
-    def search(self, query: Query, language_map: dict[str, str], limit: int) -> list[SearchResult]:
-        params = {"q": query.text, "format": "json", "language": language_map.get(query.lang, query.lang), "safesearch": "0"}
+    def search(
+        self, query: Query, language_map: dict[str, str], limit: int
+    ) -> list[SearchResult]:
+        params = {
+            "q": query.text,
+            "format": "json",
+            "language": language_map.get(query.lang, query.lang),
+            "safesearch": "0",
+        }
         try:
-            response = httpx.get(f"{self.base_url.rstrip('/')}/search", params=params, timeout=self.timeout)
+            response = httpx.get(
+                f"{self.base_url.rstrip('/')}/search",
+                params=params,
+                timeout=self.timeout,
+            )
         except httpx.HTTPError:
             return []
         if response.status_code != 200:
@@ -64,7 +82,14 @@ class SearxClient:
         for item in payload.get("results", [])[:limit]:
             url = item.get("url", "")
             if url.startswith("http"):
-                results.append(SearchResult(url=url, title=item.get("title", ""), snippet=item.get("content", ""), engine=item.get("engine", "")))
+                results.append(
+                    SearchResult(
+                        url=url,
+                        title=item.get("title", ""),
+                        snippet=item.get("content", ""),
+                        engine=item.get("engine", ""),
+                    )
+                )
         return results
 
     def healthy(self) -> bool:
@@ -75,9 +100,13 @@ class SearxClient:
         return response.status_code == 200
 
 
-def run_searches(client: SearxClient, settings: Settings, queries: list[Query]) -> dict[Query, list[SearchResult]]:
+def run_searches(
+    client: SearxClient, settings: Settings, queries: list[Query]
+) -> dict[Query, list[SearchResult]]:
     found: dict[Query, list[SearchResult]] = {}
     for query in queries:
-        found[query] = client.search(query, settings.search.language_map, settings.search.results_per_query)
+        found[query] = client.search(
+            query, settings.search.language_map, settings.search.results_per_query
+        )
         time.sleep(settings.search.query_delay_seconds)
     return found

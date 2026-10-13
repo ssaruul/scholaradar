@@ -7,25 +7,86 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
-def write_badges(site_dir: Path, shown: int, eligible: int, today: date, funding_label: str) -> None:
+def write_badges(
+    site_dir: Path, shown: int, eligible: int, today: date, funding_label: str
+) -> None:
     badges = site_dir / "badges"
     badges.mkdir(parents=True, exist_ok=True)
-    (badges / "opportunities.json").write_text(json.dumps({"schemaVersion": 1, "label": funding_label, "message": f"{shown} tracked, {eligible} eligible", "color": "2456b5"}), encoding="utf-8")
-    (badges / "updated.json").write_text(json.dumps({"schemaVersion": 1, "label": "last run", "message": today.isoformat(), "color": "1b7f3b"}), encoding="utf-8")
+    (badges / "opportunities.json").write_text(
+        json.dumps(
+            {
+                "schemaVersion": 1,
+                "label": funding_label,
+                "message": f"{shown} tracked, {eligible} eligible",
+                "color": "2456b5",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (badges / "updated.json").write_text(
+        json.dumps(
+            {
+                "schemaVersion": 1,
+                "label": "last run",
+                "message": today.isoformat(),
+                "color": "1b7f3b",
+            }
+        ),
+        encoding="utf-8",
+    )
+
 
 SITE_FIELDS = (
-    "id", "title", "canonical_name", "provider", "host_country", "degree_levels", "fields_of_study", "funding_type", "deadline", "deadline_text",
-    "target_eligible", "evidence_verified", "nationality_mode", "eligibility_summary", "evidence_quote", "apply_url", "page_url",
-    "lang", "first_seen", "also_on",
+    "id",
+    "title",
+    "canonical_name",
+    "provider",
+    "host_country",
+    "degree_levels",
+    "fields_of_study",
+    "funding_type",
+    "deadline",
+    "deadline_text",
+    "target_eligible",
+    "evidence_verified",
+    "nationality_mode",
+    "eligibility_summary",
+    "evidence_quote",
+    "apply_url",
+    "page_url",
+    "lang",
+    "first_seen",
+    "also_on",
+    "required_documents",
+    "language_requirements",
+    "application_route",
+    "supervisor_required",
 )
 
 
-def write_site(site_dir: Path, templates_dir: Path, rows: list[dict], target_name: str, today: date, repo_url: str = "https://github.com/ssaruul/scholaradar", funding: list[str] | None = None, default_language: str = "en") -> Path:
+def write_site(
+    site_dir: Path,
+    templates_dir: Path,
+    rows: list[dict],
+    target_name: str,
+    today: date,
+    repo_url: str = "https://github.com/ssaruul/scholaradar",
+    funding: list[str] | None = None,
+    default_language: str = "en",
+) -> Path:
     site_dir.mkdir(parents=True, exist_ok=True)
-    items = [{key: row.get(key, []) for key in SITE_FIELDS} for row in rows]
+    items = [
+        {
+            key: row.get(key, [] if key in ("also_on", "required_documents") else "")
+            for key in SITE_FIELDS
+        }
+        for row in rows
+    ]
     data_json = json.dumps(items, ensure_ascii=False)
     (site_dir / "data.json").write_text(data_json, encoding="utf-8")
-    env = Environment(loader=FileSystemLoader(templates_dir), autoescape=select_autoescape(["html"]))
+    env = Environment(
+        loader=FileSystemLoader(templates_dir), autoescape=select_autoescape(["html"])
+    )
     template = env.get_template("site.html.j2")
     html = template.render(
         data_json=data_json.replace("</", "<\\/"),
