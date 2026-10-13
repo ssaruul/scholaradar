@@ -11,7 +11,7 @@ from .llm.client import LlmClient
 KINDS = ("email", "research_plan", "sop", "cv")
 LANGUAGE_NAMES = {"en": "English", "ja": "Japanese", "mn": "Mongolian"}
 
-SYSTEM = """You help a student from {target} prepare a scholarship or graduate-school application. Write in {language}. Use only facts given in the profile and context; where a fact is missing, leave a clearly marked placeholder like [ADD: your GPA]. Be specific, concrete and modest in tone; no flattery, no filler, no emoji."""
+SYSTEM = """You help a student from {target} prepare a scholarship or graduate-school application. Write in {language}. Use only facts given in the profile and context; where a fact is missing, leave a clearly marked placeholder like [ADD: your GPA]. Be specific, concrete and modest in tone; no flattery, no filler, no emoji. Write people's names exactly as given in the context (romanised if given romanised); never guess kanji, hanja or other spellings for a name, and never invent paper titles, dates, numbers or affiliations."""
 
 INSTRUCTIONS = {
     "email": """Write a first email to Professor {professor} asking whether they would consider supervising the applicant under the {programme} route. 150 to 220 words. Structure: one-line subject; greeting; who the applicant is (degree, university, field) in two sentences; why this lab, naming one specific recent paper or topic from the context; the applicant's research idea in at most four sentences; the funding route and timeline; what is attached (CV, transcript, one-page plan); polite close. If writing in Japanese, use polite keigo appropriate for a first contact with a professor and put the subject line first.""",
