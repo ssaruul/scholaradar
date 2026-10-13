@@ -93,3 +93,31 @@ def test_outreach_follow_up_rule() -> None:
     )
     table = render_outreach([sent, fresh], date(2026, 10, 6))
     assert "| DUE |" in table and "a/b" in table
+
+
+def test_models_dir_mounts_by_label_when_missing(tmp_path: Path, monkeypatch) -> None:
+    from scholaradar.llm import server as server_module
+    from scholaradar.llm.server import LlamaServer, LlamaSettings
+
+    target = tmp_path / "drive" / "models" / "gguf"
+    calls: list[list[str]] = []
+
+    def fake_run(args, **kwargs):
+        calls.append(list(args))
+        target.mkdir(parents=True)
+
+        class Result:
+            stdout = "Mounted /dev/sda at /drive"
+            stderr = ""
+
+        return Result()
+
+    monkeypatch.setattr(server_module.subprocess, "run", fake_run)
+    settings = LlamaSettings(
+        _env_file=None,
+        models_dir=str(tmp_path / "drive*" / "models" / "gguf"),
+        models_disk_label="HDD_2TB",
+    )
+    server = LlamaServer(tmp_path, settings)
+    assert server.resolve_models_dir() == target
+    assert calls == [["udisksctl", "mount", "-b", "/dev/disk/by-label/HDD_2TB"]]

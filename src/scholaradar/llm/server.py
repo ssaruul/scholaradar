@@ -59,6 +59,7 @@ class LlamaSettings(BaseSettings):
     llama_kv_type: str = "q8_0"
     llama_port: int = 8089
     models_dir: str = str(Path.home() / "models" / "gguf")
+    models_disk_label: str = ""
 
 
 @dataclass
@@ -78,14 +79,31 @@ class LlamaServer:
     def health_url(self) -> str:
         return f"http://127.0.0.1:{self.settings.llama_port}/health"
 
-    def resolve_models_dir(self) -> Path:
+    def _glob_models_dir(self) -> Path | None:
         pattern = os.path.expanduser(self.settings.models_dir)
         for match in sorted(glob.glob(pattern)):
             if Path(match).is_dir():
                 return Path(match)
-        raise FileNotFoundError(
-            f"no directory matches MODELS_DIR={pattern} (is the drive mounted?)"
-        )
+        return None
+
+    def resolve_models_dir(self) -> Path:
+        found = self._glob_models_dir()
+        if found is None and self.settings.models_disk_label:
+            device = f"/dev/disk/by-label/{self.settings.models_disk_label}"
+            log.info("models directory missing, mounting %s", device)
+            mounted = subprocess.run(
+                ["udisksctl", "mount", "-b", device],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            log.info("udisksctl: %s", (mounted.stdout or mounted.stderr).strip()[:200])
+            found = self._glob_models_dir()
+        if found is None:
+            raise FileNotFoundError(
+                f"no directory matches MODELS_DIR={self.settings.models_dir} (is the drive mounted? set MODELS_DISK_LABEL to mount it automatically)"
+            )
+        return found
 
     def model_path(self) -> Path:
         path = self.resolve_models_dir() / self.settings.llama_model
