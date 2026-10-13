@@ -121,3 +121,17 @@ def test_models_dir_mounts_by_label_when_missing(tmp_path: Path, monkeypatch) ->
     server = LlamaServer(tmp_path, settings)
     assert server.resolve_models_dir() == target
     assert calls == [["udisksctl", "mount", "-b", "/dev/disk/by-label/HDD_2TB"]]
+
+
+def test_flag_altered_name() -> None:
+    from scholaradar.drafting import flag_altered_name
+
+    kept = "Hayashibe 先生\n\n突然のご連絡失礼いたします。"
+    assert flag_altered_name(kept, "Mitsuhiro Hayashibe") == kept
+    assert flag_altered_name("林部光弘先生\n\n...", "Mitsuhiro Hayashibe").startswith(
+        "[CHECK: the professor's name"
+    )
+    assert (
+        flag_altered_name("Dear Professor Tanaka", "田中 太郎")
+        == "Dear Professor Tanaka"
+    )

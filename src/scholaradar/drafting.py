@@ -88,7 +88,19 @@ def draft(
     )
     if completion.error or not completion.raw.strip():
         raise RuntimeError(f"draft failed: {completion.error or 'empty response'}")
-    return completion.raw.strip() + "\n"
+    text = completion.raw.strip() + "\n"
+    return (
+        flag_altered_name(text, professor_name)
+        if professor and professor.get("name")
+        else text
+    )
+
+
+def flag_altered_name(text: str, professor_name: str) -> str:
+    surname = professor_name.split()[-1] if professor_name else ""
+    if surname and surname.isascii() and surname.casefold() not in text.casefold():
+        return f"[CHECK: the professor's name '{professor_name}' does not appear as given; verify the spelling before sending]\n\n{text}"
+    return text
 
 
 def write_draft(
