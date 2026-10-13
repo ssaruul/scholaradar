@@ -223,7 +223,7 @@ Then swap the country-specific lines in `config/queries.yaml` and add your minis
 | `scholaradar labs --field F --university U [--years 3] [--limit 20] [--min-works 10]` | Rank professors at U publishing on F (OpenAlex) |
 | `scholaradar plan [--opportunity REF] [--deadline YYYY-MM-DD] [--route embassy\|university] [--lang en\|mn]` | Dated application plan as Markdown + .ics in `data/plans/` |
 | `scholaradar draft email\|research_plan\|sop\|cv --profile config/profile.yaml [--opportunity REF] [--professor NAME] [--lang en\|ja\|mn]` | Drafts with the local model into `data/drafts/` |
-| `scholaradar outreach list\|add\|sent\|replied\|accepted\|declined [--id N] ...` | Track professor emails and follow-ups |
+| `scholaradar outreach list\|add\|sent\|replied\|accepted\|declined\|remove [--id N] ...` | Track professor emails and follow-ups |
 | `scholaradar open` | Open the dashboard in the default browser |
 | `scholaradar serve [--port 8787]` | Serve the dashboard over HTTP and open it |
 | `scholaradar status` | Page and opportunity counts |

@@ -488,6 +488,12 @@ def set_outreach_status(
     return cur.rowcount > 0
 
 
+def remove_outreach(conn: sqlite3.Connection, outreach_id: int) -> bool:
+    cur = conn.execute("DELETE FROM outreach WHERE id=?", (outreach_id,))
+    conn.commit()
+    return cur.rowcount > 0
+
+
 def list_outreach(conn: sqlite3.Connection) -> list[dict]:
     rows = conn.execute(
         "SELECT * FROM outreach ORDER BY CASE status WHEN 'planned' THEN 0 WHEN 'sent' THEN 1 WHEN 'replied' THEN 2 ELSE 3 END, created_at"

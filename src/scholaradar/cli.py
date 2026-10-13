@@ -374,6 +374,15 @@ def cmd_outreach(settings: Settings, args: argparse.Namespace) -> int:
             args.note or "",
         )
         print(f"added outreach #{new_id} for {args.professor}")
+    elif args.action == "remove":
+        if not args.id:
+            print("pass --id", file=sys.stderr)
+            return 2
+        print(
+            "removed"
+            if db.remove_outreach(conn, args.id)
+            else f"no outreach #{args.id}"
+        )
     elif args.action in STATUSES[1:]:
         if not args.id:
             print("pass --id", file=sys.stderr)
@@ -532,7 +541,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_draft)
     p = sub.add_parser("outreach", help="track emails to professors")
     p.add_argument(
-        "action", choices=["list", "add", "sent", "replied", "accepted", "declined"]
+        "action",
+        choices=["list", "add", "sent", "replied", "accepted", "declined", "remove"],
     )
     p.add_argument("--id", type=int, default=0)
     p.add_argument("--professor", default=None)
