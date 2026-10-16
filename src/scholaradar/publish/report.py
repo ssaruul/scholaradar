@@ -41,6 +41,7 @@ STRINGS = {
         "tomorrow": "tomorrow",
         "days": "{n}",
         "no_deadline": "not stated",
+        "passed": "closed",
         "more": "... and {n} more on the dashboard.",
         "funding": {
             "full": "fully funded ",
@@ -101,6 +102,7 @@ STRINGS = {
         "tomorrow": "маргааш",
         "days": "{n}",
         "no_deadline": "заагаагүй",
+        "passed": "хаагдсан",
         "more": "... мөн {n} тэтгэлэг самбар дээр.",
         "funding": {
             "full": "бүрэн санхүүжилттэй ",
