@@ -1,41 +1,30 @@
 # Scholaradar тайлан, 2026-10-16
 
-Монгол Улсын иргэдэд зориулсан 219 бүрэн санхүүжилттэй тэтгэлэг бүртгэлтэй: 161 хамаарна, 30 тодорхойгүй, 28 хамаарахгүй.
+Монгол Улсын иргэдэд зориулсан 235 бүрэн санхүүжилттэй тэтгэлэг бүртгэлтэй: 163 хамаарна, 33 тодорхойгүй, 39 хамаарахгүй.
 Шүүлтүүртэй самбар: [https://ssaruul.github.io/scholaradar/](https://ssaruul.github.io/scholaradar/) (энэ репо дотор `docs/index.html`). Календарь: `deadlines.ics`. Бүх өгөгдөл: `docs/opportunities.csv`.
 
-## Өмнөх ажиллагаанаас хойш шинээр нэмэгдсэн (22)
+## Өмнөх ажиллагаанаас хойш шинээр нэмэгдсэн (12)
 
 | Хугацаа | Үлдсэн хоног | Тэтгэлэг | Суралцах улс | Түвшин | Санхүүжилт | Хамаарах эсэх |
 |---|---|---|---|---|---|---|
 | 2026-10-21 | 5 | [[외부] 2027-2028 독일정부초청장학생(DAAD 장학생) 선발 안내 \| 가톨릭대학교 일반대학원](https://gs.catholic.ac.kr/gs/graduate/notice.do?mode=view&articleNo=273805&article.offset=980&articleLimit=10) ([apply](http://www.daad-korea.org)) | Germany | бакалавр, магистр, доктор | бүрэн | Хамаарна |
 | 2026-10-26 | 10 | [БНСУ-ын KINGS-ийн 2027 оны магистрын тэтгэлэг зарлагдлаа](https://www.yolo.mn/news/12719) ([apply](https://www.kings.ac.kr)) | South Korea | магистр | бүрэн | Хамаарна |
-| 2026-10-29 | 13 | [Dorothy Hodgkin Fellowship 2027: Up to £1.9 Million for Early-Career Researchers Seeking F](https://opportunitiesforyouth.org/2026/10/13/dorothy-hodgkin-fellowship-2027-up-to-1-9-million-for-early-career-researchers-seeking-flexible-support-for-independent-scientific-careers/) | United Kingdom | постдок | бүрэн | Тодорхойгүй (баталгаажаагүй) |
-| 2026-10-29 | 13 | [Royal Society Dorothy Hodgkin Fellowship 2027 (Funded)](https://opportunitydesk.org/2026/10/14/dorothy-hodgkin-fellowship-2027/) | United Kingdom | постдок | бүрэн | Тодорхойгүй (баталгаажаагүй) |
 | 2026-10-30 | 14 | [GKS (Global Korea Scholarship) Program](https://www.studyinkorea.go.kr/in/plan/scholarship.do) | South Korea | судалгаа, магистр, бакалавр, богино хугацааны, бусад | бүрэн | Хамаарна |
-| 2026-11-02 | 17 | [Freeman Foundation International Internship](https://www.smcvt.edu/academics/study-abroad/freeman-foundation/) | South Korea |  | бүрэн | Тодорхойгүй (баталгаажаагүй) |
-| 2026-11-06 | 21 | [International Funders for Indigenous Peoples (IFIP) Global Conference 2027 Scholarship](https://opportunitydesk.org/2026/10/14/ifip-global-conference-2027-scholarship/) | Australia |  | бүрэн | Хамаарна |
-| 2026-11-15 | 30 | [Humboldt Research Fellowship](https://www.humboldt-foundation.de/en/apply/sponsorship-programmes/humboldt-research-fellowship) | Germany | постдок, судалгаа | бүрэн | Хамаарна |
 | 2026-12-01 | 46 | [Mundus MAPP 2027–2029: Fully Funded Erasmus Mundus Master’s in Public Policy for European ](https://opportunitiesforyouth.org/2026/09/27/fully-funded-erasmus-mundus-mapp-scholarships-2026-2028-for-european-and-international-students/) | Austria, Spain, Netherlands, UK | магистр | бүрэн | Хамаарна |
 | 2027-01-20 | 96 | [Announcement of Chinese Government Scholarship Admissions for the 2026/2027 Academic Year](https://mn.china-embassy.gov.cn/eng/zytz/202511/t20251113_11752783.htm) ([apply](https://www.campuschina.org)) | China | бакалавр, магистр, доктор, хэлний, судалгаа | бүрэн | Хамаарна |
-| 2027-01-31 | 107 | [CERN Summer Student Program](https://scholarshipinfocenter.com/fully-funded-summer-programs-2027-2028/) | Switzerland | бакалавр, магистр | бүрэн | Хамаарна |
-| 2027-03-15 | 150 | [Apply Now](https://www.icdf.org.tw/wSite/ct?xItem=69338&ctNode=31566&mp=2) | Taiwan |  | бүрэн | Хамаарна |
-| 2027-04-30 | 196 | [2027学年西北工业大学国际学生硕士招生简章-国际教育学院](https://npuinternationalcollege.nwpu.edu.cn/info/1242/9848.htm) ([apply](http://admission.nwpu.edu.cn/)) | China | магистр | бүрэн | Хамаарна |
 |  | заагаагүй | [2026 서울테크스칼라십 지원자 모집 [ Recruitment of Applicants for 2026 Seoul Tech Scholarship]](https://www.studyinkorea.go.kr/ko/notice/scholarshipsRead.do?bbsId=BBSMSTR_000000001583&nttId=4410) ([apply](https://www.hissf.or.kr/home/eng/M681918412/contents.do?)) | South Korea | магистр | бүрэн | Хамаарна |
 |  | заагаагүй | [2027 Global Korea Scholarship for Undergraduate Degrees / 2027년 정부초청 외국인 학부 장학생 모집 요강](https://www.studyinkorea.go.kr/ko/notice/scholarshipsRead.do?bbsId=BBSMSTR_000000000461&nttId=4522) | South Korea | бакалавр | бүрэн | Хамаарна |
 |  | заагаагүй | [2027年度海外留学支援制度（大学院学位取得型）募集要項](https://www.jasso.go.jp/ryugaku/scholarship_a/daigakuin/__icsFiles/afieldfile/2026/08/27/2027d_youkou.pdf) | Japan | магистр, доктор | бүрэн | Хамаарна |
 |  | заагаагүй | [Japanese Government (MEXT) Scholarship](https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/) | Japan | судалгаа, постдок, магистр, доктор, бакалавр, богино хугацааны | бүрэн | Хамаарна |
-|  | заагаагүй | [Knight-Hennessy Scholars: Stanford’s Flagship Award](https://scholarshipinfocenter.com/top-fully-funded-scholarships-in-usa-2027/) | United States | магистр, доктор | бүрэн | Хамаарна |
-|  | заагаагүй | [Mongolian Government Scholarships for International Students: Eligibility, Benefits and Ho](https://titansabroad.org/blog/mongolia-government-scholarship-complete-guide) | Mongolia | бакалавр, магистр, доктор | бүрэн | Хамаарна |
-|  | заагаагүй | [Scholarships & Grants](https://www.semesteratsea.org/financial-aid/scholarships/) | United States |  | бүрэн | Хамаарна |
+|  | заагаагүй | [Swiss Government Excellence Scholarships 2027 – 2028](https://www.sbfi.admin.ch/sbfi/en/home/education/scholarships-and-grants/swiss-government-excellence-scholarships.html) | Switzerland | постдок, магистр | бүрэн | Хамаарна |
 |  | заагаагүй | [国費外国人留学生（研究留学生）募集要項（大学推薦特別枠）](https://www.mext.go.jp/content/20251205-mxt_kotokoku01-000046164_1.pdf) | Japan | судалгаа | бүрэн | Хамаарна |
 |  | заагаагүй | [청주대, 몽골민족대학교와 국제교류 협정, 한몽골학교 졸업생 격려 장학금 수여식 진행 - 교수신문](https://www.kyosu.net/news/articleView.html?idxno=137669) | South Korea | бакалавр | бүрэн | Хамаарна |
 
-## Ойрын 90 хоногт дуусах хугацаатай (41)
+## Ойрын 90 хоногт дуусах хугацаатай (39)
 
 | Хугацаа | Үлдсэн хоног | Тэтгэлэг | Суралцах улс | Түвшин | Санхүүжилт | Хамаарах эсэх |
 |---|---|---|---|---|---|---|
 | 2026-10-19 | 3 | [Fellowship 2027 in Cambridge, UK (Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/fellowship-2027-in-cambridge-uk-fully-funded/) | United Kingdom |  | бүрэн | Хамаарна |
-| 2026-10-20 | 4 | [Commonwealth PhD Scholarships 2027/2028 for full-time doctoral study at a UK university (F](https://www.opportunitiesforafricans.com/commonwealth-phd-scholarships-2027-2028/) | United Kingdom | солилцоо, судалгаа, постдок, доктор | бүрэн | Хамаарна |
 | 2026-10-21 | 5 | [[외부] 2027-2028 독일정부초청장학생(DAAD 장학생) 선발 안내 \| 가톨릭대학교 일반대학원](https://gs.catholic.ac.kr/gs/graduate/notice.do?mode=view&articleNo=273805&article.offset=980&articleLimit=10) ([apply](http://www.daad-korea.org)) | Germany | бакалавр, магистр, доктор | бүрэн | Хамаарна |
 | 2026-10-26 | 10 | [БНСУ-ын KINGS-ийн 2027 оны магистрын тэтгэлэг зарлагдлаа](https://www.yolo.mn/news/12719) ([apply](https://www.kings.ac.kr)) | South Korea | магистр | бүрэн | Хамаарна |
 | 2026-10-27 | 11 | [2210 - Yurt İçi Yüksek Lisans Burs Programları](https://tubitak.gov.tr/tr/burslar/lisansustu/egitim-burs-programlari/2210-yurt-ici-yuksek-lisans-burs-programlari) ([apply](http://e-bideb.tubitak.gov.tr)) | Türkiye | магистр | бүрэн | Тодорхойгүй (баталгаажаагүй) |
@@ -46,7 +35,6 @@
 | 2026-10-30 | 14 | [글로벌경영학과](https://www.smu.ac.kr/newmajoritb/board/sm_notice.do?mode=view&articleNo=768849&srCampus=smu&article.offset=0&articleLimit=10) | Germany | бакалавр, магистр | бүрэн | Тодорхойгүй (баталгаажаагүй) |
 | 2026-10-31 | 15 | [Begabtenförderung - Stipendien der Friedrich-Naumann-Stiftung](https://www.freiheit.org/de/begabtenfoerderung) | Germany | бакалавр, магистр, доктор, постдок | бүрэн | Хамаарна |
 | 2026-10-31 | 15 | [Fulbright Visiting Scholar Program](https://mn.usembassy.gov/fulbright-visiting-scholar-program/) ([apply](https://apply.iie.org/apply)) | United States | постдок, доктор | бүрэн | Хамаарна |
-| 2026-10-31 | 15 | [The Rhodes Scholarship](https://www.rhodeshouse.ox.ac.uk/scholarships/the-rhodes-scholarship/) | United Kingdom | постдок | бүрэн | Хамаарна |
 | 2026-10-31 | 15 | [奨学金 - 東京大学・医学系研究科・国際交流室](https://koryu.m.u-tokyo.ac.jp/scholarships/) | Japan | магистр, доктор, постдок | бүрэн | Хамаарна |
 | 2026-11-02 | 17 | [Freeman Foundation International Internship](https://www.smcvt.edu/academics/study-abroad/freeman-foundation/) | South Korea |  | бүрэн | Тодорхойгүй (баталгаажаагүй) |
 | 2026-11-06 | 21 | [2027年度大学推薦による国費外国人留学生の募集について／Application for Japanese Government (MEXT) Scholarship Studen](https://www.kaiyodai.ac.jp/international/docs/kokuhi.html) | Japan |  | бүрэн | Хамаарна |
@@ -76,14 +64,13 @@
 | 2027-01-11 | 87 | [Atlantic Fellows 2027–28 in the UK \| Fully Funded Fellowship - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/atlantic-fellows-2027-28-in-the-uk-fully-funded-fellowship/) | United Kingdom | постдок, магистр | бүрэн | Хамаарна |
 | 2027-01-14 | 90 | [GLOCAL Erasmus Mundus Scholarship 2027(Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/glocal-erasmus-mundus-scholarship-2027fully-funded/) | Multiple | магистр | бүрэн | Хамаарна |
 
-## Одоо нээлттэй бүх тэтгэлэг (120)
+## Одоо нээлттэй бүх тэтгэлэг (122)
 
 Хамаарах эсвэл тодорхойгүй, бүрэн санхүүжилттэй, хугацаагаар эрэмбэлсэн; хугацаа заагаагүй тэтгэлгүүд хамгийн сүүлд.
 
 | Хугацаа | Үлдсэн хоног | Тэтгэлэг | Суралцах улс | Түвшин | Санхүүжилт | Хамаарах эсэх |
 |---|---|---|---|---|---|---|
 | 2026-10-19 | 3 | [Fellowship 2027 in Cambridge, UK (Fully Funded) - OYA Opportunities](https://oyaop.com/opportunity/scholarships-and-fellowships/fellowship-2027-in-cambridge-uk-fully-funded/) | United Kingdom |  | бүрэн | Хамаарна |
-| 2026-10-20 | 4 | [Commonwealth PhD Scholarships 2027/2028 for full-time doctoral study at a UK university (F](https://www.opportunitiesforafricans.com/commonwealth-phd-scholarships-2027-2028/) | United Kingdom | солилцоо, судалгаа, постдок, доктор | бүрэн | Хамаарна |
 | 2026-10-21 | 5 | [[외부] 2027-2028 독일정부초청장학생(DAAD 장학생) 선발 안내 \| 가톨릭대학교 일반대학원](https://gs.catholic.ac.kr/gs/graduate/notice.do?mode=view&articleNo=273805&article.offset=980&articleLimit=10) ([apply](http://www.daad-korea.org)) | Germany | бакалавр, магистр, доктор | бүрэн | Хамаарна |
 | 2026-10-26 | 10 | [БНСУ-ын KINGS-ийн 2027 оны магистрын тэтгэлэг зарлагдлаа](https://www.yolo.mn/news/12719) ([apply](https://www.kings.ac.kr)) | South Korea | магистр | бүрэн | Хамаарна |
 | 2026-10-27 | 11 | [2210 - Yurt İçi Yüksek Lisans Burs Programları](https://tubitak.gov.tr/tr/burslar/lisansustu/egitim-burs-programlari/2210-yurt-ici-yuksek-lisans-burs-programlari) ([apply](http://e-bideb.tubitak.gov.tr)) | Türkiye | магистр | бүрэн | Тодорхойгүй (баталгаажаагүй) |
@@ -94,7 +81,6 @@
 | 2026-10-30 | 14 | [글로벌경영학과](https://www.smu.ac.kr/newmajoritb/board/sm_notice.do?mode=view&articleNo=768849&srCampus=smu&article.offset=0&articleLimit=10) | Germany | бакалавр, магистр | бүрэн | Тодорхойгүй (баталгаажаагүй) |
 | 2026-10-31 | 15 | [Begabtenförderung - Stipendien der Friedrich-Naumann-Stiftung](https://www.freiheit.org/de/begabtenfoerderung) | Germany | бакалавр, магистр, доктор, постдок | бүрэн | Хамаарна |
 | 2026-10-31 | 15 | [Fulbright Visiting Scholar Program](https://mn.usembassy.gov/fulbright-visiting-scholar-program/) ([apply](https://apply.iie.org/apply)) | United States | постдок, доктор | бүрэн | Хамаарна |
-| 2026-10-31 | 15 | [The Rhodes Scholarship](https://www.rhodeshouse.ox.ac.uk/scholarships/the-rhodes-scholarship/) | United Kingdom | постдок | бүрэн | Хамаарна |
 | 2026-10-31 | 15 | [奨学金 - 東京大学・医学系研究科・国際交流室](https://koryu.m.u-tokyo.ac.jp/scholarships/) | Japan | магистр, доктор, постдок | бүрэн | Хамаарна |
 | 2026-11-02 | 17 | [Freeman Foundation International Internship](https://www.smcvt.edu/academics/study-abroad/freeman-foundation/) | South Korea |  | бүрэн | Тодорхойгүй (баталгаажаагүй) |
 | 2026-11-06 | 21 | [2027年度大学推薦による国費外国人留学生の募集について／Application for Japanese Government (MEXT) Scholarship Studen](https://www.kaiyodai.ac.jp/international/docs/kokuhi.html) | Japan |  | бүрэн | Хамаарна |
@@ -161,9 +147,11 @@
 |  | заагаагүй | [Erasmus Mundus Scholarship 2027/29 (Fully Funded)](https://opportunitiescorners.com/erasmus-mundus-scholarship-2027/) | Europe | магистр | бүрэн | Хамаарна |
 |  | заагаагүй | [Erasmus Mundus Scholarships 2027 \| Fully Funded Master's Scholarships in Europe for Inter](https://opportunitiesforyouth.org/2026/08/08/erasmus-mundus-scholarships-2022-2023-begin-your-application-online-fully-funded/) ([apply](https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en)) | Europe | магистр | бүрэн | Хамаарна |
 |  | заагаагүй | [Fellowship Program (CIAT)](https://www.koica.go.kr/koica_en/3441/subview.do) | South Korea | бусад | бүрэн | Хамаарна |
+|  | заагаагүй | [Fulbright Foreign Student Program in USA 2026-2027 \| Scholars4Dev](https://www.scholars4dev.com/2876/usa-fulbright-scholarships-for-international-students/) ([apply](http://foreign.fulbrightonline.org/about/foreign-fulbright)) | United States | магистр, доктор | бүрэн | Хамаарна |
+|  | заагаагүй | [Full World Bank PhD Scholarships for Developing Countries 2026 - 2027](https://www.advance-africa.com/World-Bank-PhD-Scholarships-for-Developing-Countries.html) |  | судалгаа | бүрэн | Хамаарна |
 |  | заагаагүй | [Future Leaders Exchange (FLEX) program](https://www.americancouncils.org/locations/offices/mongolia) | United States | судалгаа, постдок, доктор, магистр, бакалавр, солилцоо | бүрэн | Хамаарна |
 
-... мөн 40 тэтгэлэг самбар дээр.
+... мөн 42 тэтгэлэг самбар дээр.
 
 ## Өмнөх ажиллагаанаас хойш өөрчлөгдсөн (0)
 
@@ -171,8 +159,8 @@ _Байхгүй._
 
 ## Хамрах хүрээ
 
-Хуудсууд хэлээр: en 114, mn 27, zh 23, ko 15, ja 15, de 10, tr 9, ru 6.
+Хуудсууд хэлээр: en 120, mn 27, zh 26, ko 19, ja 16, de 10, tr 10, ru 7.
 
-Суралцах улсууд: China 33, United States 26, South Korea 19, Japan 18, United Kingdom 17, Germany 14, Canada 8, Mongolia 6, Multiple 6, Türkiye 5.
+Суралцах улсууд: China 37, United States 28, South Korea 21, Japan 19, United Kingdom 18, Germany 15, Canada 8, Mongolia 7, Multiple 6, Türkiye 5.
 
 Дүгнэлтийг локал хэлний загвар гаргаж, хуудасны үгчилсэн ишлэлээр шалгасан; `баталгаажаагүй` гэдэг нь нотлох өгүүлбэр олдоогүй гэсэн үг. Өргөдөл гаргахын өмнө албан ёсны хуудаснаас хамаарах эсэх, хугацааг заавал баталгаажуулна уу.
