@@ -240,8 +240,16 @@ def group_opportunities(rows: list[dict], today: date | None = None) -> list[dic
             for b in members[root_b]
         )
 
-    for i in range(len(rows)):
-        for j in range(i + 1, len(rows)):
+    verdict_order = {"yes": 0, "unclear": 1, "no": 2}
+    order = sorted(
+        range(len(rows)),
+        key=lambda index: (
+            verdict_order.get(rows[index]["target_eligible"], 3),
+            not rows[index]["evidence_verified"],
+        ),
+    )
+    for position, i in enumerate(order):
+        for j in order[position + 1 :]:
             root_i, root_j = find(i), find(j)
             if root_i != root_j and same(i, j) and not conflicts(root_i, root_j):
                 parent[root_j] = root_i
