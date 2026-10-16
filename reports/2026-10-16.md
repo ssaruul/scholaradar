@@ -3,14 +3,9 @@
 Монгол Улсын иргэдэд зориулсан 236 бүрэн санхүүжилттэй тэтгэлэг бүртгэлтэй: 164 хамаарна, 33 тодорхойгүй, 39 хамаарахгүй.
 Шүүлтүүртэй самбар: [https://ssaruul.github.io/scholaradar/](https://ssaruul.github.io/scholaradar/) (энэ репо дотор `docs/index.html`). Календарь: `deadlines.ics`. Бүх өгөгдөл: `docs/opportunities.csv`.
 
-## Өмнөх ажиллагаанаас хойш шинээр нэмэгдсэн (4)
+## Өмнөх ажиллагаанаас хойш шинээр нэмэгдсэн (0)
 
-| Хугацаа | Үлдсэн хоног | Тэтгэлэг | Суралцах улс | Түвшин | Санхүүжилт | Хамаарах эсэх |
-|---|---|---|---|---|---|---|
-| 2027-01-15 | 91 | [Stipendium Hungaricum](https://stipendiumhungaricum.hu/about/) | Hungary | бакалавр, магистр, доктор, бусад | бүрэн | Хамаарна |
-|  | заагаагүй | [2026/2027学年中国内蒙古自治区政府奖学金招生公告](https://mn.china-embassy.gov.cn/) | China |  | бүрэн | Хамаарна |
-|  | заагаагүй | [Application \| Mongolia \| JDS](https://jds-scholarship.org/country/mongolia/) | Japan | магистр, доктор | бүрэн | Хамаарна |
-|  | заагаагүй | [Japanese Government (MEXT) Scholarship](https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/) | Japan | судалгаа, постдок, магистр, доктор, бакалавр, богино хугацааны | бүрэн | Хамаарна |
+_Байхгүй._
 
 ## Ойрын 90 хоногт дуусах хугацаатай (39)
 
@@ -144,6 +139,42 @@
 |  | заагаагүй | [Future Leaders Exchange (FLEX) program](https://www.americancouncils.org/locations/offices/mongolia) | United States | судалгаа, постдок, доктор, магистр, бакалавр, солилцоо | бүрэн | Хамаарна |
 
 ... мөн 42 тэтгэлэг самбар дээр.
+
+## Хугацаа нь өнгөрсөн ч жил бүр дахин зарлагддаг албан ёсны хөтөлбөрүүд (29)
+
+Хамаарах, бүрэн санхүүжилттэй, албан ёсны эх сурвалжаас. Эдгээр хуудсыг ажиглаарай; дараагийн зар эндээс эхэлж гардаг.
+
+| Хугацаа | Үлдсэн хоног | Тэтгэлэг | Суралцах улс | Түвшин | Санхүүжилт | Хамаарах эсэх |
+|---|---|---|---|---|---|---|
+| 2026-10-08 | хаагдсан | [2027학년도 전기 외국인특별전형 모집요강](https://isa.ewha.ac.kr/sites/oisa/file/ag_korean.pdf) ([apply](http://isa.ewha.ac.kr)) | South Korea | бакалавр, магистр, доктор | бүрэн | Хамаарна |
+| 2026-09-18 | хаагдсан | [2026 AISA Scholarships for Outstanding International Students](https://gradsch.sogang.ac.kr/front/cmsboardview.do?siteId=gradsch&bbsConfigFK=402&pkid=940822) ([apply](https://aisa-scholarship-2026.netlify.app/)) | South Korea | хэлний, бакалавр, магистр, доктор | бүрэн | Хамаарна |
+| 2026-07-31 | хаагдсан | [БҮГД НАЙРАМДАХ БОЛГАР УЛСЫН ЗАСГИЙН ГАЗРЫН 2026–2027 ОНЫ ХИЧЭЭЛИЙН ЖИЛИЙН ТЭТГЭЛЭГ ЗАРЛАГД](https://moe.gov.mn/post/176952) ([apply](https://scholarship.esis.edu.mn)) | Bulgaria | бакалавр, магистр, доктор | бүрэн | Хамаарна |
+| 2026-07-31 | хаагдсан | [2026-2027 슬로바키아 정부초청 장학생 선발 안내 \| 아주대학교 일반대학원](https://aiu.ajou.ac.kr/gs/community/notice.do?mode=view&articleNo=372635) ([apply](https://scholarships.portalvs.sk/)) | Slovakia | бакалавр, магистр | бүрэн | Хамаарна |
+| 2026-07-31 | хаагдсан | [БҮГД НАЙРАМДАХ АРДЧИЛСАН ЛАОС АРД УЛСЫН ЗАСГИЙН ГАЗРЫН 2026–2027 ОНЫ ХИЧЭЭЛИЙН ЖИЛИЙН ТЭТГ](https://scholarship.esis.edu.mn/grant/news%20more.html?more=94) ([apply](https://scholarship.esis.edu.mn)) | Laos | бакалавр, магистр | бүрэн | Хамаарна |
+| 2026-06-30 | хаагдсан | [2026学年北京来华留学生政府奖学金](https://sie.uibe.edu.cn/zslq2/jxjsq2/bjszfjxj2/index.htm) | China | бакалавр, магистр, хэлний | бүрэн | Хамаарна |
+| 2026-06-15 | хаагдсан | [Forschungsstipendien für Doktorandinnen und Doktoranden • DAAD](https://www2.daad.de/ausland/studieren/stipendium/de/70-stipendien-finden-und-bewerben/?detail=57556279) | Germany | доктор | бүрэн | Хамаарна |
+| 2026-06-12 | хаагдсан | [（（募集期間延長）参加学生募集）海外短期交流（SV）プログラム モンゴル・国立教育大学（奨学金支給有）｜海外留学｜国立大学法人愛知教育大学 国際交流センター](https://www.aichi-edu.ac.jp/cie/news/out/202606051800.html) | Mongolia | бакалавр, магистр | бүрэн | Хамаарна |
+| 2026-05-31 | хаагдсан | [2026年五邑大学来华留学生招生简章（学历生）](https://www.wyu.edu.cn/wsc/info/1699/8170.htm) | China | бакалавр, магистр | бүрэн | Хамаарна |
+| 2026-05-29 | хаагдсан | [2026 оны Тайваньд бакалавр, магистр, докторын хөтөлбөрт суралцах тэтгэлэгт хөтөлбөр](https://www.must.edu.mn/mn/news/12264) ([apply](https://roc-taiwan.org/mn_en/post/11511.html)) | Taiwan | бакалавр, магистр, доктор | бүрэн | Хамаарна |
+| 2026-04-27 | хаагдсан | [UCL Global Undergraduate Scholarship](https://www.ucl.ac.uk/scholarships/ucl-global-undergraduate-scholarship) | United Kingdom | бакалавр | бүрэн | Хамаарна |
+| 2026-04-15 | хаагдсан | [ICCR's Scholarship Notification for the Academic Year 2026-27](https://eoimongolia.gov.in/pages/MTg3) ([apply](http://a2ascholarships.iccr.gov.in)) | India | солилцоо, богино хугацааны, бакалавр, магистр, доктор, постдок | бүрэн | Хамаарна |
+| 2026-04-15 | хаагдсан | [中国科学院大学招生信息](https://admission.ucas.ac.cn/showarticle/Article/6dca61d2-4d40-4dc9-9484-e95d3f457b10/e739256d-905c-40d5-91df-ada587862457) ([apply](https://is.ucas.ac.cn/)) | China | магистр, доктор | бүрэн | Хамаарна |
+| 2026-04-15 | хаагдсан | [БҮГД НАЙРАМДАХ АЗЕРБАЙЖАН УЛСЫН ЗАСГИЙН ГАЗРЫН ОЛОН УЛСЫН ТЭТГЭЛЭГТ ХӨТӨЛБӨР ЗАРЛАГДЛАА](https://scholarship.esis.edu.mn/grant/news%20more.html?more=89) ([apply](https://scholarship.esis.edu.mn)) | Azerbaijan | хэлний, бакалавр, магистр, доктор | бүрэн | Хамаарна |
+| 2026-04-10 | хаагдсан | [БҮГД НАЙРАМДАХ КУБА УЛСЫН ЗАСГИЙН ГАЗРЫН ТЭТГЭЛЭГТ ХӨТӨЛБӨР ЗАРЛАГДЛАА (2026-2027)](https://scholarship.esis.edu.mn/grant/news%20more.html?more=90) ([apply](https://scholarship.esis.edu.mn)) | Cuba | бакалавр | бүрэн | Хамаарна |
+| 2026-03-26 | хаагдсан | [Academic Scholarship 2026-27 AY](https://www.britishschool.edu.mn/academic-scholarship) | Mongolia | магистр, бакалавр, доктор, постдок | бүрэн | Хамаарна |
+| 2026-03-17 | хаагдсан | [2026年北京大学外国留学生研究生新生系列奖学金申请通知](https://www.isd.pku.edu.cn/cn/scholarship/detail.php?id=819) ([apply](http://www.studyatpku.com)) | China | магистр, доктор | бүрэн | Хамаарна |
+| 2026-03-17 | хаагдсан | [2026 Scholarship Applications Are Now Open for Prospective International Graduate Students](https://isd.pku.edu.cn/en/detail.php?id=819) ([apply](http://www.studyatpku.com)) | China | магистр, доктор | бүрэн | Хамаарна |
+| 2026-03-01 | хаагдсан | [2026 Asian Future Leaders Scholarship Program 2026“亚洲未来领袖奖学金”申请启动](https://yz.tsinghua.edu.cn/en/info/1027/1477.htm) ([apply](https://yzbm.tsinghua.edu.cn/intlLogin)) | China | магистр | бүрэн | Хамаарна |
+| 2026-03-01 | хаагдсан | [中国政府来华留学卓越奖学金（硕士）](https://lxs.ecnu.edu.cn/sk_scholarship_graduate_csc_a_youth_of_excellence_scheme_of_china/list.htm) ([apply](http://lxsapply.ecnu.edu.cn/)) | China | магистр | бүрэн | Хамаарна |
+| 2026-02-28 | хаагдсан | [对外经济贸易大学2026/2027年中国政府奖学金 “高水平研究生”项目申请指南](https://sie.uibe.edu.cn/zslq2/jxjsq2/zgzfjxj2/a40c9af325a04925937ab9ddb4ed0752.htm) ([apply](https://studyinchina.csc.edu.cn/#/login)) | China | магистр, доктор | бүрэн | Хамаарна |
+| 2026-02-28 | хаагдсан | [2026年北京大学外国留学生本科生入学考试招生简章](http://www.isd.pku.edu.cn/cn/news/detail.php?id=800) ([apply](http://www.studyatpku.com)) | China | бакалавр | бүрэн | Хамаарна |
+| 2026-02-28 | хаагдсан | [2026-2027学年苏州大学国际学生研究生项目招生简章](http://apply.international.suda.edu.cn/27982/list.htm) ([apply](https://suda.17gz.org)) | China | магистр, доктор | бүрэн | Хамаарна |
+| 2026-02-20 | хаагдсан | [Türkiye Bursları](https://www.turkiyeburslari.gov.tr/announcements/ytb-islamic-development-bank-isdb-joint-scholarship-program-2026-applicaiton-period-122) | Türkiye | магистр, доктор, бакалавр, богино хугацааны | бүрэн | Хамаарна |
+| 2026-02-15 | хаагдсан | [БҮГД НАЙРАМДАХ ЧЕХ УЛСАД БОГИНО ХУГАЦААНД БАКАЛАВР, МАГИСТР, ДОКТОРЫН ТЭТГЭЛЭГТ ХӨТӨЛБӨРТ ](https://scholarship.esis.edu.mn/grant/news%20more.html?more=85) ([apply](https://scholarship.esis.edu.mn/)) | Czech Republic | бакалавр, магистр, доктор | бүрэн | Хамаарна |
+| 2026-02-08 | хаагдсан | [2026/2027 Chinese Government Scholarship Application](https://id.china-embassy.gov.cn/eng/sgdt/202510/t20251027_11741674.htm) ([apply](https://www.campuschina.org)) | China | бакалавр, магистр, доктор, хэлний | бүрэн | Хамаарна |
+| 2026-01-31 | хаагдсан | [留学生招生](https://admission.ucas.ac.cn/showarticle/Article/6dca61d2-4d40-4dc9-9484-e95d3f457b10/a48dd09d-695c-4582-addc-ab2e5c9c3f50) | China | магистр, доктор | бүрэн | Хамаарна |
+| 2026-01-31 | хаагдсан | [中国科学院“一带一路”国际科学组织联盟奖学金 (CAS-ANSO Scholarship)](https://admission.ucas.ac.cn/showarticle/Article/6dca61d2-4d40-4dc9-9484-e95d3f457b10/2eea846d-a272-4dd0-8a3c-7b18f751b8ca) | China | магистр, доктор | бүрэн | Хамаарна |
+| 2026-01-23 | хаагдсан | [联合国教科文组织/中华人民共和国共同赞助长城奖学金计划（2024-2025年）](https://www.unesco.org/zh/node/766) ([apply](http://www.campuschina.org)) | China | постдок, магистр, судалгаа | бүрэн | Хамаарна |
 
 ## Өмнөх ажиллагаанаас хойш өөрчлөгдсөн (0)
 
