@@ -6,6 +6,8 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+from .dedupe import is_official
+
 
 def write_badges(
     site_dir: Path, shown: int, eligible: int, today: date, funding_label: str
@@ -75,13 +77,14 @@ def write_site(
     default_language: str = "en",
 ) -> Path:
     site_dir.mkdir(parents=True, exist_ok=True)
-    items = [
-        {
+    items = []
+    for row in rows:
+        item = {
             key: row.get(key, [] if key in ("also_on", "required_documents") else "")
             for key in SITE_FIELDS
         }
-        for row in rows
-    ]
+        item["official"] = is_official(row["page_url"])
+        items.append(item)
     data_json = json.dumps(items, ensure_ascii=False)
     (site_dir / "data.json").write_text(data_json, encoding="utf-8")
     env = Environment(

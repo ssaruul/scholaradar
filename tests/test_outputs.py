@@ -105,3 +105,29 @@ def test_report_mongolian_with_open_list() -> None:
     assert "## Одоо нээлттэй бүх тэтгэлэг (1)" in text
     assert "бүрэн санхүүжилттэй" in text and "| 2027-01-15 | 101 |" in text
     assert "## Ойрын 90 хоногт дуусах хугацаатай (0)" in text
+
+
+def test_report_lists_recently_closed_official_programmes() -> None:
+    closed = dict(
+        ROW,
+        id=9,
+        deadline="2025-04-27",
+        page_url="https://mn.usembassy.gov/fulbright-student-program/",
+        apply_url="",
+        title="Fulbright Student Program",
+    )
+    text = render_report(
+        [closed],
+        [],
+        "Mongolia",
+        date(2026, 10, 16),
+        "https://example.org/",
+        90,
+        [],
+        ["full"],
+        "mn",
+        80,
+    )
+    assert "жил бүр дахин зарлагддаг албан ёсны хөтөлбөрүүд (1)" in text
+    assert "| 2025-04-27 | хаагдсан | [Fulbright Student Program]" in text
+    assert "## Одоо нээлттэй бүх тэтгэлэг (0)" in text

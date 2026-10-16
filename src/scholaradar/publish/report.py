@@ -5,6 +5,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 from ..outreach import follow_up_due, render_outreach
+from .dedupe import is_official
 
 STRINGS = {
     "en": {
@@ -16,6 +17,8 @@ STRINGS = {
         "open": "All open opportunities ({n})",
         "open_note": "Eligible or unclear, fully funded, sorted by deadline; opportunities without a stated deadline are listed last.",
         "changed": "Changed since the previous run ({n})",
+        "closed": "Official programmes whose last deadline passed and that usually reopen every year ({n})",
+        "closed_note": "Eligible, fully funded, from official sources. Watch these pages; the next call is announced here first.",
         "outreach": "Professor outreach ({n} tracked, {due} follow-ups due)",
         "coverage": "Coverage",
         "by_language": "Pages by language",
@@ -74,6 +77,8 @@ STRINGS = {
         "open": "Одоо нээлттэй бүх тэтгэлэг ({n})",
         "open_note": "Хамаарах эсвэл тодорхойгүй, бүрэн санхүүжилттэй, хугацаагаар эрэмбэлсэн; хугацаа заагаагүй тэтгэлгүүд хамгийн сүүлд.",
         "changed": "Өмнөх ажиллагаанаас хойш өөрчлөгдсөн ({n})",
+        "closed": "Хугацаа нь өнгөрсөн ч жил бүр дахин зарлагддаг албан ёсны хөтөлбөрүүд ({n})",
+        "closed_note": "Хамаарах, бүрэн санхүүжилттэй, албан ёсны эх сурвалжаас. Эдгээр хуудсыг ажиглаарай; дараагийн зар эндээс эхэлж гардаг.",
         "outreach": "Профессоруудтай холбогдсон байдал ({n} бүртгэлтэй, {due} дахин холбогдох)",
         "coverage": "Хамрах хүрээ",
         "by_language": "Хуудсууд хэлээр",
@@ -134,6 +139,8 @@ def _days_left(deadline: str | None, today: date, s: dict) -> str:
     if not deadline:
         return s["no_deadline"]
     delta = (date.fromisoformat(deadline) - today).days
+    if delta < 0:
+        return s["passed"]
     if delta == 0:
         return s["today"]
     if delta == 1:
@@ -208,6 +215,16 @@ def render_report(
         key=lambda r: (r["deadline"] is None, r["deadline"] or "", r["title"])
     )
     upcoming = [r for r in open_rows if r["deadline"] and r["deadline"] <= horizon]
+    recent_floor = (today - timedelta(days=400)).isoformat()
+    closed_official = [
+        r
+        for r in rows
+        if r["target_eligible"] == "yes"
+        and r["deadline"]
+        and recent_floor <= r["deadline"] < cutoff
+        and is_official(r["page_url"])
+    ]
+    closed_official.sort(key=lambda r: r["deadline"], reverse=True)
     new_visible = [
         r
         for r in new_rows
@@ -245,6 +262,11 @@ def render_report(
         s["open_note"],
         "",
         _table(open_rows, today, s, max_open),
+        "## " + s["closed"].format(n=len(closed_official)),
+        "",
+        s["closed_note"],
+        "",
+        _table(closed_official, today, s, 40),
         "## " + s["changed"].format(n=len(changes or [])),
         "",
         _changes_table(changes or [], s),
