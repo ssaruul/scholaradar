@@ -201,9 +201,10 @@ def fetch_pages(
             stats.links_added += _enqueue_links(
                 conn, settings, page, body, result.final_url
             )
-        if follow:
-            status = "listing"
-        elif keyword_hit(extracted.text, settings.prefilter.keywords) is None:
+        if (
+            keyword_hit(extracted.text, settings.prefilter.keywords) is None
+            and not follow
+        ):
             status = "rejected_prefilter"
             stats.rejected += 1
         else:

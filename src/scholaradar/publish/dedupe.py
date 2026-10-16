@@ -92,8 +92,31 @@ def _apply_key(url: str) -> str:
     return canonicalize(url)
 
 
+COUNTRY_SITE = re.compile(
+    r"^(?:www\.)?([a-z]{2})\.((?:usembassy\.gov|china-embassy\.gov\.cn|emb-japan\.go\.jp|mofa\.go\.kr|diplo\.de|mfa\.gov\.hu|fulbright\.[a-z.]+))$"
+)
+
+
+def _country_site(url: str) -> tuple[str, str] | None:
+    match = COUNTRY_SITE.match(host_of(url))
+    return (match.group(1), match.group(2)) if match else None
+
+
 def _compatible_country(a: dict, b: dict) -> bool:
     return len({a["host_country"], b["host_country"]} - {""}) <= 1
+
+
+def _contradictory(a: dict, b: dict) -> bool:
+    verdicts = {a["target_eligible"], b["target_eligible"]}
+    return not (
+        verdicts != {"yes", "no"}
+        or not (a["evidence_verified"] and b["evidence_verified"])
+    )
+
+
+def _different_country_editions(a: dict, b: dict) -> bool:
+    site_a, site_b = _country_site(a["page_url"]), _country_site(b["page_url"])
+    return bool(site_a and site_b and site_a[1] == site_b[1] and site_a[0] != site_b[0])
 
 
 def is_official(url: str) -> bool:
@@ -181,6 +204,10 @@ def group_opportunities(rows: list[dict], today: date | None = None) -> list[dic
     apply_keys = [_apply_key(row["apply_url"]) for row in rows]
 
     def same(i: int, j: int) -> bool:
+        if _contradictory(rows[i], rows[j]) or _different_country_editions(
+            rows[i], rows[j]
+        ):
+            return False
         if apply_keys[i] and apply_keys[i] == apply_keys[j]:
             return True
         if not _compatible_country(rows[i], rows[j]):
@@ -197,6 +224,7 @@ def group_opportunities(rows: list[dict], today: date | None = None) -> list[dic
         return shared / len(distinctive[i] | distinctive[j]) >= 0.5
 
     parent = list(range(len(rows)))
+    members: dict[int, list[int]] = {index: [index] for index in range(len(rows))}
 
     def find(index: int) -> int:
         while parent[index] != index:
@@ -204,10 +232,20 @@ def group_opportunities(rows: list[dict], today: date | None = None) -> list[dic
             index = parent[index]
         return index
 
+    def conflicts(root_a: int, root_b: int) -> bool:
+        return any(
+            _contradictory(rows[a], rows[b])
+            or _different_country_editions(rows[a], rows[b])
+            for a in members[root_a]
+            for b in members[root_b]
+        )
+
     for i in range(len(rows)):
         for j in range(i + 1, len(rows)):
-            if find(i) != find(j) and same(i, j):
-                parent[find(j)] = find(i)
+            root_i, root_j = find(i), find(j)
+            if root_i != root_j and same(i, j) and not conflicts(root_i, root_j):
+                parent[root_j] = root_i
+                members[root_i].extend(members.pop(root_j))
     groups: dict[int, list[dict]] = {}
     for index, row in enumerate(rows):
         groups.setdefault(find(index), []).append(row)

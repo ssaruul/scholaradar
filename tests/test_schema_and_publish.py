@@ -294,9 +294,11 @@ def test_group_prefers_english_official_and_best_verdict_and_earliest_deadline()
         page_url="https://moe.gov.mn/post/9",
     )
     groups = group_opportunities([ru_blog, en_official, mn_ministry], date(2026, 10, 6))
-    assert len(groups) == 1
-    card = groups[0]
-    assert card["page_url"] == "https://stipendiumhungaricum.hu/"
+    assert len(groups) == 2
+    card = next(
+        g for g in groups if g["page_url"] == "https://stipendiumhungaricum.hu/"
+    )
+    assert sorted(card["group_ids"]) == [2, 3]
     assert (
         card["target_eligible"] == "yes"
         and card["evidence_quote"] == "Монгол Улсын иргэн"
@@ -305,6 +307,10 @@ def test_group_prefers_english_official_and_best_verdict_and_earliest_deadline()
         card["deadline"] == "2027-01-10"
         and card["deadline_text"] == "2027 оны 1 сарын 10"
     )
+    separate = next(
+        g for g in groups if g["page_url"] == "https://global-generations.com/ru"
+    )
+    assert separate["target_eligible"] == "no"
 
 
 def test_is_official() -> None:
@@ -318,3 +324,51 @@ def test_is_official() -> None:
     assert not is_official("https://wentchina.com/complete-guide")
     assert not is_official("https://www.scholars4dev.com/123/x")
     assert not is_official("https://global-generations.com/blog/gks")
+
+
+def test_contradictory_verdicts_and_country_editions_never_merge() -> None:
+    from scholaradar.publish.dedupe import group_opportunities
+
+    base = dict(
+        SAMPLE_ROWS[0],
+        canonical_name="Fulbright Foreign Student Program",
+        host_country="United States",
+        apply_url="",
+    )
+    mongolia = dict(
+        base,
+        id=1,
+        title="Fulbright Student Program",
+        lang="en",
+        target_eligible="yes",
+        evidence_verified=True,
+        page_url="https://mn.usembassy.gov/fulbright-student-program/",
+    )
+    timor = dict(
+        base,
+        id=2,
+        title="2027-2028 Fulbright Foreign Student Scholarship Program",
+        lang="en",
+        target_eligible="no",
+        evidence_verified=True,
+        page_url="https://tl.usembassy.gov/2027-2028-fulbright/",
+    )
+    aggregator = dict(
+        base,
+        id=3,
+        title="Fulbright Foreign Student Program in USA",
+        lang="en",
+        target_eligible="unclear",
+        evidence_verified=False,
+        page_url="https://www.scholars4dev.com/2876/fulbright",
+    )
+    groups = group_opportunities([mongolia, timor, aggregator], date(2026, 10, 16))
+    cards = {g["page_url"]: g for g in groups}
+    assert (
+        "https://mn.usembassy.gov/fulbright-student-program/" in cards
+        and "https://tl.usembassy.gov/2027-2028-fulbright/" in cards
+    )
+    assert len(groups) == 2
+    assert (
+        3 in cards["https://mn.usembassy.gov/fulbright-student-program/"]["group_ids"]
+    )
