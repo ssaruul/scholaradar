@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS pages (
     lang TEXT,
     nationality_hits TEXT,
     status TEXT NOT NULL DEFAULT 'new',
-    error TEXT
+    error TEXT,
+    extracted_hash TEXT
 );
 CREATE INDEX IF NOT EXISTS pages_status ON pages(status);
 CREATE TABLE IF NOT EXISTS opportunities (
@@ -126,6 +127,7 @@ class PageRow:
     status: str
     last_fetched: str | None
     content_hash: str | None
+    extracted_hash: str | None = None
 
 
 @dataclass
@@ -168,6 +170,12 @@ def connect(path: Path) -> sqlite3.Connection:
         )
     if "render" not in columns:
         conn.execute("ALTER TABLE sources ADD COLUMN render INTEGER NOT NULL DEFAULT 0")
+    page_columns = {row["name"] for row in conn.execute("PRAGMA table_info(pages)")}
+    if "extracted_hash" not in page_columns:
+        conn.execute("ALTER TABLE pages ADD COLUMN extracted_hash TEXT")
+        conn.execute(
+            "UPDATE pages SET extracted_hash=content_hash WHERE status IN ('extracted', 'not_opportunity')"
+        )
     opportunity_columns = {
         row["name"] for row in conn.execute("PRAGMA table_info(opportunities)")
     }
@@ -264,6 +272,7 @@ def _page_from_row(row: sqlite3.Row) -> PageRow:
         status=row["status"],
         last_fetched=row["last_fetched"],
         content_hash=row["content_hash"],
+        extracted_hash=row["extracted_hash"],
     )
 
 
@@ -347,6 +356,10 @@ def set_page_status(
     conn.execute(
         "UPDATE pages SET status=?, error=? WHERE id=?", (status, error, page_id)
     )
+    if status in ("extracted", "not_opportunity"):
+        conn.execute(
+            "UPDATE pages SET extracted_hash=content_hash WHERE id=?", (page_id,)
+        )
 
 
 def source_follow_links(conn: sqlite3.Connection, source_id: int | None) -> bool:

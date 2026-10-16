@@ -169,7 +169,11 @@ def fetch_pages(
             if rendered:
                 body = rendered
         digest = content_hash(body)
-        if page.content_hash == digest and page.text_path:
+        if (
+            page.content_hash == digest
+            and page.text_path
+            and page.extracted_hash == digest
+        ):
             db.mark_fetched(
                 conn,
                 page.id,

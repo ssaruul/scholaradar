@@ -135,3 +135,17 @@ def test_flag_altered_name() -> None:
         flag_altered_name("Dear Professor Tanaka", "田中 太郎")
         == "Dear Professor Tanaka"
     )
+
+
+def test_unchanged_page_is_still_extracted_once(tmp_path: Path) -> None:
+    from scholaradar import db
+
+    conn = db.connect(tmp_path / "t.sqlite")
+    page_id, _ = db.add_page(conn, "https://e.org/a", "https://e.org/a", None, "source")
+    db.mark_fetched(conn, page_id, 200, "h1", "x.txt", "t", "en", [], "fetched")
+    page = db.get_page(conn, page_id)
+    assert page.extracted_hash is None and page.content_hash == "h1"
+    db.set_page_status(conn, page_id, "extracted")
+    assert db.get_page(conn, page_id).extracted_hash == "h1"
+    db.mark_fetched(conn, page_id, 200, "h2", "y.txt", "t", "en", [], "fetched")
+    assert db.get_page(conn, page_id).extracted_hash == "h1"
