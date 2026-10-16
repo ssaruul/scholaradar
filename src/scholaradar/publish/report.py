@@ -217,7 +217,7 @@ def render_report(
         key=lambda r: (r["deadline"] is None, r["deadline"] or "", r["title"])
     )
     upcoming = [r for r in open_rows if r["deadline"] and r["deadline"] <= horizon]
-    recent_floor = (today - timedelta(days=400)).isoformat()
+    recent_floor = (today - timedelta(days=550)).isoformat()
     closed_official = [
         r
         for r in rows

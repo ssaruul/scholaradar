@@ -96,7 +96,7 @@
   const hidden = new Set(store('scholaradar.hidden', []));
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const daysUntil = d => Math.round((new Date(d) - new Date(today)) / 86400000);
-  const recentlyClosed = r => r.official && r.target_eligible === 'yes' && r.deadline && r.deadline < today && daysUntil(r.deadline) >= -400;
+  const recentlyClosed = r => r.official && r.target_eligible === 'yes' && r.deadline && r.deadline < today && daysUntil(r.deadline) >= -550;
   const t = () => I18N[lang];
   const levels = new Set(), countries = new Set();
   rows.forEach(r => { r.degree_levels.forEach(l => levels.add(l)); if (r.host_country) countries.add(r.host_country); });
