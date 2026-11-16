@@ -79,6 +79,22 @@ def clean_apply_url(url: str, page_url: str, text: str) -> str:
     return candidate
 
 
+NULL_WORDS = {"null", "none", "n/a", "na", "unknown", "tbd", "tba"}
+
+
+def clean_deadline(value: str | None) -> str | None:
+    candidate = (value or "").strip()
+    try:
+        return date.fromisoformat(candidate).isoformat() if candidate else None
+    except ValueError:
+        return None
+
+
+def clean_deadline_text(value: str) -> str:
+    candidate = value.strip()
+    return "" if candidate.casefold() in NULL_WORDS else candidate
+
+
 def normalize_country(value: str) -> str:
     cleaned = value.strip().strip(".")
     return COUNTRY_ALIASES.get(cleaned.casefold(), cleaned)
@@ -166,8 +182,8 @@ def to_record(
         degree_levels=list(dict.fromkeys(opp.degree_levels)),
         fields_of_study=opp.fields_of_study,
         funding_type=opp.funding_type,
-        deadline=opp.deadline,
-        deadline_text=opp.deadline_text,
+        deadline=clean_deadline(opp.deadline),
+        deadline_text=clean_deadline_text(opp.deadline_text),
         eligibility_summary=opp.eligibility_summary,
         nationality_mode=opp.nationality_mode,
         target_eligible=opp.target_eligible,
