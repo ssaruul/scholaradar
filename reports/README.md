@@ -2,6 +2,7 @@
 
 Newest first. `latest.md` always mirrors the most recent run.
 
+- [2026-11-17](2026-11-17.md)
 - [2026-11-16](2026-11-16.md)
 - [2026-10-26](2026-10-26.md)
 - [2026-10-25](2026-10-25.md)
