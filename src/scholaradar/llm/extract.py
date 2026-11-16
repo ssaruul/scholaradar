@@ -90,7 +90,7 @@ def clean_deadline(value: str | None) -> str | None:
         return None
 
 
-def clean_deadline_text(value: str) -> str:
+def drop_placeholder(value: str) -> str:
     candidate = value.strip()
     return "" if candidate.casefold() in NULL_WORDS else candidate
 
@@ -172,8 +172,8 @@ def to_record(
     return db.OpportunityRecord(
         page_id=page.id,
         title=opp.title.strip() or (page.title or page.url),
-        provider=opp.provider.strip(),
-        canonical_name=opp.canonical_name.strip(),
+        provider=drop_placeholder(opp.provider),
+        canonical_name=drop_placeholder(opp.canonical_name),
         required_documents=[d.strip() for d in opp.required_documents if d.strip()],
         language_requirements=opp.language_requirements.strip(),
         application_route=opp.application_route,
@@ -183,7 +183,7 @@ def to_record(
         fields_of_study=opp.fields_of_study,
         funding_type=opp.funding_type,
         deadline=clean_deadline(opp.deadline),
-        deadline_text=clean_deadline_text(opp.deadline_text),
+        deadline_text=drop_placeholder(opp.deadline_text),
         eligibility_summary=opp.eligibility_summary,
         nationality_mode=opp.nationality_mode,
         target_eligible=opp.target_eligible,

@@ -68,15 +68,16 @@ def test_report_sections() -> None:
 
 
 def test_clean_deadline() -> None:
-    from scholaradar.llm.extract import clean_deadline, clean_deadline_text
+    from scholaradar.llm.extract import clean_deadline, drop_placeholder
 
     assert clean_deadline("2026-11-30") == "2026-11-30"
     assert clean_deadline("null") is None
     assert clean_deadline("2026-02-30") is None
     assert clean_deadline("30 November 2026") is None
     assert clean_deadline(None) is None
-    assert clean_deadline_text("null") == ""
-    assert clean_deadline_text("30 November 2026") == "30 November 2026"
+    assert drop_placeholder("null") == ""
+    assert drop_placeholder(" Unknown ") == ""
+    assert drop_placeholder("30 November 2026") == "30 November 2026"
 
 
 def test_clean_apply_url() -> None:
